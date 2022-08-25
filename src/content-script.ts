@@ -1,8 +1,11 @@
 import * as yaml from "js-yaml";
+import { createElement } from "./elements";
 
 import { isBodyWithReplies } from "./validations";
 
 (async function main() {
+  if (window.location.toString().includes("nope")) return;
+
   // 1. Is this an issue I can reply to?
   // (if not, exit from the page)
   const replySummary = document.getElementById("saved-reply-new_comment_field");
@@ -15,8 +18,8 @@ import { isBodyWithReplies } from "./validations";
   // TODO: maybe cache for a brief time?
   const userOrOrganization = "JoshuaKGoldberg";
   const repository = "refined-saved-replies";
-  const branch = "main";
-  const repliesUrl = `https://raw.githubusercontent.com/${userOrOrganization}/${repository}/${branch}/.github/replies.yml`;
+  const mainBranch = "main";
+  const repliesUrl = `https://raw.githubusercontent.com/${userOrOrganization}/${repository}/${mainBranch}/.github/replies.yml`;
   const response = await fetch(repliesUrl);
   const body = await response.text();
 
@@ -28,6 +31,13 @@ import { isBodyWithReplies } from "./validations";
   }
 
   // 4. Add a listener to modify the saved reply dropdown upon creation
+  const newCommentField = document.getElementById(
+    "new_comment_field"
+  ) as HTMLTextAreaElement;
+  if (!newCommentField) {
+    console.error("Couldn't find comment field");
+    return;
+  }
   const openSavedRepliesButton = document.getElementById(
     "saved-reply-new_comment_field"
   );
@@ -35,50 +45,94 @@ import { isBodyWithReplies } from "./validations";
     console.error("Couldn't find clicker");
     return;
   }
-  // TODO: actually hook this up to DOM event listeners? onclick?
-  openSavedRepliesButton.addEventListener("click", () => {
+
+  const onOpenSavedRepliesButtonClick = async () => {
+    // TODO: use observer
+    await new Promise((resolve) => setTimeout(resolve, 250));
+
     // 5. Add the new replies to the saved reply dropdown
-    // TODO: is this specific enough?
-    const replyCategoriesList = document.querySelector(
-      "markdown-toolbar fuzzy-list ul"
+    const replyCategoriesDetailsMenus = document.querySelectorAll(
+      `markdown-toolbar details-menu[src="/settings/replies?context=issue"]`
     );
-    if (!replyCategoriesList) {
-      console.error("could not find fuzzy list :(");
-      return;
-    }
 
-    // TODO: Investigate using a UI framework or similar?
-    const divider = document.createElement("div");
-    divider.className = "select-menu-divider js-divider";
-    divider.textContent = "Repository replies";
+    for (const replyCategoriesDetailsMenu of replyCategoriesDetailsMenus) {
+      replyCategoriesDetailsMenu.appendChild(
+        createElement("div", {
+          children: ["Repository replies"],
+          className: "select-menu-divider js-divider",
+        })
+      );
 
-    // TODO: add before defaults?
-    replyCategoriesList.append(
-      divider,
-      // TODO: styling
-      // TODO: also this was messing up the list
-      ...repliesConfiguration.replies.map((reply) => {
-        const listItem = document.createElement("li");
-        listItem.setAttribute("data-value", reply.name);
-
-        const button = document.createElement("button");
-        button.textContent = "ugh";
+      for (const reply of repliesConfiguration.replies) {
+        const button = createElement("button", {
+          children: [
+            createElement("div", {
+              children: [
+                createElement("div", {
+                  children: [
+                    createElement("span", {
+                      children: reply.name,
+                      className:
+                        "select-menu-item-heading css-truncate css-truncate-target",
+                    }),
+                    createElement("span", {
+                      children: reply.body,
+                      className:
+                        "description css-truncate css-truncate-target js-saved-reply-body",
+                    }),
+                  ],
+                  className: "flex-auto col-9",
+                }),
+              ],
+              className: "select-menu-item-text d-flex flex-items-center",
+            }),
+          ],
+          className: "select-menu-item width-full",
+          role: "menuitem",
+          type: "button",
+          value: "",
+        });
 
         button.addEventListener("click", (event) => {
           event.preventDefault();
-
-          // TODO: search for this once, not on click
-          (
-            document.getElementById("new_comment_field") as HTMLTextAreaElement
-          ).value += reply.body;
+          newCommentField.value += reply.body;
         });
 
-        listItem.appendChild(button);
+        replyCategoriesDetailsMenu.appendChild(
+          createElement("ul", {
+            children: [
+              createElement("li", { children: [button], role: "none" }),
+            ],
+            role: "none",
+          })
+        );
+      }
 
-        return listItem;
-      })
+      replyCategoriesDetailsMenu.appendChild(
+        createElement("a", {
+          children: [
+            createElement("span", {
+              children: ["Create a new repository reply..."],
+              class: "select-menu-item-text",
+            }),
+          ],
+          class: "select-menu-item select-menu-action",
+          href: `https://github.com/${userOrOrganization}/${repository}/edit/${mainBranch}/.github/replies.yml`,
+          role: "menuitem",
+          target: "_blank",
+        })
+      );
+    }
+
+    openSavedRepliesButton.removeEventListener(
+      "click",
+      onOpenSavedRepliesButtonClick
     );
-  });
+  };
+  openSavedRepliesButton.addEventListener(
+    "click",
+    onOpenSavedRepliesButtonClick
+  );
 })().catch((error) => {
   console.error("Oh no!", error);
 });

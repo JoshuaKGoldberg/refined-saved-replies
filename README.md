@@ -6,3 +6,5 @@ A Chrome extension for GitHub's [Saved Replies](https://docs.github.com/en/get-s
 
 - Error handling/logging
 - Investigate accessibility (how+why does GitHub use `role="none"`?)
+- Shortcuts
+- Integration with the web components
