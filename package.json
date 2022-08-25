@@ -1,0 +1,27 @@
+{
+  "author": "Josh Goldberg <npm@joshuakgoldberg.com>",
+  "bugs": {
+    "url": "https://github.com/JoshuaKGoldberg/refined-saved-replies/issues"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "description": "A Chrome extension for GitHub's [Saved Replies](https://docs.github.com/en/get-started/writing-on-github/working-with-saved-replies/using-saved-replies) that adds replies from a repository's `.github/replies.yml`.",
+  "homepage": "https://github.com/JoshuaKGoldberg/refined-saved-replies#readme",
+  "license": "MIT",
+  "name": "refined-saved-replies",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoshuaKGoldberg/refined-saved-replies.git"
+  },
+  "scripts": {
+    "build": "esbuild src/content-script.ts --bundle --minify --outfile=lib/content-script.js --sourcemap",
+    "compile": "tsc"
+  },
+  "version": "1.0.0",
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.5",
+    "esbuild": "^0.15.5",
+    "typescript": "^4.7.4"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "target": "ES2021"
+  },
+  "include": ["src"]
+}

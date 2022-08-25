@@ -1,8 +1,8 @@
 {
   "content_scripts": [
     {
-      "js": ["content-script.js"],
-      "matches": ["https://github.com/*/*"]
+      "js": ["lib/content-script.js"],
+      "matches": ["https://github.com/*/*/issues/*"]
     }
   ],
   "description": "Adds a repository's .github/replies.yml to GitHub's Saved Replies feature.",
