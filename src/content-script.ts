@@ -48,7 +48,13 @@ import { isBodyWithReplies } from "./validations";
 
   const onOpenSavedRepliesButtonClick = async () => {
     // TODO: use observer
-    await new Promise((resolve) => setTimeout(resolve, 250));
+    while (
+      !document.querySelector(
+        `markdown-toolbar details-menu[src="/settings/replies?context=issue"]`
+      )
+    ) {
+      await new Promise((resolve) => setTimeout(resolve, 5));
+    }
 
     // 5. Add the new replies to the saved reply dropdown
     const replyCategoriesDetailsMenus = document.querySelectorAll(
@@ -93,9 +99,9 @@ import { isBodyWithReplies } from "./validations";
           value: "",
         });
 
+        // It looks like GitHub's built-in clicking logic already sets up this listener.
         button.addEventListener("click", (event) => {
           event.preventDefault();
-          newCommentField.value += reply.body;
         });
 
         replyCategoriesDetailsMenu.appendChild(
