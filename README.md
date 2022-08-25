@@ -8,3 +8,8 @@ A Chrome extension for GitHub's [Saved Replies](https://docs.github.com/en/get-s
 - Investigate accessibility (how+why does GitHub use `role="none"`?)
 - Shortcuts
 - Integration with the web components
+- Short (one second) cache for fetching replies.yml files
+- Use an API that doesn't cause an angry 404 in the dev tools when not found
+- Use an observer on saved replies button click, not a quick setTimeout loop
+
+## Development

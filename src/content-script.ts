@@ -13,24 +13,28 @@ import { isBodyWithReplies } from "./validations";
     return;
   }
 
-  // 2. Fetch the repository's .github/replies.yml
-  // (no caching because it might change between page loads)
-  // TODO: maybe cache for a brief time?
-  const userOrOrganization = "JoshuaKGoldberg";
-  const repository = "refined-saved-replies";
-  const mainBranch = "main";
-  const repliesUrl = `https://raw.githubusercontent.com/${userOrOrganization}/${repository}/${mainBranch}/.github/replies.yml`;
-  const response = await fetch(repliesUrl);
-  const body = await response.text();
+  // 2. Fetch the repository's default branch, to retrieve replies.yml from
+  const { default_branch: defaultBranch } = await (
+    await fetch(
+      `https://api.github.com/repos/${userOrOrganization}/${repository}`
+    )
+  ).json();
 
-  // 3. Parse the body as yml
-  const repliesConfiguration = yaml.load(body);
+  // 3. Fetch the repository's .github/replies.yml
+  const [, userOrOrganization, repository] =
+    window.location.pathname.split("/");
+  const repliesUrl = `https://raw.githubusercontent.com/${userOrOrganization}/${repository}/${defaultBranch}/.github/replies.yml`;
+  const repliesResponse = await fetch(repliesUrl);
+  const repliesBody = await repliesResponse.text();
+
+  // 4. Parse the replies body as yml
+  const repliesConfiguration = yaml.load(repliesBody);
   if (!isBodyWithReplies(repliesConfiguration)) {
     console.error("Invalid saved replies:", repliesConfiguration);
     return;
   }
 
-  // 4. Add a listener to modify the saved reply dropdown upon creation
+  // 5. Add a listener to modify the saved reply dropdown upon creation
   const newCommentField = document.getElementById(
     "new_comment_field"
   ) as HTMLTextAreaElement;
@@ -47,16 +51,7 @@ import { isBodyWithReplies } from "./validations";
   }
 
   const onOpenSavedRepliesButtonClick = async () => {
-    // TODO: use observer
-    while (
-      !document.querySelector(
-        `markdown-toolbar details-menu[src="/settings/replies?context=issue"]`
-      )
-    ) {
-      await new Promise((resolve) => setTimeout(resolve, 5));
-    }
-
-    // 5. Add the new replies to the saved reply dropdown
+    // 6. Add the new replies to the saved reply dropdown
     const replyCategoriesDetailsMenus = document.querySelectorAll(
       `markdown-toolbar details-menu[src="/settings/replies?context=issue"]`
     );
@@ -123,7 +118,7 @@ import { isBodyWithReplies } from "./validations";
             }),
           ],
           class: "select-menu-item select-menu-action",
-          href: `https://github.com/${userOrOrganization}/${repository}/edit/${mainBranch}/.github/replies.yml`,
+          href: `https://github.com/${userOrOrganization}/${repository}/edit/${defaultBranch}/.github/replies.yml`,
           role: "menuitem",
           target: "_blank",
         })
