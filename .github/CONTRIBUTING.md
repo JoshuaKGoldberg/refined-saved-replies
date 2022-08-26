@@ -6,14 +6,6 @@ Thanks for your interest in contributing to `refined-saved-replies`! 💖
 
 This project contains a [Contributor Covenant code of conduct](./CODE_OF_CONDUCT.md) all contributors are expected to follow.
 
-## Getting Started
-
-```shell
-git clone https://github.com/your-username/refined-saved-replies
-cd refined-saved-replies
-yarn
-```
-
 ## Reporting Issues
 
 Please do [report an issue on the issue tracker](https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/new/choose) if there's any bugfix, documentation improvement, or general enhancement you'd like to see in the repository!
