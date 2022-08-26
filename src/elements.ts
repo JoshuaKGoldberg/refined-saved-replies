@@ -1,21 +1,27 @@
+export type CreateElementAttributes = Record<string, unknown> & {
+	className?: string;
+	children?: (string | Node)[];
+};
+
 export function createElement<TagName extends keyof HTMLElementTagNameMap>(
-  tagName: TagName,
-  attributes: Record<string, any> = {}
+	tagName: TagName,
+	{ children, className, ...attributes }: CreateElementAttributes = {}
 ): HTMLElementTagNameMap[TagName] {
-  const element = document.createElement(tagName);
+	const element = document.createElement(tagName);
 
-  for (const [key, value] of Object.entries(attributes)) {
-    switch (key) {
-      case "children":
-        element.append(...value);
-        break;
-      case "className":
-        element.className = value;
-        break;
-      default:
-        element.setAttribute(key, value);
-    }
-  }
+	if (children) {
+		element.append(...children);
+	}
 
-  return element;
+	if (className) {
+		element.className = className;
+	}
+
+	for (const [key, value] of Object.entries(attributes)) {
+		if (value) {
+			element.setAttribute(key, value as string);
+		}
+	}
+
+	return element;
 }

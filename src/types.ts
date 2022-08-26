@@ -1,8 +1,12 @@
 export interface BodyWithReplies {
-  replies: Reply[];
+	replies: Reply[];
 }
 
 export interface Reply {
-  body: string;
-  name: string;
+	body: string;
+	name: string;
+}
+
+export interface RepositoryDetails {
+	default_branch: string;
 }

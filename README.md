@@ -4,6 +4,7 @@ A Chrome extension for GitHub's [Saved Replies](https://docs.github.com/en/get-s
 
 ## TODOs
 
+- Really document development instructions
 - Error handling/logging
 - Investigate accessibility (how+why does GitHub use `role="none"`?)
 - Shortcuts
@@ -13,3 +14,11 @@ A Chrome extension for GitHub's [Saved Replies](https://docs.github.com/en/get-s
 - Use an observer on saved replies button click, not a quick setTimeout loop
 
 ## Development
+
+```shell
+yarn build
+```
+
+```shell
+yarn build --watch
+```
