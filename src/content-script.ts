@@ -55,7 +55,14 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 		return;
 	}
 
-	const onOpenSavedRepliesButtonClick = () => {
+	const onOpenSavedRepliesButtonClick = async () => {
+		while (
+			!document.querySelector(
+				`markdown-toolbar details-menu[src="/settings/replies?context=issue"]`
+			)
+		) {
+			await new Promise((resolve) => setTimeout(resolve, 10));
+		}
 		// 6. Add the new replies to the saved reply dropdown
 		const replyCategoriesDetailsMenus = document.querySelectorAll(
 			`markdown-toolbar details-menu[src="/settings/replies?context=issue"]`
