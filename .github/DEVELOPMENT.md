@@ -22,3 +22,13 @@ yarn build --watch
 Follow Google Chrome's _[Load an unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked)_ guide to load this repository's directory as an extension locally.
 
 > ♻️ Remember to reload the extension in `chrome://extensions` whenever you make changes locally!
+
+## Publishing
+
+The `zip` command will create a `./refined-saved-replies.zip` file containing relevant `manifest.json`, `assets/`, and `lib/` contents.
+
+```shell
+yarn zip
+```
+
+Upload that file to the [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole).
