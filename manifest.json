@@ -8,5 +8,5 @@
 	"description": "Adds a repository's .github/replies.yml to GitHub's Saved Replies feature.",
 	"manifest_version": 3,
 	"name": "Refined Saved Replies",
-	"version": "1.0"
+	"version": "0.1"
 }
