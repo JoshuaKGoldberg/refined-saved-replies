@@ -1,5 +1,5 @@
 {
 	"dictionaries": ["typescript"],
-	"ignorePaths": ["lib", "node_modules", "**/*.d.ts", "**/*.js"],
+	"ignorePaths": ["assets", "lib", "node_modules", "**/*.d.ts", "**/*.js"],
 	"words": ["commitlint", "esbuild", "outfile"]
 }
