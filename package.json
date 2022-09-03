@@ -21,7 +21,8 @@
 		"markdownlint-cli": "^0.32.2",
 		"prettier": "^2.7.1",
 		"pretty-quick": "^3.1.3",
-		"typescript": "^4.8.2"
+		"typescript": "^4.8.2",
+		"zip-lib": "^0.7.3"
 	},
 	"homepage": "https://github.com/JoshuaKGoldberg/refined-saved-replies#readme",
 	"license": "MIT",
@@ -38,7 +39,9 @@
 		"lint": "npx eslint \"src/*.ts\"  --max-warnings 0 --report-unused-disable-directives",
 		"lint:md": "npx markdownlint \"**/*.md\" \".github/**/*.md\"",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"zip": "node script/zip.js"
 	},
+	"type": "module",
 	"version": "0.1.0"
 }
