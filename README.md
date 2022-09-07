@@ -9,6 +9,11 @@ A Chrome extension for GitHub's [Saved Replies](https://docs.github.com/en/get-s
 Saved Replies are great, but oftentimes repository maintainers need a way to share common replies per-repository.
 This extension modifies the Saved Replies for issues on any repository with a `.github/replies.yml` file to include those replies.
 
+## Usage
+
+In review for the Chrome Web Store now.
+Until it passes, you'll need to [load unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked) locally.
+
 ## Development
 
 See [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md), then [`.github/DEVELOPMENT.md`](./.github/DEVELOPMENT.md).
