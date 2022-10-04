@@ -8,7 +8,7 @@ zip.addFolder("./lib", "./lib");
 zip.addFile("./manifest.json");
 
 for (const icon of Object.values(manifest.icons)) {
-	zip.addFile(`./assets/${icon}`, `./assets/${icon}`);
+	zip.addFile(icon, icon);
 }
 
 await zip.archive("./refined-saved-replies.zip");
