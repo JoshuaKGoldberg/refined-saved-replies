@@ -11,8 +11,7 @@ This extension modifies the Saved Replies for issues on any repository with a `.
 
 ## Usage
 
-In review for the Chrome Web Store now.
-Until it passes, you'll need to [load unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked) locally.
+Get it on [Chrome Web Store > Refined Saved Replies](https://chrome.google.com/webstore/detail/refined-saved-replies/ngcinicnlicdndmpcfjjifononfcceih)! ✨
 
 ## Development
 
