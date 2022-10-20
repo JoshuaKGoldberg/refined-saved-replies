@@ -1,5 +1,4 @@
 .DS_STORE
-assets/icon*.png
 lib/
 node_modules/
 refined-saved-replies.zip
