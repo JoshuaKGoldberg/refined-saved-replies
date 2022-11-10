@@ -16,7 +16,7 @@
 		"esbuild": "^0.15.5",
 		"eslint": "^8.22.0",
 		"eslint-config-prettier": "^8.5.0",
-		"husky": "^8.0.1",
+		"husky": "^8.0.2",
 		"jest": "^29.0.0",
 		"markdownlint-cli": "^0.32.2",
 		"prettier": "^2.7.1",
