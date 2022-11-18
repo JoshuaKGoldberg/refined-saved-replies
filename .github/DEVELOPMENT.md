@@ -1,10 +1,11 @@
 # Development
 
-After [forking the repository on GitHub](https://docs.github.com/en/get-started/quickstart/fork-a-repo), install required packages with [Yarn](https://yarnpkg.com):
+After [forking the repository on GitHub](https://docs.github.com/en/get-started/quickstart/fork-a-repo), install required packages with [Yarn](https://yarnpkg.com) and set the correct Node version with [nvm](https://github.com/nvm-sh/nvm#installing-and-updating):
 
 ```shell
 git clone https://github.com/your-username/refined-saved-replies
 cd refined-saved-replies
+nvm install
 yarn
 ```
 
