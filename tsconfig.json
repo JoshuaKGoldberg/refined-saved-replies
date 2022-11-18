@@ -4,7 +4,8 @@
 		"noEmit": true,
 		"skipLibCheck": true,
 		"strict": true,
-		"target": "ES2021"
+		"target": "ES2021",
+		"allowJs": true
 	},
 	"include": ["src"]
 }

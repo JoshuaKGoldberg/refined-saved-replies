@@ -1,9 +1,11 @@
 import * as yaml from "js-yaml";
+import Mustache from "./mustache";
 
 import { createElement } from "./elements";
 import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 
 (async function main() {
+	// todo: remove
 	if (window.location.toString().includes("nope")) return;
 
 	// 1. Is this an issue I can reply to?
@@ -14,7 +16,7 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 	}
 
 	// 2. Fetch the repository's default branch, to retrieve replies.yml from
-	const [, userOrOrganization, repository] =
+	const [, userOrOrganization, repository, , issueOrPR] =
 		window.location.pathname.split("/");
 	const repositoryDetails = (await (
 		await fetch(
@@ -27,8 +29,18 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 	}
 	const { default_branch: defaultBranch } = repositoryDetails;
 
+	// 2.5 get the issue JSON
+	// https://api.github.com/repos/JoshuaKGoldberg/refined-saved-replies/issues/45
+	const issueOrPRDetails = (await (
+		await fetch(
+			`https://api.github.com/repos/${userOrOrganization}/${repository}/issues/${issueOrPR}`
+		)
+	).json()) as unknown;
+
 	// 3. Fetch the repository's .github/replies.yml
-	const repliesUrl = `https://raw.githubusercontent.com/${userOrOrganization}/${repository}/${defaultBranch}/.github/replies.yml`;
+	// const repliesUrl = `https://raw.githubusercontent.com/${userOrOrganization}/${repository}/${defaultBranch}/.github/replies.yml`;
+	const repliesUrl = `https://gist.githubusercontent.com/Pinjasaur/7364ffd89e01047ace51a5ee368d9a4d/raw/fd9fe1dee19bd0fee682fc4b1dfea25ebe42ad99/replies.yml`;
+	// https://gist.githubusercontent.com/Pinjasaur/7364ffd89e01047ace51a5ee368d9a4d/raw/72a795f74b62ee8885a364bb7b9846173cfc3503/replies.yml
 	const repliesResponse = await fetch(repliesUrl);
 	const repliesBody = await repliesResponse.text();
 
@@ -82,7 +94,7 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 												"select-menu-item-heading css-truncate css-truncate-target",
 										}),
 										createElement("span", {
-											children: [reply.body],
+											children: [Mustache.render(reply.body, issueOrPRDetails)],
 											className:
 												"description css-truncate css-truncate-target js-saved-reply-body",
 										}),

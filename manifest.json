@@ -1,7 +1,7 @@
 {
 	"content_scripts": [
 		{
-			"js": ["lib/content-script.js"],
+			"js": ["lib/mustache.ts", "lib/content-script.js"],
 			"matches": ["https://github.com/*/*/issues/*"]
 		}
 	],
