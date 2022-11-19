@@ -1,12 +1,12 @@
 {
 	"compilerOptions": {
+		"allowJs": true,
 		"esModuleInterop": true,
 		"moduleResolution": "node",
 		"noEmit": true,
 		"skipLibCheck": true,
 		"strict": true,
-		"target": "ES2021",
-		"allowJs": true
+		"target": "ES2021"
 	},
 	"include": ["src"]
 }
