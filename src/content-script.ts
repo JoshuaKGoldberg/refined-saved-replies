@@ -29,7 +29,7 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 	}
 	const { default_branch: defaultBranch } = repositoryDetails;
 
-	// 3. Get the REST API's JSON description of the item
+	// 3. Fetch the REST API's JSON description of the item
 	const details = (await (
 		await fetch(
 			`https://api.github.com/repos/${userOrOrganization}/${repository}/issues/${issueOrPR}`
