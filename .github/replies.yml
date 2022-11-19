@@ -1,5 +1,5 @@
 replies:
   - body: |
       <img width="488" alt="Maury meme: You checked 'I have searched for related issues'. A cursory issue search related issues determined that was a lie." src="https://user-images.githubusercontent.com/3335181/186501430-7f4c481a-f557-48b0-826c-74bb8434f4d5.png">\
-      Dup of #<insert issue>. Next time, please use the search 🙂.
+      Duplicate of #<insert issue>. Thanks for posting @{{user.login}} - though, next time, please use the search. 😄
     name: Clearly Duplicate Issue
