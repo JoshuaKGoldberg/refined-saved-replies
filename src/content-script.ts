@@ -5,9 +5,6 @@ import { createElement } from "./elements";
 import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 
 (async function main() {
-	// todo: remove
-	if (window.location.toString().includes("nope")) return;
-
 	// 1. Is this an issue I can reply to?
 	// (if not, exit from the page)
 	const replySummary = document.getElementById("saved-reply-new_comment_field");
