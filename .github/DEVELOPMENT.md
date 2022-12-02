@@ -8,6 +8,8 @@ cd refined-saved-replies
 yarn
 ```
 
+> Tip: Consider using [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) and running `nvm install` to sync the Node version used to develop on this repository.
+
 ## Building
 
 You can then use `yarn build` to build locally with [ESBuild](https://esbuild.github.io).
