@@ -4,11 +4,13 @@
 		"url": "https://github.com/JoshuaKGoldberg/refined-saved-replies/issues"
 	},
 	"dependencies": {
-		"js-yaml": "^4.1.0"
+		"js-yaml": "^4.1.0",
+		"mustache": "^4.2.0"
 	},
 	"description": "A Chrome extension for GitHub's [Saved Replies](https://docs.github.com/en/get-started/writing-on-github/working-with-saved-replies/using-saved-replies) that adds replies from a repository's `.github/replies.yml`.",
 	"devDependencies": {
 		"@types/js-yaml": "^4.0.5",
+		"@types/mustache": "^4.2.1",
 		"@typescript-eslint/eslint-plugin": "^5.43.0",
 		"@typescript-eslint/parser": "^5.43.0",
 		"commitlint": "^17.0.3",
