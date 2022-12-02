@@ -1,4 +1,5 @@
 import * as yaml from "js-yaml";
+import Mustache from "mustache";
 
 import { createElement } from "./elements";
 import { isBodyWithReplies, isRepositoryDetails } from "./validations";
@@ -12,7 +13,7 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 	}
 
 	// 2. Fetch the repository's default branch, to retrieve replies.yml from
-	const [, userOrOrganization, repository] =
+	const [, userOrOrganization, repository, , issueOrPR] =
 		window.location.pathname.split("/");
 	const repositoryDetails = (await (
 		await fetch(
@@ -25,19 +26,26 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 	}
 	const { default_branch: defaultBranch } = repositoryDetails;
 
-	// 3. Fetch the repository's .github/replies.yml
+	// 3. Fetch the REST API's JSON description of the item
+	const details = (await (
+		await fetch(
+			`https://api.github.com/repos/${userOrOrganization}/${repository}/issues/${issueOrPR}`
+		)
+	).json()) as unknown;
+
+	// 4. Fetch the repository's .github/replies.yml
 	const repliesUrl = `https://raw.githubusercontent.com/${userOrOrganization}/${repository}/${defaultBranch}/.github/replies.yml`;
 	const repliesResponse = await fetch(repliesUrl);
 	const repliesBody = await repliesResponse.text();
 
-	// 4. Parse the replies body as yml
+	// 5. Parse the replies body as yml
 	const repliesConfiguration = yaml.load(repliesBody);
 	if (!isBodyWithReplies(repliesConfiguration)) {
 		console.error("Invalid saved replies:", repliesConfiguration);
 		return;
 	}
 
-	// 5. Add a listener to modify the saved reply dropdown upon creation
+	// 6. Add a listener to modify the saved reply dropdown upon creation
 	const newCommentField = document.getElementById("new_comment_field") as
 		| HTMLTextAreaElement
 		| undefined;
@@ -54,7 +62,7 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 	}
 
 	const onOpenSavedRepliesButtonClick = () => {
-		// 6. Add the new replies to the saved reply dropdown
+		// 7. Add the new replies to the saved reply dropdown
 		const replyCategoriesDetailsMenus = document.querySelectorAll(
 			`markdown-toolbar details-menu[src="/settings/replies?context=issue"]`
 		);
@@ -75,12 +83,12 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 								createElement("div", {
 									children: [
 										createElement("span", {
-											children: [reply.name],
+											children: [Mustache.render(reply.name, details)],
 											className:
 												"select-menu-item-heading css-truncate css-truncate-target",
 										}),
 										createElement("span", {
-											children: [reply.body],
+											children: [Mustache.render(reply.body, details)],
 											className:
 												"description css-truncate css-truncate-target js-saved-reply-body",
 										}),
