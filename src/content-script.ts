@@ -64,7 +64,7 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 	const onOpenSavedRepliesButtonClick = () => {
 		// 7. Add the new replies to the saved reply dropdown
 		const replyCategoriesDetailsMenus = document.querySelectorAll(
-			`markdown-toolbar details-menu[src="/settings/replies?context=issue"]`
+			`markdown-toolbar details-menu[src^="/settings/replies?context="]`
 		);
 
 		for (const replyCategoriesDetailsMenu of replyCategoriesDetailsMenus) {
