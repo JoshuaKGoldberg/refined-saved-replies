@@ -36,6 +36,17 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 	// 4. Fetch the repository's .github/replies.yml
 	const repliesUrl = `https://raw.githubusercontent.com/${userOrOrganization}/${repository}/${defaultBranch}/.github/replies.yml`;
 	const repliesResponse = await fetch(repliesUrl);
+
+	if (!repliesResponse.ok) {
+		if (repliesResponse.status !== 404) {
+			console.error(
+				"Non-ok response fetching replies:",
+				repliesResponse.statusText
+			);
+		}
+		return;
+	}
+
 	const repliesBody = await repliesResponse.text();
 
 	// 5. Parse the replies body as yml
