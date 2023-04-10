@@ -39,7 +39,10 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 
 	if (!repliesResponse.ok) {
 		if (repliesResponse.status !== 404) {
-			console.error("Non-ok response fetching replies:", repliesResponse.statusText);
+			console.error(
+				"Non-ok response fetching replies:",
+				repliesResponse.statusText
+			);
 		}
 		return;
 	}
