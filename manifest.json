@@ -1,4 +1,9 @@
 {
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "refined-saved-replies@example.org"
+		}
+	},
 	"content_scripts": [
 		{
 			"js": ["lib/content-script.js"],
@@ -18,5 +23,5 @@
 	},
 	"manifest_version": 3,
 	"name": "Refined Saved Replies",
-	"version": "0.3"
+	"version": "0.4"
 }

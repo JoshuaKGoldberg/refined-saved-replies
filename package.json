@@ -7,7 +7,7 @@
 		"js-yaml": "^4.1.0",
 		"mustache": "^4.2.0"
 	},
-	"description": "A Chrome extension for GitHub's [Saved Replies](https://docs.github.com/en/get-started/writing-on-github/working-with-saved-replies/using-saved-replies) that adds replies from a repository's `.github/replies.yml`.",
+	"description": "A Browser extension for GitHub's [Saved Replies](https://docs.github.com/en/get-started/writing-on-github/working-with-saved-replies/using-saved-replies) that adds replies from a repository's `.github/replies.yml`.",
 	"devDependencies": {
 		"@types/js-yaml": "^4.0.5",
 		"@types/mustache": "^4.2.1",
@@ -24,6 +24,7 @@
 		"markdownlint-cli": "^0.32.2",
 		"prettier": "^2.7.1",
 		"typescript": "^4.9.3",
+		"web-ext": "^7.6.1",
 		"zip-lib": "^0.7.3"
 	},
 	"homepage": "https://github.com/JoshuaKGoldberg/refined-saved-replies#readme",
@@ -36,19 +37,22 @@
 	"scripts": {
 		"build": "esbuild src/content-script.ts --bundle --minify --outfile=lib/content-script.js --sourcemap",
 		"compile": "tsc",
+		"firefox:dev": "web-ext run",
+		"firefox:package": "web-ext build",
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "yarn format --write",
 		"lint": "npx eslint \"src/*.ts\"  --max-warnings 0 --report-unused-disable-directives",
 		"lint:md": "npx markdownlint \"**/*.md\" \".github/**/*.md\"",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky install",
+		"webext:lint": "web-ext lint",
 		"zip": "node script/zip.js"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"
 	},
 	"type": "module",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"engines": {
 		"node": ">=18"
 	}
