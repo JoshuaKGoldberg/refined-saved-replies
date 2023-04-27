@@ -4,11 +4,29 @@ import Mustache from "mustache";
 import { createElement } from "./elements";
 import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 
-(async function main() {
+runMainOnLocationMatch();
+
+document.addEventListener("soft-nav:end", () => {
+	runMainOnLocationMatch();
+});
+
+function runMainOnLocationMatch() {
+	if (/\/.+\/.+\/(issues|pull)\/.+/.test(window.location.pathname)) {
+		main().catch((error) => {
+			console.error("Oh no!", error);
+		});
+	}
+}
+
+async function main() {
+	const openSavedRepliesButton = document.getElementById(
+		"saved-reply-new_comment_field"
+	);
+
 	// 1. Is this an issue I can reply to?
 	// (if not, exit from the page)
-	const replySummary = document.getElementById("saved-reply-new_comment_field");
-	if (!replySummary) {
+	if (!openSavedRepliesButton) {
+		console.error("Couldn't find clicker");
 		return;
 	}
 
@@ -62,13 +80,6 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 		| undefined;
 	if (!newCommentField) {
 		console.error("Couldn't find comment field");
-		return;
-	}
-	const openSavedRepliesButton = document.getElementById(
-		"saved-reply-new_comment_field"
-	);
-	if (!openSavedRepliesButton) {
-		console.error("Couldn't find clicker");
 		return;
 	}
 
@@ -155,6 +166,4 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 		"click",
 		onOpenSavedRepliesButtonClick
 	);
-})().catch((error) => {
-	console.error("Oh no!", error);
-});
+}
