@@ -4,19 +4,7 @@ import Mustache from "mustache";
 import { createElement } from "./elements";
 import { isBodyWithReplies, isRepositoryDetails } from "./validations";
 
-runMainOnLocationMatch();
-
-document.addEventListener("soft-nav:end", () => {
-	runMainOnLocationMatch();
-});
-
-function runMainOnLocationMatch() {
-	if (/\/.+\/.+\/(issues|pull)\/.+/.test(window.location.pathname)) {
-		main().catch((error) => {
-			console.error("Oh no!", error);
-		});
-	}
-}
+document.addEventListener("soft-nav:end", main);
 
 async function main() {
 	const openSavedRepliesButton = document.getElementById(
@@ -26,7 +14,6 @@ async function main() {
 	// 1. Is this an issue I can reply to?
 	// (if not, exit from the page)
 	if (!openSavedRepliesButton) {
-		console.error("Couldn't find clicker");
 		return;
 	}
 
