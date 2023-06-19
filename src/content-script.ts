@@ -154,3 +154,5 @@ async function main() {
 		onOpenSavedRepliesButtonClick
 	);
 }
+
+main()
