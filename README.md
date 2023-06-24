@@ -11,7 +11,6 @@ This extension modifies the Saved Replies for issues or pull requests on any rep
 
 ## Usage
 
-
 [![Available from Chrome Webstore](assets/chrome.png)](https://chrome.google.com/webstore/detail/refined-saved-replies/ngcinicnlicdndmpcfjjifononfcceih/)
 
 ## Development
