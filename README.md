@@ -18,5 +18,3 @@ This extension modifies the Saved Replies for issues or pull requests on any rep
 
 See [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md), then [`.github/DEVELOPMENT.md`](./.github/DEVELOPMENT.md).
 Thanks! 💖
-
-
