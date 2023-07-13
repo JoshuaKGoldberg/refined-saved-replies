@@ -13,7 +13,7 @@
 		"@types/mustache": "^4.2.1",
 		"@typescript-eslint/eslint-plugin": "^5.43.0",
 		"@typescript-eslint/parser": "^5.43.0",
-		"commitlint": "^17.0.3",
+		"commitlint": "^17.4.4",
 		"cspell": "^6.14.3",
 		"esbuild": "^0.15.14",
 		"eslint": "^8.22.0",
