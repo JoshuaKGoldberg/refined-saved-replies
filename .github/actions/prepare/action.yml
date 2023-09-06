@@ -1,13 +1,14 @@
-name: Prepare
 description: Prepares the repo for a typical CI job
 
+name: Prepare
+
 runs:
-  using: "composite"
   steps:
-    - uses: actions/checkout@v3
+    - uses: pnpm/action-setup@v2
     - uses: actions/setup-node@v3
       with:
+        cache: pnpm
         node-version: "18"
-        cache: "yarn"
-    - run: yarn install --frozen-lockfile
+    - run: pnpm install --frozen-lockfile
       shell: bash
+  using: composite

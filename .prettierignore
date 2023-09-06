@@ -1,2 +1,4 @@
+assets/
+coverage/
 lib/
 pnpm-lock.yaml

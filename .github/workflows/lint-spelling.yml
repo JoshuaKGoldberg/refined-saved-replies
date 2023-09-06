@@ -1,12 +1,12 @@
 jobs:
-  prettier:
+  lint_spelling:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/prepare
-      - run: pnpm format --list-different
+      - run: pnpm lint:spelling
 
-name: Prettier
+name: Lint spelling
 
 on:
   pull_request: ~
