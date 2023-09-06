@@ -19,6 +19,7 @@
 		"lcov",
 		"markdownlintignore",
 		"npmpackagejsonlintrc",
+		"outfile",
 		"outro",
 		"packagejson",
 		"quickstart",
