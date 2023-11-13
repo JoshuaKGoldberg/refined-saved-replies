@@ -85,7 +85,7 @@
 		"yaml-eslint-parser": "^1.2.2",
 		"zip-lib": "^0.7.3"
 	},
-	"packageManager": "pnpm@8.7.0",
+	"packageManager": "pnpm@8.10.2",
 	"engines": {
 		"node": ">=18"
 	},
