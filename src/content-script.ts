@@ -1,14 +1,16 @@
 import * as yaml from "js-yaml";
 import Mustache from "mustache";
 
-import { createElement } from "./elements";
-import { isBodyWithReplies, isRepositoryDetails } from "./validations";
+import { createElement } from "./elements.js";
+import { isBodyWithReplies, isRepositoryDetails } from "./validations.js";
 
+// TODO: Add handling for a rejection?
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 document.addEventListener("soft-nav:end", main);
 
 async function main() {
 	const openSavedRepliesButton = document.getElementById(
-		"saved-reply-new_comment_field"
+		"saved-reply-new_comment_field",
 	);
 
 	// 1. Is this an issue I can reply to?
@@ -22,19 +24,20 @@ async function main() {
 		window.location.pathname.split("/");
 	const repositoryDetails = (await (
 		await fetch(
-			`https://api.github.com/repos/${userOrOrganization}/${repository}`
+			`https://api.github.com/repos/${userOrOrganization}/${repository}`,
 		)
 	).json()) as unknown;
 	if (!isRepositoryDetails(repositoryDetails)) {
 		console.error("Invalid repository details:", repositoryDetails);
 		return;
 	}
+
 	const { default_branch: defaultBranch } = repositoryDetails;
 
 	// 3. Fetch the REST API's JSON description of the item
 	const details = (await (
 		await fetch(
-			`https://api.github.com/repos/${userOrOrganization}/${repository}/issues/${issueOrPR}`
+			`https://api.github.com/repos/${userOrOrganization}/${repository}/issues/${issueOrPR}`,
 		)
 	).json()) as unknown;
 
@@ -46,9 +49,10 @@ async function main() {
 		if (repliesResponse.status !== 404) {
 			console.error(
 				"Non-ok response fetching replies:",
-				repliesResponse.statusText
+				repliesResponse.statusText,
 			);
 		}
+
 		return;
 	}
 
@@ -73,7 +77,7 @@ async function main() {
 	const onOpenSavedRepliesButtonClick = () => {
 		// 7. Add the new replies to the saved reply dropdown
 		const replyCategoriesDetailsMenus = document.querySelectorAll(
-			`markdown-toolbar details-menu[src^="/settings/replies?context="]`
+			`markdown-toolbar details-menu[src^="/settings/replies?context="]`,
 		);
 
 		for (const replyCategoriesDetailsMenu of replyCategoriesDetailsMenus) {
@@ -81,7 +85,7 @@ async function main() {
 				createElement("div", {
 					children: ["Repository replies"],
 					className: "select-menu-divider js-divider",
-				})
+				}),
 			);
 
 			for (const reply of repliesConfiguration.replies) {
@@ -124,7 +128,7 @@ async function main() {
 							createElement("li", { children: [button], role: "none" }),
 						],
 						role: "none",
-					})
+					}),
 				);
 			}
 
@@ -140,18 +144,19 @@ async function main() {
 					href: `https://github.com/${userOrOrganization}/${repository}/edit/${defaultBranch}/.github/replies.yml`,
 					role: "menuitem",
 					target: "_blank",
-				})
+				}),
 			);
 		}
 
 		openSavedRepliesButton.removeEventListener(
 			"click",
-			onOpenSavedRepliesButtonClick
+			onOpenSavedRepliesButtonClick,
 		);
 	};
+
 	openSavedRepliesButton.addEventListener(
 		"click",
-		onOpenSavedRepliesButtonClick
+		onOpenSavedRepliesButtonClick,
 	);
 }
 

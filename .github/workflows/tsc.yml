@@ -1,12 +1,12 @@
 jobs:
-  prettier:
+  type_check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
-      - run: pnpm format --list-different
+      - run: pnpm tsc
 
-name: Prettier
+name: Type Check
 
 on:
   pull_request: ~

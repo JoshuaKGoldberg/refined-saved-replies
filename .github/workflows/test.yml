@@ -1,12 +1,14 @@
 jobs:
-  prettier:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
-      - run: pnpm format --list-different
+      - run: pnpm run test --coverage
+      - name: Codecov
+        uses: codecov/codecov-action@v3
 
-name: Prettier
+name: Test
 
 on:
   pull_request: ~

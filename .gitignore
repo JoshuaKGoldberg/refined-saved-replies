@@ -1,5 +1,4 @@
-.DS_STORE
+*.zip
+coverage/
 lib/
 node_modules/
-refined-saved-replies.zip
-refined-saved-replies/

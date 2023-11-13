@@ -10,11 +10,11 @@
 	],
 	"description": "Adds a repository's .github/replies.yml to GitHub's Saved Replies feature.",
 	"icons": {
+		"128": "assets/icon128.png",
 		"16": "assets/icon16.png",
 		"32": "assets/icon32.png",
 		"48": "assets/icon48.png",
-		"64": "assets/icon64.png",
-		"128": "assets/icon128.png"
+		"64": "assets/icon64.png"
 	},
 	"manifest_version": 3,
 	"name": "Refined Saved Replies",

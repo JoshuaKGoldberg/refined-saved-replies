@@ -1,11 +1,11 @@
 export type CreateElementAttributes = Record<string, unknown> & {
+	children?: (Node | string)[];
 	className?: string;
-	children?: (string | Node)[];
 };
 
 export function createElement<TagName extends keyof HTMLElementTagNameMap>(
 	tagName: TagName,
-	{ children, className, ...attributes }: CreateElementAttributes = {}
+	{ children, className, ...attributes }: CreateElementAttributes = {},
 ): HTMLElementTagNameMap[TagName] {
 	const element = document.createElement(tagName);
 

@@ -1,5 +1,28 @@
 {
 	"dictionaries": ["typescript"],
-	"ignorePaths": ["assets", "lib", "node_modules", "**/*.d.ts", "**/*.js"],
-	"words": ["commitlint", "esbuild", "outfile"]
+	"ignorePaths": [
+		".github",
+		"assets",
+		"CHANGELOG.md",
+		"coverage",
+		"lib",
+		"node_modules",
+		"pnpm-lock.yaml"
+	],
+	"words": [
+		"Codecov",
+		"codespace",
+		"commitlint",
+		"contributorsrc",
+		"conventionalcommits",
+		"knip",
+		"lcov",
+		"markdownlintignore",
+		"npmpackagejsonlintrc",
+		"outfile",
+		"outro",
+		"packagejson",
+		"quickstart",
+		"wontfix"
+	]
 }
