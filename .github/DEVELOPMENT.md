@@ -36,7 +36,7 @@ Follow Google Chrome's _[Load an unpacked extension](https://developer.chrome.co
 The `zip` command will create a `./refined-saved-replies.zip` file containing relevant `manifest.json`, `assets/`, and `lib/` contents.
 
 ```shell
-yarn zip
+pnpm zip
 ```
 
 Upload that file to the [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole).
@@ -49,7 +49,7 @@ It should be applied automatically when you save files in VS Code or make a Git 
 To manually reformat all files, you can run:
 
 ```shell
-pnpm format:write
+pnpm format --write
 ```
 
 ## Linting

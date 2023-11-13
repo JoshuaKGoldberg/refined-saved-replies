@@ -4,16 +4,16 @@
 > See [🐛 Bug: No longer works in latest GitHub web update](https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/161).
 > Accepting PRs to fix, please! ❌
 
-<p align="center">Chrome extension for GitHub's Saved Replies that adds replies from a repository's `.github/replies.yml`. 📨</p>
+<p align="center">Chrome extension for GitHub's Saved Replies that adds replies from a repository's <code>.github/replies.yml</code>. 📨</p>
 
 <p align="center">
 	<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<img alt="All Contributors: 6" src="https://img.shields.io/badge/all_contributors-6-21bb42.svg" />
+<img alt="All Contributors: 6 👪" src="https://img.shields.io/badge/all_contributors-6_👪-21bb42.svg" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
-	</a>
+</a>
 	<a href="https://codecov.io/gh/JoshuaKGoldberg/refined-saved-replies" target="_blank">
 		<img alt="Codecov Test Coverage" src="https://codecov.io/gh/JoshuaKGoldberg/refined-saved-replies/branch/main/graph/badge.svg"/>
 	</a>
@@ -28,9 +28,9 @@
 	</a>
 	<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
 	<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
+	<img alt="npm package version" src="https://img.shields.io/npm/v/refined-saved-replies?color=21bb42" />
+	<img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" />
 </p>
-
-A Chrome extension for GitHub's [Saved Replies](https://docs.github.com/en/get-started/writing-on-github/working-with-saved-replies/using-saved-replies) that adds replies from a repository's `.github/replies.yml`.
 
 Saved Replies are great, but oftentimes repository maintainers need a way to share common replies per-repository.
 This extension modifies the Saved Replies for issues or pull requests on any repository with a `.github/replies.yml` file to include those replies.
@@ -69,6 +69,4 @@ Thanks! 💖
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- spellchecker: enable -->
 
-<!-- You can remove this notice if you don't want it 🙂 no worries! -->
-
-> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [refined-saved-replies](https://github.com/JoshuaKGoldberg/refined-saved-replies).
+> 💙 This package was templated with [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
