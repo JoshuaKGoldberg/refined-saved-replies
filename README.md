@@ -1,5 +1,9 @@
 <h1 align="center">Refined Saved Replies</h1>
 
+> ❌ This seems to have been broken in the latest GitHub web update.
+> See [🐛 Bug: No longer works in latest GitHub web update](https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/161).
+> Accepting PRs to fix, please! ❌
+
 <p align="center">Chrome extension for GitHub's Saved Replies that adds replies from a repository's `.github/replies.yml`. 📨</p>
 
 <p align="center">
