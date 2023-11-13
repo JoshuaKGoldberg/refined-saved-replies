@@ -1,5 +1,9 @@
 # Refined Saved Replies
 
+> ❌ This seems to have been broken in the latest GitHub web update.
+> See [🐛 Bug: No longer works in latest GitHub web update](https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/161).
+> Accepting PRs to fix, please! ❌
+
 [![GitHub CI](https://github.com/JoshuaKGoldberg/sinon-timers-repeatable/actions/workflows/compile.yml/badge.svg)](https://github.com/JoshuaKGoldberg/sinon-timers-repeatable/actions/workflows/compile.yml)
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-brightgreen.svg)](https://prettier.io)
 ![TypeScript: Strict](https://img.shields.io/badge/typescript-strict-brightgreen.svg)
