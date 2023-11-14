@@ -75,19 +75,21 @@ async function main() {
 		return;
 	}
 
-	async function getSoon<T extends { length: number }>(callback: () => T) {
+	async function getSoon<Value extends Node | NodeList | null>(
+		getter: () => Value,
+	) {
 		for (let i = 0; i < 100; i += 1) {
-			const result = callback();
-			if (result.length) {
+			const result = getter();
+			if (result && (!(result instanceof NodeList) || result.length)) {
 				return result;
 			}
 
-			await new Promise((resolve) => setTimeout(resolve, i * 2));
+			await new Promise((resolve) => setTimeout(resolve, i));
 		}
 
 		// TODO: Add handling for a rejection
 		// https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/2
-		throw new Error(`Element was never found :(`);
+		throw new Error(`Element was never found 😔`);
 	}
 
 	const onOpenSavedRepliesButtonClick = async () => {
@@ -190,8 +192,8 @@ async function main() {
 
 				// There should already be a "new reply" button; add an equivalent
 				// button for adding a new saved reply
-				const [plusIcon] = await getSoon(() =>
-					modal.querySelectorAll("a .Button-visual.Button-leadingVisual"),
+				const plusIcon = await getSoon(() =>
+					modal.querySelector("a .Button-visual.Button-leadingVisual"),
 				);
 
 				modal.appendChild(
