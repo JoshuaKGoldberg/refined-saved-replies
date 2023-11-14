@@ -9,6 +9,7 @@ export default defineConfig({
 			include: ["src"],
 			reporter: ["html", "lcov"],
 		},
+		environment: "happy-dom",
 		exclude: ["lib", "node_modules"],
 		setupFiles: ["console-fail-test/setup"],
 	},
