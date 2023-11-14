@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { isBodyWithReplies, isRepositoryDetails } from "./validations.js";
+import { isBodyWithReplies, isRepositorySettings } from "./validations.js";
 
 describe("isBodyWithReplies", () => {
 	test.each([
@@ -33,7 +33,7 @@ describe("isRepositoryDetails", () => {
 		[{ default_branch: undefined }, false],
 		[{ default_branch: "" }, true],
 	])("%s is %s", (input, expected) => {
-		const actual = isRepositoryDetails(input);
+		const actual = isRepositorySettings(input);
 
 		expect(actual).toBe(expected);
 	});
