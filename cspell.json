@@ -15,6 +15,7 @@
 		"commitlint",
 		"contributorsrc",
 		"conventionalcommits",
+		"descriptionwrap",
 		"keithamus",
 		"knip",
 		"lcov",
