@@ -188,42 +188,40 @@ async function main() {
 				modal.style.height = "100%";
 				modal.style.maxHeight = "calc(100vh - 5rem)";
 
-				// TODO: think of async flow better
-				setTimeout(() => {
-					modal.appendChild(
-						createElement("div", {
-							children: [
-								createElement("a", {
-									children: [
-										createElement("span", {
-											children: [
-												// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-												modal
-													.querySelector(
-														"a .Button-visual.Button-leadingVisual",
-													)!
-													.cloneNode(true),
-												createElement("span", {
-													children: ["Create a new repository reply"],
-													className: "Button-label",
-												}),
-											],
-											className: "Button-content Button-content--alignStart",
-										}),
-									],
-									className:
-										"Button--invisible Button--medium Button Button--fullWidth",
-									"data-view-component": true,
-									href: `https://github.com/${userOrOrganization}/${repository}/edit/${defaultBranch}/.github/replies.yml`,
-									target: "_blank",
-								}),
-							],
-							className:
-								"Overlay-footer Overlay-footer--alignEnd Overlay-footer--divided",
-							"data-view-component": true,
-						}),
-					);
-				});
+				// There should already be a "new reply" button; add an equivalent
+				// button for adding a new saved reply
+				const [plusIcon] = await getSoon(() =>
+					modal.querySelectorAll("a .Button-visual.Button-leadingVisual"),
+				);
+
+				modal.appendChild(
+					createElement("div", {
+						children: [
+							createElement("a", {
+								children: [
+									createElement("span", {
+										children: [
+											plusIcon.cloneNode(true),
+											createElement("span", {
+												children: ["Create a new repository reply"],
+												className: "Button-label",
+											}),
+										],
+										className: "Button-content Button-content--alignStart",
+									}),
+								],
+								className:
+									"Button--invisible Button--medium Button Button--fullWidth",
+								"data-view-component": true,
+								href: `https://github.com/${userOrOrganization}/${repository}/edit/${defaultBranch}/.github/replies.yml`,
+								target: "_blank",
+							}),
+						],
+						className:
+							"Overlay-footer Overlay-footer--alignEnd Overlay-footer--divided",
+						"data-view-component": true,
+					}),
+				);
 			}
 		}
 
