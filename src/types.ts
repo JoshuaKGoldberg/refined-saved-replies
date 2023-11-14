@@ -7,6 +7,6 @@ export interface Reply {
 	name: string;
 }
 
-export interface RepositoryDetails {
+export interface RepositorySettings {
 	default_branch: string;
 }

@@ -2,8 +2,9 @@ import * as yaml from "js-yaml";
 import Mustache from "mustache";
 
 import { createElement } from "./elements.js";
+import { fetchAsJson } from "./fetchAsJson.js";
 import { getSoon } from "./getSoon.js";
-import { isBodyWithReplies, isRepositoryDetails } from "./validations.js";
+import { isBodyWithReplies, isRepositorySettings } from "./validations.js";
 
 // TODO: Add handling for a rejection
 // https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/2
@@ -21,29 +22,26 @@ async function main() {
 		return;
 	}
 
-	// 2. Fetch the repository's default branch, to retrieve replies.yml from
 	const [, userOrOrganization, repository, , issueOrPR] =
 		window.location.pathname.split("/");
-	const repositoryDetails = (await (
-		await fetch(
+
+	// 2. Fetch the REST API's JSON descriptions of the item and the repository's settings
+	const [itemDetails, repositorySettings] = await Promise.all([
+		fetchAsJson(
+			`https://api.github.com/repos/${userOrOrganization}/${repository}/issues/${issueOrPR}`,
+		),
+		fetchAsJson(
 			`https://api.github.com/repos/${userOrOrganization}/${repository}`,
-		)
-	).json()) as unknown;
-	if (!isRepositoryDetails(repositoryDetails)) {
-		console.error("Invalid repository details:", repositoryDetails);
+		),
+	]);
+
+	if (!isRepositorySettings(repositorySettings)) {
+		console.error("Invalid repository details:", repositorySettings);
 		return;
 	}
 
-	const { default_branch: defaultBranch } = repositoryDetails;
-
-	// 3. Fetch the REST API's JSON description of the item
-	const details = (await (
-		await fetch(
-			`https://api.github.com/repos/${userOrOrganization}/${repository}/issues/${issueOrPR}`,
-		)
-	).json()) as unknown;
-
-	// 4. Fetch the repository's .github/replies.yml
+	// 3. Fetch the repository's .github/replies.yml
+	const { default_branch: defaultBranch } = repositorySettings;
 	const repliesUrl = `https://raw.githubusercontent.com/${userOrOrganization}/${repository}/${defaultBranch}/.github/replies.yml`;
 	const repliesResponse = await fetch(repliesUrl);
 
@@ -60,7 +58,7 @@ async function main() {
 
 	const repliesBody = await repliesResponse.text();
 
-	// 5. Parse the replies body as yml
+	// 4. Parse the replies body as yml
 	const repliesConfiguration = yaml.load(repliesBody);
 	if (!isBodyWithReplies(repliesConfiguration)) {
 		console.error("Invalid saved replies:", repliesConfiguration);
@@ -77,7 +75,7 @@ async function main() {
 	}
 
 	const onOpenSavedRepliesButtonClick = async () => {
-		// 7. Add the new replies to the saved reply dropdown
+		// 6. Add the new replies to the saved reply dropdown
 		const replyCategoriesDetailsMenus = await getSoon(() =>
 			document.querySelectorAll(`.Overlay-body .js-saved-reply-menu`),
 		);
@@ -101,7 +99,7 @@ async function main() {
 								createElement("span", {
 									children: [
 										createElement("span", {
-											children: [Mustache.render(reply.name, details)],
+											children: [Mustache.render(reply.name, itemDetails)],
 											className:
 												"ActionListItem-label ActionListItem-label--truncate",
 											"data-view-component": true,
@@ -113,7 +111,9 @@ async function main() {
 													"aria-hidden": true,
 													children: [
 														createElement("span", {
-															children: [Mustache.render(reply.body, details)],
+															children: [
+																Mustache.render(reply.body, itemDetails),
+															],
 															"data-view-component": true,
 														}),
 													],
@@ -217,7 +217,7 @@ async function main() {
 		);
 	};
 
-	// 6. Add a listener to modify the saved reply dropdown upon creation
+	// 5. Add a listener to modify the saved reply dropdown upon creation
 	openSavedRepliesButton.addEventListener(
 		"click",
 		// TODO: Add handling for a rejection

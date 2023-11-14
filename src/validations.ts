@@ -1,4 +1,4 @@
-import { BodyWithReplies, Reply, RepositoryDetails } from "./types.js";
+import { BodyWithReplies, Reply, RepositorySettings } from "./types.js";
 
 export function isBodyWithReplies(data: unknown): data is BodyWithReplies {
 	return !!(
@@ -18,10 +18,12 @@ function isReply(data: unknown): data is Reply {
 	);
 }
 
-export function isRepositoryDetails(data: unknown): data is RepositoryDetails {
+export function isRepositorySettings(
+	data: unknown,
+): data is RepositorySettings {
 	return !!(
 		data &&
 		typeof data === "object" &&
-		typeof (data as Partial<RepositoryDetails>).default_branch === "string"
+		typeof (data as Partial<RepositorySettings>).default_branch === "string"
 	);
 }
