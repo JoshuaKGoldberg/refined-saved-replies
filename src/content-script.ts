@@ -9,8 +9,8 @@ import { isBodyWithReplies, isRepositoryDetails } from "./validations.js";
 document.addEventListener("soft-nav:end", main);
 
 async function main() {
-	const openSavedRepliesButton = document.getElementById(
-		"saved-reply-new_comment_field",
+	const openSavedRepliesButton = document.querySelector(
+		`[data-show-dialog-id="saved_replies_menu_new_comment_field-dialog"]`,
 	);
 
 	// 1. Is this an issue I can reply to?
@@ -65,7 +65,7 @@ async function main() {
 		return;
 	}
 
-	// 6. Add a listener to modify the saved reply dropdown upon creation
+	// As a precaution, don't continue if there's no comment field to reply in
 	const newCommentField = document.getElementById("new_comment_field") as
 		| HTMLTextAreaElement
 		| undefined;
@@ -74,17 +74,38 @@ async function main() {
 		return;
 	}
 
-	const onOpenSavedRepliesButtonClick = () => {
+	async function getSoon<T extends { length: number }>(callback: () => T) {
+		for (let i = 0; i < 10; i += 1) {
+			const result = callback();
+			if (result.length) {
+				return result;
+			}
+
+			await new Promise((resolve) => setTimeout(resolve, i ** 2));
+		}
+
+		// TODO: think of async handling
+		throw new Error(`Never found :(`);
+	}
+
+	const onOpenSavedRepliesButtonClick = async () => {
+		console.log("Clicked?");
 		// 7. Add the new replies to the saved reply dropdown
-		const replyCategoriesDetailsMenus = document.querySelectorAll(
-			`markdown-toolbar details-menu[src^="/settings/replies?context="]`,
+		const replyCategoriesDetailsMenus = await getSoon(() =>
+			document.querySelectorAll(
+				`div.Overlay-body fuzzy-list focus-group div[data-view-component]`,
+			),
 		);
+		console.log({ replyCategoriesDetailsMenus });
 
 		for (const replyCategoriesDetailsMenu of replyCategoriesDetailsMenus) {
+			console.log({ replyCategoriesDetailsMenu });
 			replyCategoriesDetailsMenu.appendChild(
+				// todo: is there a better way?
 				createElement("div", {
 					children: ["Repository replies"],
-					className: "select-menu-divider js-divider",
+					className: "select-menu-divider my-2",
+					id: "repository-replies-label",
 				}),
 			);
 
@@ -93,26 +114,44 @@ async function main() {
 					children: [
 						createElement("div", {
 							children: [
-								createElement("div", {
+								createElement("span", {
 									children: [
 										createElement("span", {
 											children: [Mustache.render(reply.name, details)],
 											className:
-												"select-menu-item-heading css-truncate css-truncate-target",
+												"ActionListItem-label ActionListItem-label--truncate",
+											"data-view-component": true,
 										}),
 										createElement("span", {
-											children: [Mustache.render(reply.body, details)],
-											className:
-												"description css-truncate css-truncate-target js-saved-reply-body",
+											children: [
+												createElement("span", {
+													// id: "..."
+													"aria-hidden": true,
+													children: [
+														createElement("span", {
+															children: [Mustache.render(reply.body, details)],
+															"data-view-component": true,
+														}),
+													],
+													className: "Truncate js-saved-reply-body",
+													"data-view-component": true,
+												}),
+											],
+											className: "ActionListItem-description",
 										}),
 									],
-									className: "flex-auto col-9",
+									className: "ActionListItem-descriptionwrap",
+									"data-view-component": true,
 								}),
+								// TODO: Add support for shortcuts?
+								// createElement("span", {
+								// 	className: "ActionListItem-visual--trailing",
+								// }),
 							],
 							className: "select-menu-item-text d-flex flex-items-center",
 						}),
 					],
-					className: "select-menu-item width-full",
+					className: "ActionListContent",
 					role: "menuitem",
 					type: "button",
 				});
@@ -124,28 +163,81 @@ async function main() {
 
 				replyCategoriesDetailsMenu.appendChild(
 					createElement("ul", {
+						"aria-labelled-by": "repository-replies-label",
 						children: [
-							createElement("li", { children: [button], role: "none" }),
+							createElement("li", {
+								children: [button],
+								role: "none",
+							}),
 						],
-						role: "none",
+						className: "js-saved-reply-menu ActionListWrap",
+						role: "list",
 					}),
 				);
 			}
 
-			replyCategoriesDetailsMenu.appendChild(
-				createElement("a", {
-					children: [
-						createElement("span", {
-							children: ["Create a new repository reply..."],
-							className: "select-menu-item-text",
+			// 8. Add a second button at the bottom of the modal for adding more
+			for (const modal of Array.from(
+				document.querySelectorAll<HTMLElement>(
+					"modal-dialog#saved_replies_menu_new_comment_field-dialog",
+				),
+			)) {
+				console.log({ modal });
+				// Also, because the modal is by default too tiny, let's make it bigger
+				modal.style.height = "100%";
+				modal.style.maxHeight = "calc(100vh - 5rem)";
+
+				// TODO: think of async flow better
+				setTimeout(() => {
+					modal.appendChild(
+						createElement("div", {
+							children: [
+								createElement("a", {
+									children: [
+										createElement("span", {
+											children: [
+												// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+												modal
+													.querySelector(
+														"a .Button-visual.Button-leadingVisual",
+													)!
+													.cloneNode(true),
+												createElement("span", {
+													children: ["Create a new repository reply"],
+													className: "Button-label",
+												}),
+											],
+											className: "Button-content Button-content--alignStart",
+										}),
+									],
+									className:
+										"Button--invisible Button--medium Button Button--fullWidth",
+									"data-view-component": true,
+									href: `https://github.com/${userOrOrganization}/${repository}/edit/${defaultBranch}/.github/replies.yml`,
+									target: "_blank",
+								}),
+							],
+							className:
+								"Overlay-footer Overlay-footer--alignEnd Overlay-footer--divided",
+							"data-view-component": true,
 						}),
-					],
-					className: "select-menu-item select-menu-action",
-					href: `https://github.com/${userOrOrganization}/${repository}/edit/${defaultBranch}/.github/replies.yml`,
-					role: "menuitem",
-					target: "_blank",
-				}),
-			);
+					);
+				});
+			}
+			/*
+	<div >
+		<a href="/settings/replies?return_to=1" data-view-component="true" class="Button--invisible Button--medium Button Button--fullWidth">
+			<span class="Button-content Button-content--alignStart">
+				<span class="Button-visual Button-leadingVisual">
+					<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-plus">
+						<path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path>
+					</svg>
+				</span>
+				<span class="Button-label">Create a new saved reply</span>
+			</span>
+		</a>
+	</div>
+*/
 		}
 
 		openSavedRepliesButton.removeEventListener(
@@ -154,10 +246,14 @@ async function main() {
 		);
 	};
 
+	// 6. Add a listener to modify the saved reply dropdown upon creation
 	openSavedRepliesButton.addEventListener(
 		"click",
 		onOpenSavedRepliesButtonClick,
 	);
+
+	// openSavedRepliesButton.addEventListener("click", () => {
+	// });
 }
 
 main().catch((error) => {
