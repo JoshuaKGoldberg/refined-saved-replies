@@ -1,57 +1,90 @@
 {
-	"badgeTemplate": "<img alt=\"All Contributors: <%= contributors.length %> 👪\" src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_👪-21bb42.svg\" />",
-	"commit": false,
-	"commitConvention": "angular",
-	"contributors": [
-		{
-			"login": "ad0ran",
-			"name": "Adrian Simbulan",
-			"avatar_url": "https://avatars.githubusercontent.com/u/1423613?v=4",
-			"profile": "https://github.com/ad0ran",
-			"contributions": ["bug", "code"]
-		},
-		{
-			"login": "DanielXing1103",
-			"name": "danielxing1103",
-			"avatar_url": "https://avatars.githubusercontent.com/u/112993709?v=4",
-			"profile": "https://github.com/DanielXing1103",
-			"contributions": ["code"]
-		},
-		{
-			"login": "estevezluis",
-			"name": "Luis Estevez",
-			"avatar_url": "https://avatars.githubusercontent.com/u/128345934?v=4",
-			"profile": "https://luisestevez.me/",
-			"contributions": ["bug", "code"]
-		},
-		{
-			"login": "Jolg42",
-			"name": "Joël Galeran",
-			"avatar_url": "https://avatars.githubusercontent.com/u/1328733?v=4",
-			"profile": "https://twitter.com/Jolg42",
-			"contributions": ["code"]
-		},
-		{
-			"login": "JoshuaKGoldberg",
-			"name": "Josh Goldberg ✨",
-			"avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
-			"profile": "http://www.joshuakgoldberg.com/",
-			"contributions": ["bug", "tool", "code", "doc", "maintenance"]
-		},
-		{
-			"login": "Pinjasaur",
-			"name": "Paul Esch-Laurent",
-			"avatar_url": "https://avatars.githubusercontent.com/u/6335792?v=4",
-			"profile": "https://paulisaweso.me/",
-			"contributions": ["tool", "doc", "code", "maintenance"]
-		}
-	],
-	"contributorsPerLine": 7,
-	"contributorsSortAlphabetically": true,
-	"files": ["README.md"],
-	"imageSize": 100,
-	"projectName": "refined-saved-replies",
-	"projectOwner": "JoshuaKGoldberg",
-	"repoHost": "https://github.com",
-	"repoType": "github"
+  "badgeTemplate": "<img alt=\"All Contributors: <%= contributors.length %> 👪\" src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_👪-21bb42.svg\" />",
+  "commit": false,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "ad0ran",
+      "name": "Adrian Simbulan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1423613?v=4",
+      "profile": "https://github.com/ad0ran",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    },
+    {
+      "login": "DanielXing1103",
+      "name": "danielxing1103",
+      "avatar_url": "https://avatars.githubusercontent.com/u/112993709?v=4",
+      "profile": "https://github.com/DanielXing1103",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "estevezluis",
+      "name": "Luis Estevez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/128345934?v=4",
+      "profile": "https://luisestevez.me/",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    },
+    {
+      "login": "Jolg42",
+      "name": "Joël Galeran",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1328733?v=4",
+      "profile": "https://twitter.com/Jolg42",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "JoshuaKGoldberg",
+      "name": "Josh Goldberg ✨",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
+      "profile": "http://www.joshuakgoldberg.com/",
+      "contributions": [
+        "bug",
+        "tool",
+        "code",
+        "doc",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "Pinjasaur",
+      "name": "Paul Esch-Laurent",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6335792?v=4",
+      "profile": "https://paulisaweso.me/",
+      "contributions": [
+        "tool",
+        "doc",
+        "code",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "keithamus",
+      "name": "Keith Cirkel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/118266?v=4",
+      "profile": "https://www.keithcirkel.co.uk",
+      "contributions": [
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "contributorsSortAlphabetically": true,
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "projectName": "refined-saved-replies",
+  "projectOwner": "JoshuaKGoldberg",
+  "repoHost": "https://github.com",
+  "repoType": "github",
+  "commitType": "docs"
 }
