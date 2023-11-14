@@ -184,7 +184,6 @@ async function main() {
 					"modal-dialog#saved_replies_menu_new_comment_field-dialog",
 				),
 			)) {
-				console.log({ modal });
 				// Also, because the modal is by default too tiny, let's make it bigger
 				modal.style.height = "100%";
 				modal.style.maxHeight = "calc(100vh - 5rem)";
