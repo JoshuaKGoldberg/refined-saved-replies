@@ -4,7 +4,8 @@ import Mustache from "mustache";
 import { createElement } from "./elements.js";
 import { isBodyWithReplies, isRepositoryDetails } from "./validations.js";
 
-// TODO: Add handling for a rejection?
+// TODO: Add handling for a rejection
+// https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/2
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
 document.addEventListener("soft-nav:end", main);
 
@@ -75,33 +76,32 @@ async function main() {
 	}
 
 	async function getSoon<T extends { length: number }>(callback: () => T) {
-		for (let i = 0; i < 10; i += 1) {
+		for (let i = 0; i < 100; i += 1) {
 			const result = callback();
 			if (result.length) {
 				return result;
 			}
 
-			await new Promise((resolve) => setTimeout(resolve, i ** 2));
+			await new Promise((resolve) => setTimeout(resolve, i * 2));
 		}
 
-		// TODO: think of async handling
-		throw new Error(`Never found :(`);
+		// TODO: Add handling for a rejection
+		// https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/2
+		throw new Error(`Element was never found :(`);
 	}
 
 	const onOpenSavedRepliesButtonClick = async () => {
-		console.log("Clicked?");
 		// 7. Add the new replies to the saved reply dropdown
 		const replyCategoriesDetailsMenus = await getSoon(() =>
 			document.querySelectorAll(
 				`div.Overlay-body fuzzy-list focus-group div[data-view-component]`,
 			),
 		);
-		console.log({ replyCategoriesDetailsMenus });
 
 		for (const replyCategoriesDetailsMenu of replyCategoriesDetailsMenus) {
-			console.log({ replyCategoriesDetailsMenu });
 			replyCategoriesDetailsMenu.appendChild(
-				// todo: is there a better way?
+				// TODO: Use the built-in GitHub design system, Primer!
+				// https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/4
 				createElement("div", {
 					children: ["Repository replies"],
 					className: "select-menu-divider my-2",
@@ -177,6 +177,8 @@ async function main() {
 			}
 
 			// 8. Add a second button at the bottom of the modal for adding more
+			// TODO: thanks for the heads up @keithamus :)
+			// https://github.com/primer/view_components/pull/2364
 			for (const modal of Array.from(
 				document.querySelectorAll<HTMLElement>(
 					"modal-dialog#saved_replies_menu_new_comment_field-dialog",
@@ -224,24 +226,13 @@ async function main() {
 					);
 				});
 			}
-			/*
-	<div >
-		<a href="/settings/replies?return_to=1" data-view-component="true" class="Button--invisible Button--medium Button Button--fullWidth">
-			<span class="Button-content Button-content--alignStart">
-				<span class="Button-visual Button-leadingVisual">
-					<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-plus">
-						<path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path>
-					</svg>
-				</span>
-				<span class="Button-label">Create a new saved reply</span>
-			</span>
-		</a>
-	</div>
-*/
 		}
 
 		openSavedRepliesButton.removeEventListener(
 			"click",
+			// TODO: Add handling for a rejection
+			// https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/2
+			// eslint-disable-next-line @typescript-eslint/no-misused-promises
 			onOpenSavedRepliesButtonClick,
 		);
 	};
@@ -249,11 +240,11 @@ async function main() {
 	// 6. Add a listener to modify the saved reply dropdown upon creation
 	openSavedRepliesButton.addEventListener(
 		"click",
+		// TODO: Add handling for a rejection
+		// https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/2
+		// eslint-disable-next-line @typescript-eslint/no-misused-promises
 		onOpenSavedRepliesButtonClick,
 	);
-
-	// openSavedRepliesButton.addEventListener("click", () => {
-	// });
 }
 
 main().catch((error) => {
