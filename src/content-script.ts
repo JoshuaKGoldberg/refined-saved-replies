@@ -79,9 +79,7 @@ async function main() {
 	const onOpenSavedRepliesButtonClick = async () => {
 		// 7. Add the new replies to the saved reply dropdown
 		const replyCategoriesDetailsMenus = await getSoon(() =>
-			document.querySelectorAll(
-				`div.Overlay-body fuzzy-list focus-group div[data-view-component]`,
-			),
+			document.querySelectorAll(`.Overlay-body .js-saved-reply-menu`),
 		);
 
 		for (const replyCategoriesDetailsMenu of replyCategoriesDetailsMenus) {
@@ -167,12 +165,11 @@ async function main() {
 			// https://github.com/primer/view_components/pull/2364
 			for (const modal of Array.from(
 				document.querySelectorAll<HTMLElement>(
-					"modal-dialog#saved_replies_menu_new_comment_field-dialog",
+					":where(modal-dialog, dialog).js-saved-reply-container",
 				),
 			)) {
 				// Also, because the modal is by default too tiny, let's make it bigger
-				modal.style.height = "100%";
-				modal.style.maxHeight = "calc(100vh - 5rem)";
+				modal.classList.replace("Overlay--size-medium", "Overlay--size-xlarge");
 
 				// There should already be a "new reply" button; add an equivalent
 				// button for adding a new saved reply
