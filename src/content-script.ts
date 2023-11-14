@@ -40,9 +40,8 @@ async function main() {
 		return;
 	}
 
-	const { default_branch: defaultBranch } = repositorySettings;
-
 	// 3. Fetch the repository's .github/replies.yml
+	const { default_branch: defaultBranch } = repositorySettings;
 	const repliesUrl = `https://raw.githubusercontent.com/${userOrOrganization}/${repository}/${defaultBranch}/.github/replies.yml`;
 	const repliesResponse = await fetch(repliesUrl);
 
