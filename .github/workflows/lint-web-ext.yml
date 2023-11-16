@@ -1,12 +1,13 @@
 jobs:
-  build:
+  lint_web_ext:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
-      - run: pnpm build
+      - run: pnpm dev
+      - run: pnpm lint:web-ext
 
-name: Build
+name: Lint Web Ext
 
 on:
   pull_request: ~

@@ -1,4 +1,9 @@
 {
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "refined-saved-replies@joshuakgoldberg.com"
+		}
+	},
 	"content_scripts": [
 		{
 			"js": ["lib/content-script.js"],

@@ -1,7 +1,7 @@
 {
 	"name": "refined-saved-replies",
 	"version": "0.5.0",
-	"description": "Chrome extension for GitHub's Saved Replies that adds replies from a repository's .github/replies.yml. 📨",
+	"description": "Browser extension for GitHub's Saved Replies that adds replies from a repository's .github/replies.yml. 📨",
 	"homepage": "https://github.com/JoshuaKGoldberg/refined-saved-replies#readme",
 	"bugs": {
 		"url": "https://github.com/JoshuaKGoldberg/refined-saved-replies/issues"
@@ -24,7 +24,8 @@
 		"README.md"
 	],
 	"scripts": {
-		"build": "esbuild src/content-script.ts --bundle --minify --outfile=lib/content-script.js --sourcemap",
+		"build": "web-ext build --overwrite-dest",
+		"dev": "esbuild src/content-script.ts --bundle --minify --outfile=lib/content-script.js --sourcemap",
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
 		"lint:knip": "knip",
@@ -32,11 +33,11 @@
 		"lint:package-json": "npmPkgJsonLint .",
 		"lint:packages": "pnpm dedupe --check",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
+		"lint:web-ext": "web-ext lint",
 		"prepare": "husky install",
 		"should-semantic-release": "should-semantic-release --verbose",
 		"test": "vitest",
-		"tsc": "tsc",
-		"zip": "node script/zip.js"
+		"tsc": "tsc"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"
@@ -83,8 +84,8 @@
 		"should-semantic-release": "^0.2.1",
 		"typescript": "^5.2.2",
 		"vitest": "^0.34.6",
-		"yaml-eslint-parser": "^1.2.2",
-		"zip-lib": "^0.7.3"
+		"web-ext": "^7.8.0",
+		"yaml-eslint-parser": "^1.2.2"
 	},
 	"packageManager": "pnpm@8.10.4",
 	"engines": {
