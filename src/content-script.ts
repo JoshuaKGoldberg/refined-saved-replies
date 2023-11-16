@@ -77,7 +77,11 @@ async function main() {
 	const onOpenSavedRepliesButtonClick = async () => {
 		// 6. Add the new replies to the saved reply dropdown
 		const replyCategoriesDetailsMenus = await getSoon(() =>
-			document.querySelectorAll(`.Overlay-body .js-saved-reply-menu`),
+			Array.from(
+				document.querySelectorAll(`.Overlay-body .js-saved-reply-menu`),
+			)
+				.map((element) => element.parentNode)
+				.filter((x): x is ParentNode => !!x),
 		);
 
 		for (const replyCategoriesDetailsMenu of replyCategoriesDetailsMenus) {
@@ -151,10 +155,13 @@ async function main() {
 						children: [
 							createElement("li", {
 								children: [button],
+								className: "ActionListItem",
+								"data-targets": "action-list.items",
 								role: "none",
 							}),
 						],
 						className: "js-saved-reply-menu ActionListWrap",
+						"data-view-component": true,
 						role: "list",
 					}),
 				);
