@@ -78,7 +78,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 - `pnpm lint:package-json` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the `package.json` file
 - `pnpm lint:packages` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the `pnpm-lock.yml` file
 - `pnpm lint:spelling` ([cspell](https://cspell.org)): Spell checks across all source files
-- `pnpm lint:web-ext` ([web-ext](https://extensionworkshop.com)): Lints browser extension metadata
+- `pnpm lint:web-ext` ([web-ext](https://extensionworkshop.com)): Lints browser extension metadata after `pnpm dev` creates local files
 
 Read the individual documentation for each linter to understand how it can be configured and used best.
 
