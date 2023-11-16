@@ -130,9 +130,6 @@ devDependencies:
   yaml-eslint-parser:
     specifier: ^1.2.2
     version: 1.2.2
-  zip-lib:
-    specifier: ^0.7.3
-    version: 0.7.3
 
 packages:
 
@@ -7206,12 +7203,6 @@ packages:
       fd-slicer: 1.1.0
     dev: true
 
-  /yazl@2.5.1:
-    resolution: {integrity: sha512-phENi2PLiHnHb6QBVot+dJnaAZ0xosj7p3fWl+znIjBDlnMI2PsZCJZ306BPTFOaHf5qdDEI8x5qFrSOBN5vrw==}
-    dependencies:
-      buffer-crc32: 0.2.13
-    dev: true
-
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
@@ -7227,14 +7218,6 @@ packages:
     dependencies:
       async: 3.2.5
       jszip: 3.10.1
-    dev: true
-
-  /zip-lib@0.7.3:
-    resolution: {integrity: sha512-hp40KYzTJvoaCRr2t6hztlPnVmHYqDUDiIn0hlfAFwVBs3/jwkLy8aZ7NVGHECeWH2Tv8WPwWyR6QuWYarIjJQ==}
-    engines: {node: '>=8'}
-    dependencies:
-      yauzl: 2.10.0
-      yazl: 2.5.1
     dev: true
 
   /zod-validation-error@1.5.0(zod@3.22.4):
