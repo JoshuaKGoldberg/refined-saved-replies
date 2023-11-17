@@ -87,7 +87,7 @@
 		"web-ext": "^7.8.0",
 		"yaml-eslint-parser": "^1.2.2"
 	},
-	"packageManager": "pnpm@8.10.4",
+	"packageManager": "pnpm@8.10.5",
 	"engines": {
 		"node": ">=18"
 	},
