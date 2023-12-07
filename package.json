@@ -83,7 +83,7 @@
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.2.1",
 		"typescript": "^5.2.2",
-		"vitest": "^0.34.6",
+		"vitest": "^1.0.0",
 		"web-ext": "^7.8.0",
 		"yaml-eslint-parser": "^1.2.2"
 	},
