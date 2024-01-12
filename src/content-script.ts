@@ -1,10 +1,9 @@
-import * as yaml from "js-yaml";
 import Mustache from "mustache";
 
 import { createElement } from "./elements.js";
-import { fetchAsJson } from "./fetchAsJson.js";
+import { fetchRepliesConfiguration } from "./fetchRepliesConfiguration.js";
+import { fetchSettings } from "./fetchSettings.js";
 import { getSoon } from "./getSoon.js";
-import { isBodyWithReplies, isRepositorySettings } from "./validations.js";
 
 // TODO: Add handling for a rejection
 // https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/2
@@ -24,44 +23,22 @@ async function main() {
 
 	const [, userOrOrganization, repository, , issueOrPR] =
 		window.location.pathname.split("/");
+	const locator = `${userOrOrganization}/${repository}`;
 
 	// 2. Fetch the REST API's JSON descriptions of the item and the repository's settings
-	const [itemDetails, repositorySettings] = await Promise.all([
-		fetchAsJson(
-			`https://api.github.com/repos/${userOrOrganization}/${repository}/issues/${issueOrPR}`,
-		),
-		fetchAsJson(
-			`https://api.github.com/repos/${userOrOrganization}/${repository}`,
-		),
-	]);
-
-	if (!isRepositorySettings(repositorySettings)) {
-		console.error("Invalid repository details:", repositorySettings);
+	const settings = await fetchSettings(issueOrPR, locator);
+	if (!settings) {
 		return;
 	}
 
-	// 3. Fetch the repository's .github/replies.yml
-	const { default_branch: defaultBranch } = repositorySettings;
-	const repliesUrl = `https://raw.githubusercontent.com/${userOrOrganization}/${repository}/${defaultBranch}/.github/replies.yml`;
-	const repliesResponse = await fetch(repliesUrl);
+	const { defaultBranch, itemDetails } = settings;
 
-	if (!repliesResponse.ok) {
-		if (repliesResponse.status !== 404) {
-			console.error(
-				"Non-ok response fetching replies:",
-				repliesResponse.statusText,
-			);
-		}
-
-		return;
-	}
-
-	const repliesBody = await repliesResponse.text();
-
-	// 4. Parse the replies body as yml
-	const repliesConfiguration = yaml.load(repliesBody);
-	if (!isBodyWithReplies(repliesConfiguration)) {
-		console.error("Invalid saved replies:", repliesConfiguration);
+	// 3. Fetch the repository's .github/replies.yml configuration
+	const repliesConfiguration = await fetchRepliesConfiguration(
+		defaultBranch,
+		locator,
+	);
+	if (!repliesConfiguration) {
 		return;
 	}
 
@@ -75,7 +52,7 @@ async function main() {
 	}
 
 	const onOpenSavedRepliesButtonClick = async () => {
-		// 6. Add the new replies to the saved reply dropdown
+		// 5. Add the new replies to the saved reply dropdown
 		const replyCategoriesDetailsMenus = await getSoon(() =>
 			Array.from(
 				document.querySelectorAll(`.Overlay-body .js-saved-reply-menu`),
@@ -167,7 +144,7 @@ async function main() {
 				);
 			}
 
-			// 8. Add a second button at the bottom of the modal for adding more
+			// 6. Add a second button at the bottom of the modal for adding more
 			// TODO: thanks for the heads up @keithamus :)
 			// https://github.com/primer/view_components/pull/2364
 			for (const modal of Array.from(
@@ -224,7 +201,7 @@ async function main() {
 		);
 	};
 
-	// 5. Add a listener to modify the saved reply dropdown upon creation
+	// 4. Add a listener to modify the saved reply dropdown upon creation
 	openSavedRepliesButton.addEventListener(
 		"click",
 		// TODO: Add handling for a rejection
