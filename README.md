@@ -23,9 +23,8 @@ This extension modifies the Saved Replies for issues or pull requests on any rep
 
 ## Usage
 
-[![Available in the Chrome Web Store](assets/chrome.png)](https://chrome.google.com/webstore/detail/refined-saved-replies/ngcinicnlicdndmpcfjjifononfcceih/)
-
-> Coming soon: Firefox! 🔥🦊
+<a href="https://chrome.google.com/webstore/detail/refined-saved-replies/ngcinicnlicdndmpcfjjifononfcceih"><img alt="Available in the Chrome Web Store" width="206px" height="58px" src="./assets/chrome.png"></a>
+<a href="https://addons.mozilla.org/en-US/firefox/addon/refined-saved-replies"><img alt="Firefox: Get the Add-On" width="172px" height="60px" src="./assets/firefox.png"></a>
 
 ## Development
 
