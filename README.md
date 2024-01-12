@@ -11,15 +11,12 @@
 <!-- prettier-ignore-end -->
 </a>
 	<a href="https://codecov.io/gh/JoshuaKGoldberg/refined-saved-replies" target="_blank"><img alt="Codecov Test Coverage" src="https://codecov.io/gh/JoshuaKGoldberg/refined-saved-replies/branch/main/graph/badge.svg"/></a>
-	<a href="https://github.com/JoshuaKGoldberg/refined-saved-replies/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank">
-<img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" />
-</a>
-	<a href="https://github.com/JoshuaKGoldberg/refined-saved-replies/blob/main/LICENSE.md" target="_blank">
-<img alt="License: MIT" src="https://img.shields.io/github/license/JoshuaKGoldberg/refined-saved-replies?olor=21bb42">
-	</a>
-	<a href="https://github.com/sponsors/JoshuaKGoldberg" target="_blank">
-<img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" />
-</a><img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" /><img alt=TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" /><im alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" /></p>
+	<a href="https://github.com/JoshuaKGoldberg/refined-saved-replies/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" /></a>
+	<a href="https://github.com/JoshuaKGoldberg/refined-saved-replies/blob/main/LICENSE.md" target="_blank"><img alt="License: MIT" src="https://img.shields.io/github/license/JoshuaKGoldberg/refined-saved-replies?olor=21bb42"></a>
+	<a href="https://github.com/sponsors/JoshuaKGoldberg" target="_blank"><img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" /></a>
+	<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
+	<img alt=TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
+</p>
 
 Saved Replies are great, but oftentimes repository maintainers need a way to share common replies per-repository.
 This extension modifies the Saved Replies for issues or pull requests on any repository with a `.github/replies.yml` file to include those replies.
