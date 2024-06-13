@@ -100,11 +100,11 @@ importers:
         specifier: ^0.41.0
         version: 0.41.0
       npm-package-json-lint:
-        specifier: ^7.1.0
-        version: 7.1.0(typescript@5.4.5)
+        specifier: ^8.0.0
+        version: 8.0.0(typescript@5.4.5)
       npm-package-json-lint-config-default:
         specifier: ^7.0.0
-        version: 7.0.0(npm-package-json-lint@7.1.0(typescript@5.4.5))
+        version: 7.0.0(npm-package-json-lint@8.0.0(typescript@5.4.5))
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
@@ -1297,9 +1297,6 @@ packages:
 
   buffer@6.0.3:
     resolution: {integrity: sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==}
-
-  builtins@5.1.0:
-    resolution: {integrity: sha512-SW9lzGTLvWTP1AY8xeAMZimqDrIaSdLQUcVr9DMef51niJ022Ri87SwRRKYm4A6iHfkPaiVUu/Duw2Wc4J7kKg==}
 
   bundle-name@3.0.0:
     resolution: {integrity: sha512-PKA4BeSvBpQKQ8iPOGCSiell+N8P+Tf1DlwqmYhpe2gAhKPHn8EYOxVT+ShuGmhg8lN8XiSlS80yiExKXrURlw==}
@@ -2860,9 +2857,9 @@ packages:
     peerDependencies:
       npm-package-json-lint: ^7.1.0
 
-  npm-package-json-lint@7.1.0:
-    resolution: {integrity: sha512-ypcMpag32TCP89zzLSS+7vjeR2QY613WzmO2upcJgKNWlcswDz8cdb80urbBNHkhSPI40ex3nsKrRDH/WhMYOg==}
-    engines: {node: '>=16.0.0', npm: '>=8.0.0'}
+  npm-package-json-lint@8.0.0:
+    resolution: {integrity: sha512-44xqAKoV0nXnBYYLGUhMItGZb5tW3cLoW3UZxcsaCOX/YAkECrzOQA5F48oAA51vVE5CqAnsJB2CFvtolzMA3Q==}
+    engines: {node: '>=18.0.0', npm: '>=9.0.0'}
     hasBin: true
 
   npm-run-path@4.0.1:
@@ -3640,8 +3637,8 @@ packages:
     resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
     engines: {node: '>=14.16'}
 
-  type-fest@4.7.1:
-    resolution: {integrity: sha512-iWr8RUmzAJRfhZugX9O7nZE6pCxDU8CZ3QxsLuTnGcBLJpCaP2ll3s4eMTBoFnU/CeXY/5rfQSuAEsTGJO4y8A==}
+  type-fest@4.20.0:
+    resolution: {integrity: sha512-MBh+PHUHHisjXf4tlx0CFWoMdjx8zCMLJHOjnV1prABYZFHqtFOyauCIK2/7w4oIfwkF8iNhLtnJEfVY2vn3iw==}
     engines: {node: '>=16'}
 
   typedarray-to-buffer@3.1.5:
@@ -3710,8 +3707,8 @@ packages:
   validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
 
-  validate-npm-package-name@5.0.0:
-    resolution: {integrity: sha512-YuKoXDAhBYxY7SfOKxHBDoSyENFeW5VvIIQp2TGQuit8gpK6MnWaQelBKxso72DoxTZfZdcP3W90LqpSkgPzLQ==}
+  validate-npm-package-name@5.0.1:
+    resolution: {integrity: sha512-OljLrQ9SQdOUqTaQxqL5dEfZWrXExyyWsozYlAWFawPVNuD83igl7uJD2RTkNMbniIYgt8l81eCJGIdQF7avLQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
   vite-node@1.6.0:
@@ -5036,10 +5033,6 @@ snapshots:
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
-
-  builtins@5.1.0:
-    dependencies:
-      semver: 7.6.2
 
   bundle-name@3.0.0:
     dependencies:
@@ -6742,11 +6735,11 @@ snapshots:
 
   normalize-url@8.0.1: {}
 
-  npm-package-json-lint-config-default@7.0.0(npm-package-json-lint@7.1.0(typescript@5.4.5)):
+  npm-package-json-lint-config-default@7.0.0(npm-package-json-lint@8.0.0(typescript@5.4.5)):
     dependencies:
-      npm-package-json-lint: 7.1.0(typescript@5.4.5)
+      npm-package-json-lint: 8.0.0(typescript@5.4.5)
 
-  npm-package-json-lint@7.1.0(typescript@5.4.5):
+  npm-package-json-lint@8.0.0(typescript@5.4.5):
     dependencies:
       ajv: 6.12.6
       ajv-errors: 1.0.1(ajv@6.12.6)
@@ -6763,8 +6756,8 @@ snapshots:
       semver: 7.6.2
       slash: 3.0.0
       strip-json-comments: 3.1.1
-      type-fest: 4.7.1
-      validate-npm-package-name: 5.0.0
+      type-fest: 4.20.0
+      validate-npm-package-name: 5.0.1
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -7505,7 +7498,7 @@ snapshots:
 
   type-fest@3.13.1: {}
 
-  type-fest@4.7.1: {}
+  type-fest@4.20.0: {}
 
   typedarray-to-buffer@3.1.5:
     dependencies:
@@ -7573,9 +7566,7 @@ snapshots:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
 
-  validate-npm-package-name@5.0.0:
-    dependencies:
-      builtins: 5.1.0
+  validate-npm-package-name@5.0.1: {}
 
   vite-node@1.6.0(@types/node@20.12.13):
     dependencies:
