@@ -17,7 +17,7 @@ importers:
     devDependencies:
       '@types/eslint':
         specifier: ^8.44.7
-        version: 8.56.10
+        version: 8.56.11
       '@types/js-yaml':
         specifier: ^4.0.5
         version: 4.0.9
@@ -893,8 +893,8 @@ packages:
     resolution: {integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==}
     engines: {node: '>=14.16'}
 
-  '@types/eslint@8.56.10':
-    resolution: {integrity: sha512-Shavhk87gCtY2fhXDctcfS3e6FdxWkCx1iUZ9eEUbh7rTqlZT0/IzOkCOVt0fCjcFuZ9FPYfuezTBImfHCDBGQ==}
+  '@types/eslint@8.56.11':
+    resolution: {integrity: sha512-sVBpJMf7UPo/wGecYOpk2aQya2VUGeHhe38WG7/mN5FufNSubf5VT9Uh9Uyp8/eLJpu1/tuhJ/qTo4mhSB4V4Q==}
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -4455,7 +4455,7 @@ snapshots:
     dependencies:
       defer-to-connect: 2.0.1
 
-  '@types/eslint@8.56.10':
+  '@types/eslint@8.56.11':
     dependencies:
       '@types/estree': 1.0.5
       '@types/json-schema': 7.0.15
