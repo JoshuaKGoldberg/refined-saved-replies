@@ -89,7 +89,7 @@ importers:
         version: 2.4.0
       knip:
         specifier: ^5.0.0
-        version: 5.30.6(@types/node@22.5.5)(typescript@5.6.2)
+        version: 5.31.0(@types/node@22.5.5)(typescript@5.6.2)
       lint-staged:
         specifier: ^15.1.0
         version: 15.2.10
@@ -1797,6 +1797,7 @@ packages:
   eslint@8.57.1:
     resolution: {integrity: sha512-ypowyDxpVSYpkXr9WPv2PAZCtNip1Mv5KTW0SCurXv/9iOpcrH9PaqUElksqEB6pChqHGDRCFTyrZlGhnLNGiA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@10.1.0:
@@ -2337,8 +2338,8 @@ packages:
   jed@1.1.1:
     resolution: {integrity: sha512-z35ZSEcXHxLW4yumw0dF6L464NT36vmx3wxJw8MDpraBcWuNVgUPZgPJKcu1HekNgwlMFNqol7i/IpSbjhqwqA==}
 
-  jiti@1.21.6:
-    resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
+  jiti@2.3.1:
+    resolution: {integrity: sha512-xPZ6pPzUifI8XDBBxIL4OB1w1ZKmBpmNEeKwNt2d0Spn8XisAIZhWrlOHq5seBrFGTxVx9PbrWvEMyrk4IO5bA==}
     hasBin: true
 
   jose@5.9.2:
@@ -2413,8 +2414,8 @@ packages:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
 
-  knip@5.30.6:
-    resolution: {integrity: sha512-YkcnRVl0N99xZ7eaXE7KlH/4cPTCn6BGuk9KxINEdCMFN3yita2vGBizApy97ZOHgghy8tb589gQ3xvLMFIO4w==}
+  knip@5.31.0:
+    resolution: {integrity: sha512-4hR+qHx/id7mniCWWUqA4MXwGjYFN75xv3qLmEkl9Hm6eCKAhv0wGP0CyrXKUYxVyDplJQsqQaAlsjuRKYsdPA==}
     engines: {node: '>=18.6.0'}
     hasBin: true
     peerDependencies:
@@ -5918,7 +5919,7 @@ snapshots:
 
   jed@1.1.1: {}
 
-  jiti@1.21.6: {}
+  jiti@2.3.1: {}
 
   jose@5.9.2: {}
 
@@ -5982,7 +5983,7 @@ snapshots:
 
   kind-of@6.0.3: {}
 
-  knip@5.30.6(@types/node@22.5.5)(typescript@5.6.2):
+  knip@5.31.0(@types/node@22.5.5)(typescript@5.6.2):
     dependencies:
       '@nodelib/fs.walk': 1.2.8
       '@snyk/github-codeowners': 1.1.0
@@ -5990,7 +5991,7 @@ snapshots:
       easy-table: 1.2.0
       enhanced-resolve: 5.17.1
       fast-glob: 3.3.2
-      jiti: 1.21.6
+      jiti: 2.3.1
       js-yaml: 4.1.0
       minimist: 1.2.8
       picocolors: 1.1.0
