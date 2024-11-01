@@ -89,7 +89,7 @@ importers:
         version: 2.4.0
       knip:
         specifier: ^5.0.0
-        version: 5.34.2(@types/node@22.5.5)(typescript@5.6.3)
+        version: 5.34.3(@types/node@22.5.5)(typescript@5.6.3)
       lint-staged:
         specifier: ^15.1.0
         version: 15.2.10
@@ -2330,8 +2330,8 @@ packages:
   jed@1.1.1:
     resolution: {integrity: sha512-z35ZSEcXHxLW4yumw0dF6L464NT36vmx3wxJw8MDpraBcWuNVgUPZgPJKcu1HekNgwlMFNqol7i/IpSbjhqwqA==}
 
-  jiti@2.3.3:
-    resolution: {integrity: sha512-EX4oNDwcXSivPrw2qKH2LB5PoFxEvgtv2JgwW0bU858HoLQ+kutSvjLMUqBd0PeJYEinLWhoI9Ol0eYMqj/wNQ==}
+  jiti@2.4.0:
+    resolution: {integrity: sha512-H5UpaUI+aHOqZXlYOaFP/8AzKsg+guWu+Pr3Y8i7+Y3zr1aXAvCvTAQ1RxSc6oVD8R8c7brgNtTVP91E7upH/g==}
     hasBin: true
 
   jose@5.9.2:
@@ -2406,8 +2406,8 @@ packages:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
 
-  knip@5.34.2:
-    resolution: {integrity: sha512-quSohta9fKJUWTXIqHenA4NYW24rmoP3g/Naw5Lq/Xb/LjAQYSUK4aIyU1wizDLC4EnMicGA5g/H33vJ3ovz5Q==}
+  knip@5.34.3:
+    resolution: {integrity: sha512-SRkGOV6dWp+FoDPLsN1lanqTnL1DImuEsU1ynUo+X8ti4IXc+Abvc2VD/F10Jyuv2d5najpUEbfCJ71REqeZZA==}
     engines: {node: '>=18.6.0'}
     hasBin: true
     peerDependencies:
@@ -5911,7 +5911,7 @@ snapshots:
 
   jed@1.1.1: {}
 
-  jiti@2.3.3: {}
+  jiti@2.4.0: {}
 
   jose@5.9.2: {}
 
@@ -5975,7 +5975,7 @@ snapshots:
 
   kind-of@6.0.3: {}
 
-  knip@5.34.2(@types/node@22.5.5)(typescript@5.6.3):
+  knip@5.34.3(@types/node@22.5.5)(typescript@5.6.3):
     dependencies:
       '@nodelib/fs.walk': 1.2.8
       '@snyk/github-codeowners': 1.1.0
@@ -5983,7 +5983,7 @@ snapshots:
       easy-table: 1.2.0
       enhanced-resolve: 5.17.1
       fast-glob: 3.3.2
-      jiti: 2.3.3
+      jiti: 2.4.0
       js-yaml: 4.1.0
       minimist: 1.2.8
       picocolors: 1.1.1
