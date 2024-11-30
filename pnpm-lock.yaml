@@ -32,7 +32,7 @@ importers:
         version: 8.16.0(eslint@8.57.1)(typescript@5.7.2)
       '@vitest/coverage-v8':
         specifier: ^1.0.0
-        version: 1.6.0(vitest@1.6.0(@types/node@22.5.5)(happy-dom@12.10.3))
+        version: 1.6.0(vitest@1.6.0(@types/node@22.5.5)(happy-dom@15.11.7))
       console-fail-test:
         specifier: ^0.5.0
         version: 0.5.0
@@ -74,13 +74,13 @@ importers:
         version: 2.7.0(eslint@8.57.1)
       eslint-plugin-vitest:
         specifier: ^0.4.0
-        version: 0.4.1(@typescript-eslint/eslint-plugin@7.2.0(@typescript-eslint/parser@8.16.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2)(vitest@1.6.0(@types/node@22.5.5)(happy-dom@12.10.3))
+        version: 0.4.1(@typescript-eslint/eslint-plugin@7.2.0(@typescript-eslint/parser@8.16.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2)(vitest@1.6.0(@types/node@22.5.5)(happy-dom@15.11.7))
       eslint-plugin-yml:
         specifier: ^1.10.0
         version: 1.15.0(eslint@8.57.1)
       happy-dom:
-        specifier: ^12.10.3
-        version: 12.10.3
+        specifier: ^15.0.0
+        version: 15.11.7
       husky:
         specifier: ^9.0.0
         version: 9.1.7
@@ -125,7 +125,7 @@ importers:
         version: 5.7.2
       vitest:
         specifier: ^1.0.0
-        version: 1.6.0(@types/node@22.5.5)(happy-dom@12.10.3)
+        version: 1.6.0(@types/node@22.5.5)(happy-dom@15.11.7)
       web-ext:
         specifier: ^8.0.0
         version: 8.3.0
@@ -1499,9 +1499,6 @@ packages:
     resolution: {integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==}
     engines: {node: '>= 6'}
 
-  css.escape@1.5.1:
-    resolution: {integrity: sha512-YUifsXXuknHlUsmlgyY0PKzgPOr7/FjCePfHNt0jxm83wHZi44VDMQ7/fGNkjY3/jV1MC+1CmZbaHzugyeRtpg==}
-
   debounce@1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
 
@@ -2075,8 +2072,9 @@ packages:
   growly@1.3.0:
     resolution: {integrity: sha512-+xGQY0YyAWCnqy7Cd++hc2JqMYzlm0dG30Jd0beaA64sROr8C4nt8Yc9V5Ro3avlSUDTN0ulqP/VBKi1/lLygw==}
 
-  happy-dom@12.10.3:
-    resolution: {integrity: sha512-JzUXOh0wdNGY54oKng5hliuBkq/+aT1V3YpTM+lrN/GoLQTANZsMaIvmHiHe612rauHvPJnDZkZ+5GZR++1Abg==}
+  happy-dom@15.11.7:
+    resolution: {integrity: sha512-KyrFvnl+J9US63TEzwoiJOQzZBJY7KgBushJA8X61DMbNsH+2ONkDuLDnCnwUiPTF42tLoEmrPyoqbenVA5zrg==}
+    engines: {node: '>=18.0.0'}
 
   hard-rejection@2.1.0:
     resolution: {integrity: sha512-VIZB+ibDhx7ObhAe7OVtoEbuP4h/MuOTHJ+J8h/eBXotJYl0fBgR72xDFCKgIh22OJZIOVNxBMWuhAr10r8HdA==}
@@ -2135,10 +2133,6 @@ packages:
     resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
     engines: {node: '>=18'}
     hasBin: true
-
-  iconv-lite@0.6.3:
-    resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
-    engines: {node: '>=0.10.0'}
 
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
@@ -3116,9 +3110,6 @@ packages:
     resolution: {integrity: sha512-b3rppTKm9T+PsVCBEOUR46GWI7fdOs00VKZ1+9c1EWDaDMvjQc6tUwuFyIprgGgTcWoVHSKrU8H31ZHA2e0RHA==}
     engines: {node: '>=10'}
 
-  safer-buffer@2.1.2:
-    resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
-
   sax@1.4.1:
     resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
 
@@ -3576,10 +3567,6 @@ packages:
 
   webidl-conversions@7.0.0:
     resolution: {integrity: sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==}
-    engines: {node: '>=12'}
-
-  whatwg-encoding@2.0.0:
-    resolution: {integrity: sha512-p41ogyeMUrw3jWclHWTQg1k05DSVXPLcVxRTYsXUk+ZooOCZLcoYgPZ/HL/D/N+uQPOtcp1me1WhBEaX02mhWg==}
     engines: {node: '>=12'}
 
   whatwg-mimetype@3.0.0:
@@ -4527,7 +4514,7 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vitest/coverage-v8@1.6.0(vitest@1.6.0(@types/node@22.5.5)(happy-dom@12.10.3))':
+  '@vitest/coverage-v8@1.6.0(vitest@1.6.0(@types/node@22.5.5)(happy-dom@15.11.7))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 0.2.3
@@ -4542,7 +4529,7 @@ snapshots:
       std-env: 3.7.0
       strip-literal: 2.1.0
       test-exclude: 6.0.0
-      vitest: 1.6.0(@types/node@22.5.5)(happy-dom@12.10.3)
+      vitest: 1.6.0(@types/node@22.5.5)(happy-dom@15.11.7)
     transitivePeerDependencies:
       - supports-color
 
@@ -5070,8 +5057,6 @@ snapshots:
 
   css-what@6.1.0: {}
 
-  css.escape@1.5.1: {}
-
   debounce@1.2.1: {}
 
   debug@2.6.9:
@@ -5371,13 +5356,13 @@ snapshots:
       regexp-ast-analysis: 0.7.1
       scslre: 0.3.0
 
-  eslint-plugin-vitest@0.4.1(@typescript-eslint/eslint-plugin@7.2.0(@typescript-eslint/parser@8.16.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2)(vitest@1.6.0(@types/node@22.5.5)(happy-dom@12.10.3)):
+  eslint-plugin-vitest@0.4.1(@typescript-eslint/eslint-plugin@7.2.0(@typescript-eslint/parser@8.16.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2)(vitest@1.6.0(@types/node@22.5.5)(happy-dom@15.11.7)):
     dependencies:
       '@typescript-eslint/utils': 7.5.0(eslint@8.57.1)(typescript@5.7.2)
       eslint: 8.57.1
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 7.2.0(@typescript-eslint/parser@8.16.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2)
-      vitest: 1.6.0(@types/node@22.5.5)(happy-dom@12.10.3)
+      vitest: 1.6.0(@types/node@22.5.5)(happy-dom@15.11.7)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -5728,13 +5713,10 @@ snapshots:
 
   growly@1.3.0: {}
 
-  happy-dom@12.10.3:
+  happy-dom@15.11.7:
     dependencies:
-      css.escape: 1.5.1
       entities: 4.5.0
-      iconv-lite: 0.6.3
       webidl-conversions: 7.0.0
-      whatwg-encoding: 2.0.0
       whatwg-mimetype: 3.0.0
 
   hard-rejection@2.1.0: {}
@@ -5780,10 +5762,6 @@ snapshots:
   human-signals@5.0.0: {}
 
   husky@9.1.7: {}
-
-  iconv-lite@0.6.3:
-    dependencies:
-      safer-buffer: 2.1.2
 
   ieee754@1.2.1: {}
 
@@ -6802,8 +6780,6 @@ snapshots:
 
   safe-stable-stringify@2.5.0: {}
 
-  safer-buffer@2.1.2: {}
-
   sax@1.4.1: {}
 
   scslre@0.3.0:
@@ -7158,7 +7134,7 @@ snapshots:
       '@types/node': 22.5.5
       fsevents: 2.3.3
 
-  vitest@1.6.0(@types/node@22.5.5)(happy-dom@12.10.3):
+  vitest@1.6.0(@types/node@22.5.5)(happy-dom@15.11.7):
     dependencies:
       '@vitest/expect': 1.6.0
       '@vitest/runner': 1.6.0
@@ -7182,7 +7158,7 @@ snapshots:
       why-is-node-running: 2.2.2
     optionalDependencies:
       '@types/node': 22.5.5
-      happy-dom: 12.10.3
+      happy-dom: 15.11.7
     transitivePeerDependencies:
       - less
       - lightningcss
@@ -7245,10 +7221,6 @@ snapshots:
       - utf-8-validate
 
   webidl-conversions@7.0.0: {}
-
-  whatwg-encoding@2.0.0:
-    dependencies:
-      iconv-lite: 0.6.3
 
   whatwg-mimetype@3.0.0: {}
 
