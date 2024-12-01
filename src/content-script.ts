@@ -75,45 +75,33 @@ async function main() {
 			for (const reply of repliesConfiguration.replies) {
 				const button = createElement("button", {
 					children: [
-						createElement("div", {
+						createElement("span", {
 							children: [
+								createElement("span", {
+									children: [Mustache.render(reply.name, itemDetails)],
+									className:
+										"ActionListItem-label ActionListItem-label--truncate",
+									"data-view-component": true,
+								}),
 								createElement("span", {
 									children: [
 										createElement("span", {
-											children: [Mustache.render(reply.name, itemDetails)],
-											className:
-												"ActionListItem-label ActionListItem-label--truncate",
-											"data-view-component": true,
-										}),
-										createElement("span", {
+											"aria-hidden": true,
 											children: [
 												createElement("span", {
-													// id: "..."
-													"aria-hidden": true,
-													children: [
-														createElement("span", {
-															children: [
-																Mustache.render(reply.body, itemDetails),
-															],
-															"data-view-component": true,
-														}),
-													],
-													className: "Truncate js-saved-reply-body",
+													children: [Mustache.render(reply.body, itemDetails)],
 													"data-view-component": true,
 												}),
 											],
-											className: "ActionListItem-description",
+											className: "Truncate js-saved-reply-body",
+											"data-view-component": true,
 										}),
 									],
-									className: "ActionListItem-descriptionwrap",
-									"data-view-component": true,
+									className: "ActionListItem-description",
 								}),
-								// TODO: Add support for shortcuts?
-								// createElement("span", {
-								// 	className: "ActionListItem-visual--trailing",
-								// }),
 							],
-							className: "select-menu-item-text d-flex flex-items-center",
+							className: "ActionListItem-descriptionWrap",
+							"data-view-component": true,
 						}),
 					],
 					className: "ActionListContent",
