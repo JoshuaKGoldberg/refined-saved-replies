@@ -4,7 +4,7 @@ import { getSoon } from "./getSoon.js";
 
 describe("getSoon", () => {
 	it("resolves when the getter returns a Node", async () => {
-		const node = new Node();
+		const node = document.createElement("div");
 
 		const result = await getSoon(() => node);
 
@@ -12,8 +12,8 @@ describe("getSoon", () => {
 	});
 
 	it("resolves when the getter returns a non-empty NodeList", async () => {
-		const div = new HTMLDivElement();
-		div.appendChild(new Node());
+		const div = document.createElement("div");
+		div.appendChild(document.createElement("div"));
 
 		const result = await getSoon(() => div);
 

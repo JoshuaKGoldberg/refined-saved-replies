@@ -9,15 +9,6 @@ export function isBodyWithReplies(data: unknown): data is BodyWithReplies {
 	);
 }
 
-function isReply(data: unknown): data is Reply {
-	return !!(
-		data &&
-		typeof data === "object" &&
-		typeof (data as Partial<Reply>).body === "string" &&
-		typeof (data as Partial<Reply>).name === "string"
-	);
-}
-
 export function isRepositorySettings(
 	data: unknown,
 ): data is RepositorySettings {
@@ -25,5 +16,14 @@ export function isRepositorySettings(
 		data &&
 		typeof data === "object" &&
 		typeof (data as Partial<RepositorySettings>).default_branch === "string"
+	);
+}
+
+function isReply(data: unknown): data is Reply {
+	return !!(
+		data &&
+		typeof data === "object" &&
+		typeof (data as Partial<Reply>).body === "string" &&
+		typeof (data as Partial<Reply>).name === "string"
 	);
 }

@@ -211,6 +211,6 @@ async function main() {
 	);
 }
 
-main().catch((error) => {
+main().catch((error: unknown) => {
 	console.error("Oh no!", error);
 });
