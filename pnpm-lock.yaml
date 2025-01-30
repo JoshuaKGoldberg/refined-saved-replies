@@ -83,7 +83,7 @@ importers:
         version: 9.1.7
       knip:
         specifier: ^5.38.3
-        version: 5.43.3(@types/node@22.10.10)(typescript@5.7.3)
+        version: 5.43.5(@types/node@22.10.10)(typescript@5.7.3)
       lint-staged:
         specifier: ^15.2.10
         version: 15.4.3
@@ -1797,8 +1797,8 @@ packages:
   fast-uri@3.0.5:
     resolution: {integrity: sha512-5JnBCWpFlMo0a3ciDy/JckMzzv1U9coZrIhedq+HXxxUfDTAiS0LA8OKVao4G9BxmCVck/jtA5r3KAtRWEyD8Q==}
 
-  fastq@1.18.0:
-    resolution: {integrity: sha512-QKHXPW0hD8g4UET03SdOdunzSouc9N4AuHdsX8XNcTsuz+yYFILVNIX4l9yHABMhiEI9Db0JTTIpu0wB+Y1QQw==}
+  fastq@1.19.0:
+    resolution: {integrity: sha512-7SFSRCNjBQIZH/xZR3iy5iQYR8aGBE0h3VG6/cwlbrpdciNYBMotQav8c1XI3HjHH+NikUpP53nPdlZSdWmFzA==}
 
   fd-slicer@1.1.0:
     resolution: {integrity: sha512-cE1qsB/VwyQozZ+q1dGxR8LBYNZeofhEdUNGSMbQD3Gw2lAzX9Zb3uIU6Ebc/Fmyjo9AWWfnn0AUCHqtevs/8g==}
@@ -2342,8 +2342,8 @@ packages:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
 
-  knip@5.43.3:
-    resolution: {integrity: sha512-rCSc7X1jQs+ZIc08lQF3c3nS/nKzsg9UPIbY+qQUMh+FVF5ojdiT3bJNypRlSm2pMLQVeE7XWxXrtT4sdg6nfA==}
+  knip@5.43.5:
+    resolution: {integrity: sha512-B5cexyDF+me8EjmihxF3XASybB+T8HUzZBSZLNr9CGS8WrceMOR5Qa2qdBXwU0MxphAgH2nzLQcKsCuqXYOJUg==}
     engines: {node: '>=18.18.0'}
     hasBin: true
     peerDependencies:
@@ -4173,12 +4173,12 @@ snapshots:
   '@nodelib/fs.walk@1.2.8':
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
-      fastq: 1.18.0
+      fastq: 1.19.0
 
   '@nodelib/fs.walk@3.0.1':
     dependencies:
       '@nodelib/fs.scandir': 4.0.1
-      fastq: 1.18.0
+      fastq: 1.19.0
 
   '@pkgjs/parseargs@0.11.0': {}
 
@@ -5451,7 +5451,7 @@ snapshots:
 
   fast-uri@3.0.5: {}
 
-  fastq@1.18.0:
+  fastq@1.19.0:
     dependencies:
       reusify: 1.0.4
 
@@ -5912,7 +5912,7 @@ snapshots:
 
   kind-of@6.0.3: {}
 
-  knip@5.43.3(@types/node@22.10.10)(typescript@5.7.3):
+  knip@5.43.5(@types/node@22.10.10)(typescript@5.7.3):
     dependencies:
       '@nodelib/fs.walk': 3.0.1
       '@snyk/github-codeowners': 1.1.0
