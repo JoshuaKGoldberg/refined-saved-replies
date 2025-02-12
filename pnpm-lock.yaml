@@ -64,8 +64,8 @@ importers:
         specifier: ^17.14.0
         version: 17.15.1(eslint@9.20.0(jiti@2.4.2))
       eslint-plugin-package-json:
-        specifier: ^0.25.0
-        version: 0.25.0(@types/estree@1.0.6)(eslint@9.20.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0)
+        specifier: ^0.26.0
+        version: 0.26.0(@types/estree@1.0.6)(eslint@9.20.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0)
       eslint-plugin-perfectionist:
         specifier: ^4.1.2
         version: 4.8.0(eslint@9.20.0(jiti@2.4.2))(typescript@5.7.3)
@@ -1728,12 +1728,15 @@ packages:
     peerDependencies:
       eslint: '>=6.0.0'
 
-  eslint-fix-utils@0.2.0:
-    resolution: {integrity: sha512-2z/I/1VfyL1mkLjk18W7Q3X+gqzeFmc2aNxSY/RmT6vNPyzQfT1MR/yP/+RUbqRuNUNMhTTYeP7AK7UUpcUD4w==}
+  eslint-fix-utils@0.2.1:
+    resolution: {integrity: sha512-vHvLGmqdgPhZgH+cymlAlAqVuV22auB+uk/mgFdg5zotEtMHAHcOzNzhr5XOrDzyKGEQY2uQHoT+tS8P36/2CQ==}
     engines: {node: '>=18.3.0'}
     peerDependencies:
       '@types/estree': '>=1'
       eslint: '>=8'
+    peerDependenciesMeta:
+      '@types/estree':
+        optional: true
 
   eslint-json-compat-utils@0.2.1:
     resolution: {integrity: sha512-YzEodbDyW8DX8bImKhAcCeu/L31Dd/70Bidx2Qex9OFUtgzXLqtfWL4Hr5fM/aCCB8QUZLuJur0S9k6UfgFkfg==}
@@ -1781,8 +1784,8 @@ packages:
     peerDependencies:
       eslint: ^8 || ^9
 
-  eslint-plugin-package-json@0.25.0:
-    resolution: {integrity: sha512-X1BDDn98xHWfxEylRpYHoiPMUvda83hd+H1if83Ny8gZ5LiLB0FcwXng1Or+gY3GLuYSaiYTy6r78Adeg48unw==}
+  eslint-plugin-package-json@0.26.0:
+    resolution: {integrity: sha512-plYuuP7RyL532yHLPvKtQNzK6ncXRmzWPji5EUlV0tXhhfFc84TDWiwJ+OYvv4pDA9AfV+gKYVUwhojaDameNw==}
     engines: {node: '>=18'}
     peerDependencies:
       eslint: '>=8.0.0'
@@ -2040,8 +2043,8 @@ packages:
   get-tsconfig@4.8.1:
     resolution: {integrity: sha512-k9PN+cFBmaLWtVz29SkUoqU5O0slLuHJXt/2P+tMVFT+phsSGXGkp9t3rQIqdz0e+06EHNGs3oM6ZX1s2zHxRg==}
 
-  git-hooks-list@3.1.0:
-    resolution: {integrity: sha512-LF8VeHeR7v+wAbXqfgRlTSX/1BJR9Q1vEMR8JAz1cEg6GX07+zyj3sAdDvYjj/xnlIfVuGgj4qBei1K3hKH+PA==}
+  git-hooks-list@3.2.0:
+    resolution: {integrity: sha512-ZHG9a1gEhUMX1TvGrLdyWb9kDopCBbTnI8z4JgRMYxsijWipgjSEYoPWqBuIB0DnRnvqlQSEeVmzpeuPm7NdFQ==}
 
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -5277,10 +5280,11 @@ snapshots:
       eslint: 9.20.0(jiti@2.4.2)
       semver: 7.7.1
 
-  eslint-fix-utils@0.2.0(@types/estree@1.0.6)(eslint@9.20.0(jiti@2.4.2)):
+  eslint-fix-utils@0.2.1(@types/estree@1.0.6)(eslint@9.20.0(jiti@2.4.2)):
     dependencies:
-      '@types/estree': 1.0.6
       eslint: 9.20.0(jiti@2.4.2)
+    optionalDependencies:
+      '@types/estree': 1.0.6
 
   eslint-json-compat-utils@0.2.1(eslint@9.20.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0):
     dependencies:
@@ -5349,13 +5353,13 @@ snapshots:
     dependencies:
       eslint: 8.57.1
 
-  eslint-plugin-package-json@0.25.0(@types/estree@1.0.6)(eslint@9.20.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0):
+  eslint-plugin-package-json@0.26.0(@types/estree@1.0.6)(eslint@9.20.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0):
     dependencies:
       '@altano/repository-tools': 0.1.1
       detect-indent: 6.1.0
       detect-newline: 3.1.0
       eslint: 9.20.0(jiti@2.4.2)
-      eslint-fix-utils: 0.2.0(@types/estree@1.0.6)(eslint@9.20.0(jiti@2.4.2))
+      eslint-fix-utils: 0.2.1(@types/estree@1.0.6)(eslint@9.20.0(jiti@2.4.2))
       jsonc-eslint-parser: 2.4.0
       package-json-validator: 0.10.0
       semver: 7.7.1
@@ -5702,7 +5706,7 @@ snapshots:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
-  git-hooks-list@3.1.0: {}
+  git-hooks-list@3.2.0: {}
 
   glob-parent@5.1.2:
     dependencies:
@@ -7018,7 +7022,7 @@ snapshots:
       detect-indent: 7.0.1
       detect-newline: 4.0.1
       get-stdin: 9.0.0
-      git-hooks-list: 3.1.0
+      git-hooks-list: 3.2.0
       is-plain-obj: 4.1.0
       semver: 7.7.1
       sort-object-keys: 1.1.3
