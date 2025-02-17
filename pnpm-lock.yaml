@@ -112,8 +112,8 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       should-semantic-release:
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.3.1
+        version: 0.3.1
       typescript:
         specifier: ^5.7.2
         version: 5.7.3
@@ -3188,8 +3188,8 @@ packages:
   shellwords@0.1.1:
     resolution: {integrity: sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==}
 
-  should-semantic-release@0.3.0:
-    resolution: {integrity: sha512-eq38AbfrOc0IoRG2cJ0MSXBa/XoECFTv545GNIZewCSmnJx/MqK0E7vddM+y29F7/PYgcYvqwfiHOEiO8caSLw==}
+  should-semantic-release@0.3.1:
+    resolution: {integrity: sha512-4KvUaY3HWGnXMxn6Qc3WEK26Ihn3uK8UrjwtOIAdjIBlVEiW64pS8ypj/RwkbMSk7cj66ArS2mfd/UdKjILyNg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -6976,7 +6976,7 @@ snapshots:
 
   shellwords@0.1.1: {}
 
-  should-semantic-release@0.3.0:
+  should-semantic-release@0.3.1:
     dependencies:
       '@pkgjs/parseargs': 0.11.0
       conventional-commits-parser: 5.0.0
