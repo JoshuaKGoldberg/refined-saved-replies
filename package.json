@@ -78,7 +78,7 @@
 		"prettier-plugin-sh": "0.15.0",
 		"sentences-per-line": "0.3.0",
 		"typescript": "5.8.2",
-		"typescript-eslint": "8.26.1",
+		"typescript-eslint": "8.28.0",
 		"vitest": "3.0.9",
 		"web-ext": "8.5.0"
 	},
