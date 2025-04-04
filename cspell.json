@@ -1,9 +1,10 @@
 {
-	"dictionaries": ["typescript"],
+	"dictionaries": ["npm", "node", "typescript"],
 	"ignorePaths": [
+		".all-contributorsrc",
 		".github",
-		"assets",
 		"CHANGELOG.md",
+		"assets",
 		"coverage",
 		"lib",
 		"node_modules",
