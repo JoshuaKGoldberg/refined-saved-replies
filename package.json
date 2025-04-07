@@ -51,7 +51,7 @@
 		"@types/js-yaml": "4.0.9",
 		"@types/mustache": "4.2.5",
 		"@types/node": "22.13.10",
-		"@vitest/coverage-v8": "3.0.9",
+		"@vitest/coverage-v8": "3.1.1",
 		"@vitest/eslint-plugin": "1.1.38",
 		"console-fail-test": "0.5.0",
 		"create-typescript-app": "2.29.1",
@@ -79,7 +79,7 @@
 		"sentences-per-line": "0.3.0",
 		"typescript": "5.8.2",
 		"typescript-eslint": "8.28.0",
-		"vitest": "3.0.9",
+		"vitest": "3.1.1",
 		"web-ext": "8.5.0"
 	},
 	"packageManager": "pnpm@10.7.0",
