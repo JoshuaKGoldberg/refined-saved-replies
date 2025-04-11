@@ -43,8 +43,8 @@ importers:
         specifier: 0.5.0
         version: 0.5.0
       create-typescript-app:
-        specifier: 2.29.1
-        version: 2.29.1(bingo-systems@0.5.4)
+        specifier: 2.30.0
+        version: 2.30.0(bingo-systems@0.5.4)
       cspell:
         specifier: 8.18.0
         version: 8.18.0
@@ -1278,11 +1278,11 @@ packages:
     resolution: {integrity: sha512-NQcnlAtnR72Cfn6Y9EWPS3RXAGM+4ndE3BEueLnWOQgj+/Y6kQyhGEiB7cPmi4VeJL+Kcqo/EGyzuF23aIT3Cg==}
     engines: {node: '>=18'}
 
-  bingo-stratum@0.5.10:
-    resolution: {integrity: sha512-Nzuh93WLHp0ngAf/oJq5iWjFdaPRgS6sUq29M4GgRdmSO3ApCeH1nWZTVuGQL5nPsYDFW8+MgWCNpQYbHmCVlQ==}
+  bingo-stratum@0.5.11:
+    resolution: {integrity: sha512-5tmx6zmqDjHyMklhnYsUNyv9aJVxu92kYdUlSs3Jq42w9WVIwCACJatCMUJYDRo6035MXjB6sbUSORT55l/qBg==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.5.13
+      bingo: ^0.5.14
       bingo-fs: ^0.5.5
       bingo-systems: ^0.5.4
       zod: ^3.24.2
@@ -1501,8 +1501,8 @@ packages:
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
-  create-typescript-app@2.29.1:
-    resolution: {integrity: sha512-2lRXbL6kcNScD1QZ8/MTmml7pq/Em13KKjSMMuxH8HNjlurojcAn3sN2/0zI98J2diJzvEZw1aPMwovzUnNYBw==}
+  create-typescript-app@2.30.0:
+    resolution: {integrity: sha512-XWFYMHcZ0VUCa4gj+DI2I3LjcgWJhhhrRRj2tPeXVYMf/F4eoRVmevvyu9aRm98TYfUN2cAWHCruTJ4VEVyFFg==}
     engines: {node: '>=18.3.0'}
     hasBin: true
 
@@ -2790,6 +2790,7 @@ packages:
 
   mvdan-sh@0.10.1:
     resolution: {integrity: sha512-kMbrH0EObaKmK3nVRKUIIya1dpASHIEusM13S4V1ViHFuxuNxCo+arxoa6j/dbV22YBGjl7UKJm9QQKJ2Crzhg==}
+    deprecated: See https://github.com/mvdan/sh/issues/1145
 
   nanoid@3.3.11:
     resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
@@ -5028,7 +5029,7 @@ snapshots:
     dependencies:
       '@octokit/types': 13.10.0
 
-  bingo-stratum@0.5.10(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.14)(zod@3.24.2):
+  bingo-stratum@0.5.11(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.14)(zod@3.24.2):
     dependencies:
       all-properties-lazy: 0.1.0
       bingo: 0.5.14
@@ -5276,11 +5277,11 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  create-typescript-app@2.29.1(bingo-systems@0.5.4):
+  create-typescript-app@2.30.0(bingo-systems@0.5.4):
     dependencies:
       bingo: 0.5.14
       bingo-fs: 0.5.5
-      bingo-stratum: 0.5.10(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.14)(zod@3.24.2)
+      bingo-stratum: 0.5.11(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.14)(zod@3.24.2)
       cached-factory: 0.1.0
       cspell-populate-words: 0.3.0
       execa: 9.5.2
