@@ -1,69 +1,85 @@
 {
-	"badgeTemplate": "\t<a href=\"#contributors\" target=\"_blank\"><img alt=\"👪 All Contributors: <%= contributors.length %>\" src=\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\" /></a>",
-	"contributors": [
-		{
-			"login": "ad0ran",
-			"name": "Adrian Simbulan",
-			"avatar_url": "https://avatars.githubusercontent.com/u/1423613?v=4",
-			"profile": "https://github.com/ad0ran",
-			"contributions": ["bug", "code"]
-		},
-		{
-			"login": "DanielXing1103",
-			"name": "danielxing1103",
-			"avatar_url": "https://avatars.githubusercontent.com/u/112993709?v=4",
-			"profile": "https://github.com/DanielXing1103",
-			"contributions": ["code"]
-		},
-		{
-			"login": "estevezluis",
-			"name": "Luis Estevez",
-			"avatar_url": "https://avatars.githubusercontent.com/u/128345934?v=4",
-			"profile": "https://luisestevez.me/",
-			"contributions": ["bug", "code"]
-		},
-		{
-			"login": "Jolg42",
-			"name": "Joël Galeran",
-			"avatar_url": "https://avatars.githubusercontent.com/u/1328733?v=4",
-			"profile": "https://twitter.com/Jolg42",
-			"contributions": ["code"]
-		},
-		{
-			"login": "JoshuaKGoldberg",
-			"name": "Josh Goldberg ✨",
-			"avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
-			"profile": "http://www.joshuakgoldberg.com/",
-			"contributions": [
-				"maintenance",
-				"doc",
-				"code",
-				"content",
-				"ideas",
-				"infra",
-				"projectManagement",
-				"tool"
-			]
-		},
-		{
-			"login": "Pinjasaur",
-			"name": "Paul Esch-Laurent",
-			"avatar_url": "https://avatars.githubusercontent.com/u/6335792?v=4",
-			"profile": "https://paulisaweso.me/",
-			"contributions": ["tool", "doc", "code", "maintenance"]
-		},
-		{
-			"login": "keithamus",
-			"name": "Keith Cirkel",
-			"avatar_url": "https://avatars.githubusercontent.com/u/118266?v=4",
-			"profile": "https://www.keithcirkel.co.uk",
-			"contributions": ["review"]
-		}
-	],
-	"contributorsSortAlphabetically": true,
-	"projectName": "refined-saved-replies",
-	"projectOwner": "JoshuaKGoldberg",
-	"repoType": "github",
-	"commitConvention": "angular"
+  "badgeTemplate": "\t<a href=\"#contributors\" target=\"_blank\"><img alt=\"👪 All Contributors: <%= contributors.length %>\" src=\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\" /></a>",
+  "contributors": [
+    {
+      "login": "ad0ran",
+      "name": "Adrian Simbulan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1423613?v=4",
+      "profile": "https://github.com/ad0ran",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    },
+    {
+      "login": "DanielXing1103",
+      "name": "danielxing1103",
+      "avatar_url": "https://avatars.githubusercontent.com/u/112993709?v=4",
+      "profile": "https://github.com/DanielXing1103",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "estevezluis",
+      "name": "Luis Estevez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/128345934?v=4",
+      "profile": "https://luisestevez.me/",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    },
+    {
+      "login": "Jolg42",
+      "name": "Joël Galeran",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1328733?v=4",
+      "profile": "https://twitter.com/Jolg42",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "JoshuaKGoldberg",
+      "name": "Josh Goldberg ✨",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
+      "profile": "http://www.joshuakgoldberg.com/",
+      "contributions": [
+        "maintenance",
+        "doc",
+        "code",
+        "content",
+        "ideas",
+        "infra",
+        "projectManagement",
+        "tool"
+      ]
+    },
+    {
+      "login": "Pinjasaur",
+      "name": "Paul Esch-Laurent",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6335792?v=4",
+      "profile": "https://paulisaweso.me/",
+      "contributions": [
+        "tool",
+        "doc",
+        "code",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "keithamus",
+      "name": "Keith Cirkel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/118266?v=4",
+      "profile": "https://www.keithcirkel.co.uk",
+      "contributions": [
+        "review"
+      ]
+    }
+  ],
+  "contributorsSortAlphabetically": true,
+  "projectName": "refined-saved-replies",
+  "projectOwner": "JoshuaKGoldberg",
+  "repoType": "github",
+  "commitConvention": "angular"
 }
-
