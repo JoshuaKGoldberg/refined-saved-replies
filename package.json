@@ -80,7 +80,7 @@
 		"typescript": "5.8.2",
 		"typescript-eslint": "8.31.0",
 		"vitest": "3.1.1",
-		"web-ext": "8.5.0"
+		"web-ext": "8.6.0"
 	},
 	"packageManager": "pnpm@10.9.0",
 	"engines": {
