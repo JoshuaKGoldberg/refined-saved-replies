@@ -46,7 +46,7 @@
 	},
 	"devDependencies": {
 		"@eslint-community/eslint-plugin-eslint-comments": "4.5.0",
-		"@eslint/js": "9.25.0",
+		"@eslint/js": "9.26.0",
 		"@types/eslint-plugin-markdown": "2.0.2",
 		"@types/js-yaml": "4.0.9",
 		"@types/mustache": "4.2.5",
@@ -57,7 +57,7 @@
 		"create-typescript-app": "2.41.0",
 		"cspell": "8.19.0",
 		"esbuild": "0.25.2",
-		"eslint": "9.25.0",
+		"eslint": "9.26.0",
 		"eslint-plugin-jsdoc": "50.6.8",
 		"eslint-plugin-jsonc": "2.20.0",
 		"eslint-plugin-markdown": "5.1.0",
