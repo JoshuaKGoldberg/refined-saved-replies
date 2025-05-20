@@ -82,7 +82,7 @@
 		"vitest": "3.1.1",
 		"web-ext": "8.6.0"
 	},
-	"packageManager": "pnpm@10.10.0",
+	"packageManager": "pnpm@10.11.0",
 	"engines": {
 		"node": ">=18"
 	},
