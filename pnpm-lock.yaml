@@ -106,8 +106,8 @@ importers:
         specifier: 2.5.10
         version: 2.5.10(prettier@3.6.0)
       prettier-plugin-sh:
-        specifier: 0.17.0
-        version: 0.17.0(prettier@3.6.0)
+        specifier: 0.18.0
+        version: 0.18.0(prettier@3.6.0)
       sentences-per-line:
         specifier: 0.3.0
         version: 0.3.0
@@ -947,8 +947,8 @@ packages:
     resolution: {integrity: sha512-c83qWb22rNRuB0UaVCI0uRPNRr8Z0FWnEIvT47jiHAmOIUHbBOg5XvV7pM5x+rKn9HRpjxquDbXYSXr3fAKFcw==}
     engines: {node: '>=12'}
 
-  '@reteps/dockerfmt@0.2.8':
-    resolution: {integrity: sha512-VUdrpLNvUfV9RCBVMusOb8XylR+Wt6MFAMTiZIPcpo0KGCzNW8bjQDTIv9JmOa330C9P7mxHFmc1of7JNujghA==}
+  '@reteps/dockerfmt@0.3.6':
+    resolution: {integrity: sha512-Tb5wIMvBf/nLejTQ61krK644/CEMB/cpiaIFXqGApfGqO3GwcR3qnI0DbmkFVCl2OyEp8LnLX3EkucoL0+tbFg==}
     engines: {node: ^v12.20.0 || ^14.13.0 || >=16.0.0}
 
   '@rollup/rollup-android-arm-eabi@4.39.0':
@@ -3234,11 +3234,11 @@ packages:
       prettier:
         optional: true
 
-  prettier-plugin-sh@0.17.0:
-    resolution: {integrity: sha512-YjCDCc7IaWd7mJPFX75lwehMGGQ0unOZCTeZ2L0SaUc9SDsyMt0LIjGK2fD5G2eYji83215qVcW5/k2wneY7Zw==}
+  prettier-plugin-sh@0.18.0:
+    resolution: {integrity: sha512-cW1XL27FOJQ/qGHOW6IHwdCiNWQsAgK+feA8V6+xUTaH0cD3Mh+tFAtBvEEWvuY6hTDzRV943Fzeii+qMOh7nQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      prettier: ^3.0.3
+      prettier: ^3.6.0
 
   prettier@3.6.0:
     resolution: {integrity: sha512-ujSB9uXHJKzM/2GBuE0hBOUgC77CN3Bnpqa+g80bkv3T3A93wL/xlzDATHhnhkzifz/UE2SNOvmbTz5hSkDlHw==}
@@ -3436,8 +3436,8 @@ packages:
   setimmediate@1.0.5:
     resolution: {integrity: sha512-MATJdZp8sLqDl/68LfQmbP8zKPLQNV6BIZoIgrscFDQ+RsvK/BxeDQOgyxKKoh0y/8h3BqVFnCqQ/gd+reiIXA==}
 
-  sh-syntax@0.5.6:
-    resolution: {integrity: sha512-hUprXSSgi3HLdIxufSsr0lceThj6vKsgOHcVVGujDGLWg9RD5Mt6j2m642qkTAU/7GFX65ed/g9h2jeURGuTlQ==}
+  sh-syntax@0.5.8:
+    resolution: {integrity: sha512-JfVoxf4FxQI5qpsPbkHhZo+n6N9YMJobyl4oGEUBb/31oQYlgTjkXQD8PBiafS2UbWoxrTO0Z5PJUBXEPAG1Zw==}
     engines: {node: '>=16.0.0'}
 
   shebang-command@2.0.0:
@@ -4858,7 +4858,7 @@ snapshots:
       '@pnpm/network.ca-file': 1.0.2
       config-chain: 1.1.13
 
-  '@reteps/dockerfmt@0.2.8': {}
+  '@reteps/dockerfmt@0.3.6': {}
 
   '@rollup/rollup-android-arm-eabi@4.39.0':
     optional: true
@@ -7527,11 +7527,11 @@ snapshots:
     optionalDependencies:
       prettier: 3.6.0
 
-  prettier-plugin-sh@0.17.0(prettier@3.6.0):
+  prettier-plugin-sh@0.18.0(prettier@3.6.0):
     dependencies:
-      '@reteps/dockerfmt': 0.2.8
+      '@reteps/dockerfmt': 0.3.6
       prettier: 3.6.0
-      sh-syntax: 0.5.6
+      sh-syntax: 0.5.8
 
   prettier@3.6.0: {}
 
@@ -7734,7 +7734,7 @@ snapshots:
 
   setimmediate@1.0.5: {}
 
-  sh-syntax@0.5.6:
+  sh-syntax@0.5.8:
     dependencies:
       tslib: 2.8.1
 
