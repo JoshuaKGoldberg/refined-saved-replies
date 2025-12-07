@@ -40,8 +40,8 @@ importers:
         specifier: 1.5.0
         version: 1.5.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.0.0)(jiti@2.6.1)(yaml@2.8.2))
       console-fail-test:
-        specifier: 0.5.0
-        version: 0.5.0
+        specifier: 0.6.0
+        version: 0.6.0
       create-typescript-app:
         specifier: 2.42.0
         version: 2.42.0(bingo-systems@0.5.4)(typescript@5.9.2)
@@ -1803,9 +1803,9 @@ packages:
     resolution: {integrity: sha512-yk7/5PN5im4qwz0WFZW3PXnzHgPu9mX29Y8uZ3aefe2lBPC1FYttWZRcaW9fKkT0pBCJyuQ2HfbmPVaODi9jcQ==}
     engines: {node: '>=18'}
 
-  console-fail-test@0.5.0:
-    resolution: {integrity: sha512-nghkQcJ9DJMYtdN1L/ZNu1GvnLMo38DTneWX23+WbIdvjuVkbcshGFxgIG5LbI9j/th4dgwUc0Hiwtq85VWb/Q==}
-    engines: {node: '>=18'}
+  console-fail-test@0.6.0:
+    resolution: {integrity: sha512-9v1VR0upG/wIxMz9QuwmdCHnpy7mJAP0qokFhZTI/nbAV6kAuSMkjbczcV2XJU1aFmCX783pF8TsUhqQMuWOAg==}
+    engines: {node: '>=20.19.0'}
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -5716,7 +5716,7 @@ snapshots:
       graceful-fs: 4.2.11
       xdg-basedir: 5.1.0
 
-  console-fail-test@0.5.0: {}
+  console-fail-test@0.6.0: {}
 
   core-util-is@1.0.3: {}
 
