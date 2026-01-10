@@ -35,10 +35,10 @@ importers:
         version: 24.10.1
       '@vitest/coverage-v8':
         specifier: 4.0.13
-        version: 4.0.13(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.0.0)(jiti@2.6.1)(yaml@2.8.2))
+        version: 4.0.13(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2))
       '@vitest/eslint-plugin':
         specifier: 1.6.1
-        version: 1.6.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.0.0)(jiti@2.6.1)(yaml@2.8.2))
+        version: 1.6.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2))
       console-fail-test:
         specifier: 0.6.0
         version: 0.6.0
@@ -79,8 +79,8 @@ importers:
         specifier: 1.19.0
         version: 1.19.0(eslint@9.39.1(jiti@2.6.1))
       happy-dom:
-        specifier: 20.0.0
-        version: 20.0.0
+        specifier: 20.1.0
+        version: 20.1.0
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -119,7 +119,7 @@ importers:
         version: 8.41.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)
       vitest:
         specifier: 4.0.13
-        version: 4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.0.0)(jiti@2.6.1)(yaml@2.8.2)
+        version: 4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2)
       web-ext:
         specifier: 9.2.0
         version: 9.2.0(jiti@2.6.1)
@@ -1313,6 +1313,9 @@ packages:
   '@types/whatwg-mimetype@3.0.2':
     resolution: {integrity: sha512-c2AKvDT8ToxLIOUlN51gTiHXflsfIFisS4pO7pDPoKouJCESkhZnEy623gwP9laCy5lnLDAw1vAzu2vM2YLOrA==}
 
+  '@types/ws@8.18.1':
+    resolution: {integrity: sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==}
+
   '@types/yauzl@2.10.3':
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
 
@@ -2467,8 +2470,8 @@ packages:
   growly@1.3.0:
     resolution: {integrity: sha512-+xGQY0YyAWCnqy7Cd++hc2JqMYzlm0dG30Jd0beaA64sROr8C4nt8Yc9V5Ro3avlSUDTN0ulqP/VBKi1/lLygw==}
 
-  happy-dom@20.0.0:
-    resolution: {integrity: sha512-GkWnwIFxVGCf2raNrxImLo397RdGhLapj5cT3R2PT7FwL62Ze1DROhzmYW7+J3p9105DYMVenEejEbnq5wA37w==}
+  happy-dom@20.1.0:
+    resolution: {integrity: sha512-ebvqjBqzenBk2LjzNEAzoj7yhw7rW/R2/wVevMu6Mrq3MXtcI/RUz4+ozpcOcqVLEWPqLfg2v9EAU7fFXZUUJw==}
     engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
@@ -4016,6 +4019,18 @@ packages:
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
+  ws@8.19.0:
+    resolution: {integrity: sha512-blAT2mjOEIi0ZzruJfIhb3nps74PRWTCz1IjglWEEpQl5XS/UNama6u2/rjFkDDouqr4L67ry+1aGIALViWjDg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
   wsl-utils@0.3.0:
     resolution: {integrity: sha512-3sFIGLiaDP7rTO4xh3g+b3AzhYDIUGGywE/WsmqzJWDxus5aJXVnPTNC/6L+r2WzrwXqVOdD262OaO+cEyPMSQ==}
     engines: {node: '>=20'}
@@ -5126,6 +5141,10 @@ snapshots:
 
   '@types/whatwg-mimetype@3.0.2': {}
 
+  '@types/ws@8.18.1':
+    dependencies:
+      '@types/node': 24.10.1
+
   '@types/yauzl@2.10.3':
     dependencies:
       '@types/node': 24.10.1
@@ -5274,7 +5293,7 @@ snapshots:
       '@typescript-eslint/types': 8.52.0
       eslint-visitor-keys: 4.2.1
 
-  '@vitest/coverage-v8@4.0.13(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.0.0)(jiti@2.6.1)(yaml@2.8.2))':
+  '@vitest/coverage-v8@4.0.13(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2))':
     dependencies:
       '@bcoe/v8-coverage': 1.0.2
       '@vitest/utils': 4.0.13
@@ -5287,18 +5306,18 @@ snapshots:
       magicast: 0.5.1
       std-env: 3.10.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.0.0)(jiti@2.6.1)(yaml@2.8.2)
+      vitest: 4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/eslint-plugin@1.6.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.0.0)(jiti@2.6.1)(yaml@2.8.2))':
+  '@vitest/eslint-plugin@1.6.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2))':
     dependencies:
       '@typescript-eslint/scope-manager': 8.52.0
       '@typescript-eslint/utils': 8.52.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)
       eslint: 9.39.1(jiti@2.6.1)
     optionalDependencies:
       typescript: 5.9.2
-      vitest: 4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.0.0)(jiti@2.6.1)(yaml@2.8.2)
+      vitest: 4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -6622,11 +6641,16 @@ snapshots:
 
   growly@1.3.0: {}
 
-  happy-dom@20.0.0:
+  happy-dom@20.1.0:
     dependencies:
       '@types/node': 20.19.1
       '@types/whatwg-mimetype': 3.0.2
+      '@types/ws': 8.18.1
       whatwg-mimetype: 3.0.0
+      ws: 8.19.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   has-flag@4.0.0: {}
 
@@ -8132,7 +8156,7 @@ snapshots:
       jiti: 2.6.1
       yaml: 2.8.2
 
-  vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.0.0)(jiti@2.6.1)(yaml@2.8.2):
+  vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2):
     dependencies:
       '@vitest/expect': 4.0.13
       '@vitest/mocker': 4.0.13(vite@6.2.5(@types/node@24.10.1)(jiti@2.6.1)(yaml@2.8.2))
@@ -8157,7 +8181,7 @@ snapshots:
     optionalDependencies:
       '@types/debug': 4.1.12
       '@types/node': 24.10.1
-      happy-dom: 20.0.0
+      happy-dom: 20.1.0
     transitivePeerDependencies:
       - jiti
       - less
@@ -8273,6 +8297,8 @@ snapshots:
       strip-ansi: 7.1.0
 
   wrappy@1.0.2: {}
+
+  ws@8.19.0: {}
 
   wsl-utils@0.3.0:
     dependencies:
