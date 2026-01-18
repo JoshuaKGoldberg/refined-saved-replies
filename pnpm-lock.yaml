@@ -35,10 +35,10 @@ importers:
         version: 24.10.1
       '@vitest/coverage-v8':
         specifier: 4.0.13
-        version: 4.0.13(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2))
+        version: 4.0.13(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.3.0)(jiti@2.6.1)(yaml@2.8.2))
       '@vitest/eslint-plugin':
         specifier: 1.6.1
-        version: 1.6.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2))
+        version: 1.6.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.3.0)(jiti@2.6.1)(yaml@2.8.2))
       console-fail-test:
         specifier: 0.6.0
         version: 0.6.0
@@ -79,8 +79,8 @@ importers:
         specifier: 1.19.0
         version: 1.19.0(eslint@9.39.1(jiti@2.6.1))
       happy-dom:
-        specifier: 20.1.0
-        version: 20.1.0
+        specifier: 20.3.0
+        version: 20.3.0
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -119,7 +119,7 @@ importers:
         version: 8.41.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)
       vitest:
         specifier: 4.0.13
-        version: 4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2)
+        version: 4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.3.0)(jiti@2.6.1)(yaml@2.8.2)
       web-ext:
         specifier: 9.2.0
         version: 9.2.0(jiti@2.6.1)
@@ -2479,8 +2479,8 @@ packages:
   growly@1.3.0:
     resolution: {integrity: sha512-+xGQY0YyAWCnqy7Cd++hc2JqMYzlm0dG30Jd0beaA64sROr8C4nt8Yc9V5Ro3avlSUDTN0ulqP/VBKi1/lLygw==}
 
-  happy-dom@20.1.0:
-    resolution: {integrity: sha512-ebvqjBqzenBk2LjzNEAzoj7yhw7rW/R2/wVevMu6Mrq3MXtcI/RUz4+ozpcOcqVLEWPqLfg2v9EAU7fFXZUUJw==}
+  happy-dom@20.3.0:
+    resolution: {integrity: sha512-5qJbkqcvR8j/a4av5IWqqIWmEGf9dt6OhGMS6qxCgjSOBGzGa5XLoqg40OyD8XNzQ+g1g2zsXi10kjfpzYH55Q==}
     engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
@@ -5308,7 +5308,7 @@ snapshots:
       '@typescript-eslint/types': 8.52.0
       eslint-visitor-keys: 4.2.1
 
-  '@vitest/coverage-v8@4.0.13(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2))':
+  '@vitest/coverage-v8@4.0.13(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.3.0)(jiti@2.6.1)(yaml@2.8.2))':
     dependencies:
       '@bcoe/v8-coverage': 1.0.2
       '@vitest/utils': 4.0.13
@@ -5321,18 +5321,18 @@ snapshots:
       magicast: 0.5.1
       std-env: 3.10.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2)
+      vitest: 4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.3.0)(jiti@2.6.1)(yaml@2.8.2)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/eslint-plugin@1.6.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2))':
+  '@vitest/eslint-plugin@1.6.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)(vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.3.0)(jiti@2.6.1)(yaml@2.8.2))':
     dependencies:
       '@typescript-eslint/scope-manager': 8.52.0
       '@typescript-eslint/utils': 8.52.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)
       eslint: 9.39.1(jiti@2.6.1)
     optionalDependencies:
       typescript: 5.9.2
-      vitest: 4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2)
+      vitest: 4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.3.0)(jiti@2.6.1)(yaml@2.8.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -6656,7 +6656,7 @@ snapshots:
 
   growly@1.3.0: {}
 
-  happy-dom@20.1.0:
+  happy-dom@20.3.0:
     dependencies:
       '@types/node': 20.19.1
       '@types/whatwg-mimetype': 3.0.2
@@ -8173,7 +8173,7 @@ snapshots:
       jiti: 2.6.1
       yaml: 2.8.2
 
-  vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.1.0)(jiti@2.6.1)(yaml@2.8.2):
+  vitest@4.0.13(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@20.3.0)(jiti@2.6.1)(yaml@2.8.2):
     dependencies:
       '@vitest/expect': 4.0.13
       '@vitest/mocker': 4.0.13(vite@6.2.5(@types/node@24.10.1)(jiti@2.6.1)(yaml@2.8.2))
@@ -8198,7 +8198,7 @@ snapshots:
     optionalDependencies:
       '@types/debug': 4.1.12
       '@types/node': 24.10.1
-      happy-dom: 20.1.0
+      happy-dom: 20.3.0
     transitivePeerDependencies:
       - jiti
       - less
