@@ -64,8 +64,8 @@ importers:
         specifier: 5.1.0
         version: 5.1.0(eslint@9.39.1(jiti@2.6.1))
       eslint-plugin-n:
-        specifier: 17.16.2
-        version: 17.16.2(eslint@9.39.1(jiti@2.6.1))
+        specifier: 17.24.0
+        version: 17.24.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)
       eslint-plugin-package-json:
         specifier: 0.54.0
         version: 0.54.0(@types/estree@1.0.8)(eslint@9.39.1(jiti@2.6.1))(jsonc-eslint-parser@2.4.2)
@@ -1972,8 +1972,8 @@ packages:
     peerDependencies:
       eslint: '>=8'
 
-  eslint-plugin-n@17.16.2:
-    resolution: {integrity: sha512-iQM5Oj+9o0KaeLoObJC/uxNGpktZCkYiTTBo8PkRWq3HwNcRxwpvSDFjBhQ5+HLJzBTy+CLDC5+bw0Z5GyhlOQ==}
+  eslint-plugin-n@17.24.0:
+    resolution: {integrity: sha512-/gC7/KAYmfNnPNOb3eu8vw+TdVnV0zhdQwexsw6FLXbhzroVj20vRn2qL8lDWDGnAQ2J8DhdfvXxX9EoxvERvw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=8.23.0'
@@ -2276,6 +2276,9 @@ packages:
   globby@7.1.1:
     resolution: {integrity: sha512-yANWAN2DUcBtuus5Cpd+SKROzXHs2iVXFZt/Ykrfz6SAXqacLX25NZpltE+39ceMexYF4TtEadjuSTw8+3wX4g==}
     engines: {node: '>=4'}
+
+  globrex@0.1.2:
+    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
 
   graceful-fs@4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
@@ -3671,6 +3674,11 @@ packages:
     engines: {node: '>=18.12'}
     peerDependencies:
       typescript: '>=4.8.4'
+
+  ts-declaration-location@1.0.7:
+    resolution: {integrity: sha512-EDyGAwH1gO0Ausm9gV6T2nUvBgXT5kGoCMJPllOaooZ+4VvJiKBdZE7wK18N1deEowhcUptS+5GXZK8U/fvpwA==}
+    peerDependencies:
+      typescript: '>=4.0.0'
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
@@ -5902,7 +5910,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-n@17.16.2(eslint@9.39.1(jiti@2.6.1)):
+  eslint-plugin-n@17.24.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2):
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.1(jiti@2.6.1))
       enhanced-resolve: 5.19.0
@@ -5910,9 +5918,12 @@ snapshots:
       eslint-plugin-es-x: 7.8.0(eslint@9.39.1(jiti@2.6.1))
       get-tsconfig: 4.13.6
       globals: 15.15.0
+      globrex: 0.1.2
       ignore: 5.3.2
-      minimatch: 9.0.5
       semver: 7.7.4
+      ts-declaration-location: 1.0.7(typescript@5.9.2)
+    transitivePeerDependencies:
+      - typescript
 
   eslint-plugin-no-unsanitized@4.1.4(eslint@9.39.2(jiti@2.6.1)):
     dependencies:
@@ -6305,6 +6316,8 @@ snapshots:
       ignore: 3.3.10
       pify: 3.0.0
       slash: 1.0.0
+
+  globrex@0.1.2: {}
 
   graceful-fs@4.2.10: {}
 
@@ -7930,6 +7943,11 @@ snapshots:
 
   ts-api-utils@2.4.0(typescript@5.9.2):
     dependencies:
+      typescript: 5.9.2
+
+  ts-declaration-location@1.0.7(typescript@5.9.2):
+    dependencies:
+      picomatch: 4.0.3
       typescript: 5.9.2
 
   tslib@2.8.1: {}
