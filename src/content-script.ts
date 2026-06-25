@@ -34,11 +34,8 @@ async function main() {
 	const { defaultBranch, itemDetails } = settings;
 
 	// 3. Fetch the repository's .github/replies.yml configuration
-	const repliesConfiguration = await fetchRepliesConfiguration(
-		defaultBranch,
-		locator,
-	);
-	if (!repliesConfiguration) {
+	const repliesResult = await fetchRepliesConfiguration(defaultBranch, locator);
+	if (repliesResult.type !== "success") {
 		return;
 	}
 
@@ -72,7 +69,7 @@ async function main() {
 				}),
 			);
 
-			for (const reply of repliesConfiguration.replies) {
+			for (const reply of repliesResult.configuration.replies) {
 				const button = createElement("button", {
 					children: [
 						createElement("span", {
