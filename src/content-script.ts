@@ -35,7 +35,10 @@ async function main() {
 
 	// 3. Fetch the repository's .github/replies.yml configuration
 	const repliesResult = await fetchRepliesConfiguration(defaultBranch, locator);
-	if (repliesResult.type !== "success") {
+
+	// A missing replies.yml is normal (most repos don't have one), so stay quiet.
+	// An error, though, should be surfaced to the user in the dropdown below.
+	if (repliesResult.type === "notFound") {
 		return;
 	}
 
@@ -58,6 +61,12 @@ async function main() {
 				.filter((x): x is ParentNode => !!x),
 		);
 
+		if (replyCategoriesDetailsMenus.length === 0) {
+			console.error(
+				"Couldn't find the saved replies dropdown to add repository replies to.",
+			);
+		}
+
 		for (const replyCategoriesDetailsMenu of replyCategoriesDetailsMenus) {
 			replyCategoriesDetailsMenu.appendChild(
 				// TODO: Use the built-in GitHub design system, Primer!
@@ -68,6 +77,20 @@ async function main() {
 					id: "repository-replies-label",
 				}),
 			);
+
+			// If the replies couldn't be loaded, show a small indication instead
+			// of the replies so the user knows something went wrong.
+			if (repliesResult.type === "error") {
+				replyCategoriesDetailsMenu.appendChild(
+					createElement("div", {
+						children: [
+							`Couldn't load this repository's replies: ${repliesResult.message}`,
+						],
+						className: "px-3 py-2 color-fg-muted",
+					}),
+				);
+				continue;
+			}
 
 			for (const reply of repliesResult.configuration.replies) {
 				const button = createElement("button", {
