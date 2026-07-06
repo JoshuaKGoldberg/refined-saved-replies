@@ -11,13 +11,15 @@ import { getSoon } from "./getSoon.js";
 document.addEventListener("soft-nav:end", main);
 
 async function main() {
-	const openSavedRepliesButton = document.querySelector(
-		`[data-show-dialog-id="saved_replies_menu_new_comment_field-dialog"]`,
-	);
-
-	// 1. Is this an issue I can reply to?
-	// (if not, exit from the page)
-	if (!openSavedRepliesButton) {
+	// 1. Query for the Saved Replies button
+	let openSavedRepliesButton: Element | null = null;
+	try {
+		openSavedRepliesButton = await getSoon(() =>
+			document.querySelector(`button:has(.octicon-reply)`),
+		);
+		// console.log("Yay, we found her.", openSavedRepliesButton);
+	} catch {
+		// console.log("Not an issue you can reply to");
 		return;
 	}
 
@@ -30,6 +32,7 @@ async function main() {
 	if (!settings) {
 		return;
 	}
+	// console.log("Settings - ", settings);
 
 	const { defaultBranch, itemDetails } = settings;
 
@@ -43,13 +46,22 @@ async function main() {
 	}
 
 	// As a precaution, don't continue if there's no comment field to reply in
-	const newCommentField = document.getElementById("new_comment_field") as
-		| HTMLTextAreaElement
-		| undefined;
+	let commentField: HTMLTextAreaElement | undefined = undefined;
+	if (itemDetails.html_url.includes("pull")) {
+		commentField = document.getElementById("new_comment_field") as
+			| HTMLTextAreaElement
+			| undefined;
+	} else {
+		commentField = document.querySelector(
+			`textarea.prc-Textarea-TextArea-snlco[aria-labelledby="comment-composer-heading"]`,
+		) as HTMLTextAreaElement | undefined;
+	}
+	const newCommentField = commentField;
 	if (!newCommentField) {
 		console.error("Couldn't find comment field");
 		return;
 	}
+	console.log(newCommentField);
 
 	const onOpenSavedRepliesButtonClick = async () => {
 		// 5. Add the new replies to the saved reply dropdown
