@@ -17,9 +17,7 @@ async function main() {
 		openSavedRepliesButton = await getSoon(() =>
 			document.querySelector(`button:has(.octicon-reply)`),
 		);
-		// console.log("Yay, we found her.", openSavedRepliesButton);
 	} catch {
-		// console.log("Not an issue you can reply to");
 		return;
 	}
 
@@ -32,7 +30,6 @@ async function main() {
 	if (!settings) {
 		return;
 	}
-	// console.log("Settings - ", settings);
 
 	const { defaultBranch, itemDetails } = settings;
 
@@ -45,7 +42,7 @@ async function main() {
 		return;
 	}
 
-	// As a precaution, don't continue if there's no comment field to reply in
+	// 4. As a precaution, don't continue if there's no comment field to reply in
 	let commentField: HTMLTextAreaElement | undefined = undefined;
 	if (itemDetails.html_url.includes("pull")) {
 		commentField = document.getElementById("new_comment_field") as
@@ -61,17 +58,39 @@ async function main() {
 		console.error("Couldn't find comment field");
 		return;
 	}
-	console.log(newCommentField);
 
+	// Create separate section of code for issues and pull requests to match GitHub structure
 	const onOpenSavedRepliesButtonClick = async () => {
 		// 5. Add the new replies to the saved reply dropdown
-		const replyCategoriesDetailsMenus = await getSoon(() =>
-			Array.from(
-				document.querySelectorAll(`.Overlay-body .js-saved-reply-menu`),
-			)
-				.map((element) => element.parentNode)
-				.filter((x): x is ParentNode => !!x),
-		);
+		const replyCategoriesDetailsMenus = await getSoon(() => {
+			if (itemDetails.html_url.includes("pull")) {
+				const menus = Array.from(
+					document.querySelectorAll(`.Overlay-body .js-saved-reply-menu`),
+				)
+					.map((element) => element.parentNode)
+					.filter((x): x is ParentNode => !!x);
+
+				if (menus.length === 0) {
+					return null;
+				}
+
+				return menus;
+			} else {
+				const menus = Array.from(
+					document.querySelectorAll(
+						`.prc-FilteredActionList-Container-647gF .prc-ActionList-ActionList-rPFF2`,
+					),
+				)
+					.map((element) => element.parentNode)
+					.filter((x): x is ParentNode => !!x);
+
+				if (menus.length === 0) {
+					return null;
+				}
+
+				return menus;
+			}
+		});
 
 		for (const replyCategoriesDetailsMenu of replyCategoriesDetailsMenus) {
 			replyCategoriesDetailsMenu.appendChild(
