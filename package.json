@@ -68,7 +68,7 @@
 		"eslint-plugin-yml": "3.6.0",
 		"happy-dom": "20.10.6",
 		"husky": "9.1.7",
-		"knip": "6.14.0",
+		"knip": "6.25.0",
 		"lint-staged": "17.0.2",
 		"markdownlint": "0.40.0",
 		"markdownlint-cli": "0.48.0",
