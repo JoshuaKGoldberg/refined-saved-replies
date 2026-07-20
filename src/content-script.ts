@@ -59,49 +59,33 @@ async function main() {
 		return;
 	}
 
-	// Create separate section of code for issues and pull requests to match GitHub structure
-	const onOpenSavedRepliesButtonClick = async () => {
-		// 5. Add the new replies to the saved reply dropdown
-		const replyCategoriesDetailsMenus = await getSoon(() => {
-			if (itemDetails.html_url.includes("pull")) {
-				const menus = Array.from(
-					document.querySelectorAll(`.Overlay-body .js-saved-reply-menu`),
-				)
-					.map((element) => element.parentNode)
-					.filter((x): x is ParentNode => !!x);
-
-				if (menus.length === 0) {
-					return null;
-				}
-
-				return menus;
-			} else {
-				const menus = Array.from(
-					document.querySelectorAll(
-						`.prc-FilteredActionList-Container-647gF .prc-ActionList-ActionList-rPFF2`,
-					),
-				)
-					.map((element) => element.parentNode)
-					.filter((x): x is ParentNode => !!x);
-
-				if (menus.length === 0) {
-					return null;
-				}
-
-				return menus;
-			}
-		});
+	const createRepositoryReplies = async (
+		replyCategoriesDetailsMenus: ParentNode[],
+	) => {
+		// Use classname based on the appropriate UI (pull request UI vs issue UI)
+		const repositoryClass = itemDetails.html_url.includes("pull")
+			? "js-saved-reply-menu ActionListWrap"
+			: `prc-ActionList-ActionList-rPFF2 prc-FilteredActionList-ActionList-3-Bxb`;
 
 		for (const replyCategoriesDetailsMenu of replyCategoriesDetailsMenus) {
-			replyCategoriesDetailsMenu.appendChild(
-				// TODO: Use the built-in GitHub design system, Primer!
-				// https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/4
-				createElement("div", {
-					children: ["Repository replies"],
-					className: "select-menu-divider my-2",
-					id: "repository-replies-label",
-				}),
-			);
+			if (
+				replyCategoriesDetailsMenu.querySelector("#repository-replies-label")
+			) {
+				continue;
+			}
+
+			const repositoryRepliesSection = createElement("div", {
+				children: [
+					createElement("div", {
+						children: ["Repository replies"],
+						className: "select-menu-divider my-2",
+						id: "repository-replies-label",
+					}),
+				],
+				className: "prc-FilteredActionList-Container-647gF",
+			});
+
+			replyCategoriesDetailsMenu.appendChild(repositoryRepliesSection);
 
 			for (const reply of repliesConfiguration.replies) {
 				const button = createElement("button", {
@@ -156,7 +140,7 @@ async function main() {
 								role: "none",
 							}),
 						],
-						className: "js-saved-reply-menu ActionListWrap",
+						className: repositoryClass,
 						"data-view-component": true,
 						role: "list",
 					}),
@@ -210,14 +194,40 @@ async function main() {
 				);
 			}
 		}
+	};
 
-		openSavedRepliesButton.removeEventListener(
-			"click",
-			// TODO: Add handling for a rejection
-			// https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/2
-			// eslint-disable-next-line @typescript-eslint/no-misused-promises
-			onOpenSavedRepliesButtonClick,
-		);
+	// Create separate section of code for issues and pull requests to match GitHub structure
+	const onOpenSavedRepliesButtonClick = async () => {
+		// 5. Add the new replies to the saved reply dropdown
+		const replyCategoriesDetailsMenus = await getSoon(() => {
+			if (itemDetails.html_url.includes("pull")) {
+				const menus = Array.from(
+					document.querySelectorAll(`.Overlay-body .js-saved-reply-menu`),
+				)
+					.map((element) => element.parentNode)
+					.filter((x): x is ParentNode => !!x);
+
+				if (menus.length === 0) {
+					return null;
+				}
+
+				return menus;
+			} else {
+				const menus = Array.from(
+					document.querySelectorAll(`.prc-FilteredActionList-Container-647gF`),
+				)
+					.map((element) => element.parentNode)
+					.filter((x): x is ParentNode => !!x);
+
+				if (menus.length === 0) {
+					return null;
+				}
+
+				return menus;
+			}
+		});
+
+		await createRepositoryReplies(replyCategoriesDetailsMenus);
 	};
 
 	// 4. Add a listener to modify the saved reply dropdown upon creation
