@@ -8,14 +8,14 @@ runs:
     - run: npx create-typescript-app
       shell: bash
     - id: auto-commit-action
-      uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7
+      uses: stefanzweifel/git-auto-commit-action@4a55954c782fc1ea30b9056cd3e7a2b40ca8887d # v7
       with:
         commit_author: The Friendly Bingo Bot <bot@create.bingo>
         commit_message: Check in changes from re-running npx create-typescript-app
         commit_user_email: bot@create.bingo
         commit_user_name: The Friendly Bingo Bot
     - if: steps.auto-commit-action.outputs.changes_detected == 'true'
-      uses: mshick/add-pr-comment@8e4927817251f1ff60c001f04568532b38e0b4a0 # v3
+      uses: mshick/add-pr-comment@ec328af66588ab8f77cdeb2c264f14aba45bbf59 # v3
       with:
         issue: ${{ github.event.pull_request.number }}
         message: |-
