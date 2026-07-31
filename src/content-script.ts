@@ -44,7 +44,7 @@ async function main() {
 
 	// 4. As a precaution, don't continue if there's no comment field to reply in
 	let commentField: HTMLTextAreaElement | undefined = undefined;
-	if (itemDetails.html_url.includes("pull")) {
+	if (itemDetails.htmlUrl.includes("pull")) {
 		commentField = document.getElementById("new_comment_field") as
 			| HTMLTextAreaElement
 			| undefined;
@@ -59,8 +59,16 @@ async function main() {
 		return;
 	}
 
-	// Helper function for issue saved replies
-	const insertReplyIntoComposer = (
+	// Helper function for saved replies functionality on issue pages
+
+	/**
+	 * Paste text from description into comment box when reply is clicked
+	 * @param {HTMLTextAreaElement} textarea Current textarea state
+	 * @param {string} replyBody The text that belongs to the reply
+	 * @returns {void}
+	 */
+
+	const insertReplyIntoCommentSection = (
 		textarea: HTMLTextAreaElement,
 		replyBody: string,
 	) => {
@@ -83,10 +91,10 @@ async function main() {
 		textarea.setSelectionRange(cursorPosition, cursorPosition);
 	};
 
-	// Create separate section of code for issues and pull requests to match GitHub structure
 	const onOpenSavedRepliesButtonClick = async () => {
 		// 5. Add the new replies to the saved reply dropdown
-		if (itemDetails.html_url.includes("pull")) {
+		// (logic is dependent upon URL including PR or issue)
+		if (itemDetails.htmlUrl.includes("pull")) {
 			const replyCategoriesDetailsMenus = await getSoon(() => {
 				const menus = Array.from(
 					document.querySelectorAll(`.Overlay-body .js-saved-reply-menu`),
@@ -230,13 +238,17 @@ async function main() {
 			}
 		} else {
 			const list = await getSoon(() => {
-				const panel = document.querySelector(
+				const ulElement = document.querySelector(
 					'[data-testid="filtered-action-list"]',
 				);
-				return panel?.querySelector(
+				return ulElement?.querySelector(
 					"ul.prc-ActionList-ActionList-rPFF2.prc-FilteredActionList-ActionList-3-Bxb",
 				) as HTMLUListElement | null;
 			});
+
+			// Capture the list length to increment id of new replies
+			const listLength = list.children.length;
+
 			if (!list.querySelector("#repository-replies-label")) {
 				list.appendChild(
 					// TODO: Use the built-in GitHub design system, Primer!
@@ -255,12 +267,11 @@ async function main() {
 				);
 			}
 
+			let dataId = listLength;
 			for (const reply of repliesConfiguration.replies) {
-				const id = `repository-reply-${Math.random().toString(36).slice(2)}`;
+				const id = `_r_${String(listLength)}_`;
 
-				const item = createElement("li", {
-					"aria-describedby": `${id}--block-description`,
-					"aria-labelledby": `${id}--label ${id}--trailing-visual`,
+				const repoReply = createElement("li", {
 					"aria-selected": false,
 					children: [
 						createElement("div", {
@@ -320,19 +331,19 @@ async function main() {
 					"data-component": "ActionList.Item",
 					"data-first-child": "",
 					"data-has-description": "true",
-					"data-id": "0",
+					"data-id": String(dataId),
 					id,
 					role: "option",
 					tabindex: -1,
 				});
 
-				item.addEventListener("click", (event) => {
+				repoReply.addEventListener("click", (event) => {
 					event.preventDefault();
-					insertReplyIntoComposer(
+					insertReplyIntoCommentSection(
 						newCommentField,
 						Mustache.render(reply.body, itemDetails),
 					);
-					const popup = item.closest(
+					const popup = repoReply.closest(
 						"[role='dialog'], [role='menu'], [data-testid='filtered-action-list']",
 					);
 					popup?.dispatchEvent(
@@ -340,70 +351,77 @@ async function main() {
 					);
 				});
 
-				list.appendChild(item);
+				list.appendChild(repoReply);
+				dataId += 1;
 			}
 
 			// 6. Add a second button at the bottom of the modal for adding more
 			// TODO: thanks for the heads up @keithamus :)
 			// https://github.com/primer/view_components/pull/2364
-			// for (const modal of Array.from(
-			// 	document.querySelectorAll<HTMLElement>(
-			// 		":where(modal-dialog, dialog).js-saved-reply-container",
-			// 	),
-			// )) {
-			// 	// Also, because the modal is by default too tiny, let's make it bigger
-			// 	modal.classList.replace(
-			// 		"Overlay--size-medium",
-			// 		"Overlay--size-xlarge",
-			// 	);
+			const wrapperDiv = await getSoon(() => {
+				const wrapper = document.querySelector(
+					"div.prc-SelectPanel-Wrapper-OD-e6",
+				);
+				return wrapper;
+			});
 
-			// 	// There should already be a "new reply" button; add an equivalent
-			// 	// button for adding a new saved reply
-			// 	const plusIcon = await getSoon(() =>
-			// 		modal.querySelector("a .Button-visual.Button-leadingVisual"),
-			// 	);
+			// Also, because the modal is by default too tiny, let's make it bigger
+			const modal = wrapperDiv.closest('[role="dialog"]');
+			if (!(modal instanceof HTMLElement)) {
+				return;
+			}
 
-			// 	modal.appendChild(
-			// 		createElement("div", {
-			// 			children: [
-			// 				createElement("a", {
-			// 					children: [
-			// 						createElement("span", {
-			// 							children: [
-			// 								plusIcon.cloneNode(true),
-			// 								createElement("span", {
-			// 									children: ["Create a new repository reply"],
-			// 									className: "Button-label",
-			// 								}),
-			// 							],
-			// 							className: "Button-content Button-content--alignStart",
-			// 						}),
-			// 					],
-			// 					className:
-			// 						"Button--invisible Button--medium Button Button--fullWidth",
-			// 					"data-view-component": true,
-			// 					href: `https://github.com/${userOrOrganization}/${repository}/edit/${defaultBranch}/.github/replies.yml`,
-			// 					target: "_blank",
-			// 				}),
-			// 			],
-			// 			className:
-			// 				"Overlay-footer Overlay-footer--alignEnd Overlay-footer--divided",
-			// 			"data-view-component": true,
-			// 		}),
-			// 	);
-			// }
+			modal.style.setProperty("height", "40vh", "important");
+			modal.style.setProperty("max-height", "40vh", "important");
+
+			wrapperDiv.appendChild(
+				createElement("div", {
+					children: [
+						createElement("div", {
+							children: [
+								createElement("a", {
+									children: [
+										createElement("span", {
+											children: [
+												createElement("span", {
+													children: ["Create a new repository reply"],
+													className: "prc-Button-Label-FWkx3",
+													"data-component": "text",
+												}),
+											],
+											className: "prc-Button-ButtonContent-Iohp5",
+											"data-align": "center",
+											"data-component": "buttonContent",
+										}),
+									],
+									className: "prc-Button-ButtonBase-9n-Xk",
+									"data-block": "block",
+									"data-component": "SelectPanel.SecondaryActionLink",
+									"data-loading": "false",
+									"data-no-visuals": "true",
+									"data-size": "medium",
+									"data-variant": "invisible",
+									href: `https://github.com/${userOrOrganization}/${repository}/edit/${defaultBranch}/.github/replies.yml`,
+									target: "_blank",
+								}),
+							],
+							className: "prc-SelectPanel-SecondaryAction-AFlHt",
+							"data-component": "SelectPanel.SecondaryAction",
+							"data-stretch-secondary-action": "always",
+						}),
+					],
+					className:
+						"prc-SelectPanel-Footer-Rxa8K prc-SelectPanel-ResponsiveFooter-qnA4v",
+					"data-component": "SelectPanel.Footer",
+					"data-display-footer": "always",
+					"data-stretch-save-button": "never",
+					"data-stretch-secondary-action": "always",
+				}),
+			);
 		}
-
-		// openSavedRepliesButton.removeEventListener(
-		// 	"click",
-		// 	// TODO: Add handling for a rejection
-		// 	// https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/2
-		// 	// eslint-disable-next-line @typescript-eslint/no-misused-promises
-		// 	onOpenSavedRepliesButtonClick,
-		// );
 	};
 
-	// 4. Add a listener to modify the saved reply dropdown upon creation
+	// 7. Add a listener to modify the saved reply dropdown upon creation
 	openSavedRepliesButton.addEventListener(
 		"click",
 		// TODO: Add handling for a rejection

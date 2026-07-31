@@ -1,15 +1,16 @@
 import { fetchAsJson } from "./fetchAsJson.js";
-import { isRepositorySettings } from "./validations.js";
-
-interface ItemDetails {
-	html_url: string;
-}
+import { isItemDetails, isRepositorySettings } from "./validations.js";
 
 export async function fetchSettings(issueOrPR: string, locator: string) {
 	const [itemDetails, repositorySettings] = await Promise.all([
 		fetchAsJson(`https://api.github.com/repos/${locator}/issues/${issueOrPR}`),
 		fetchAsJson(`https://api.github.com/repos/${locator}`),
 	]);
+
+	if (!isItemDetails(itemDetails)) {
+		console.error("Invalid item details:", itemDetails);
+		return;
+	}
 
 	if (!isRepositorySettings(repositorySettings)) {
 		console.error("Invalid repository details:", repositorySettings);
@@ -18,5 +19,5 @@ export async function fetchSettings(issueOrPR: string, locator: string) {
 
 	const { default_branch: defaultBranch } = repositorySettings;
 
-	return { defaultBranch, itemDetails: itemDetails as ItemDetails };
+	return { defaultBranch, itemDetails: { htmlUrl: itemDetails.html_url } };
 }
