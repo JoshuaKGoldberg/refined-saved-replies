@@ -97,17 +97,17 @@ importers:
         specifier: 0.49.0
         version: 0.49.0
       prettier:
-        specifier: 3.8.0
-        version: 3.8.0
+        specifier: 3.9.6
+        version: 3.9.6
       prettier-plugin-curly:
         specifier: 0.4.0
-        version: 0.4.0(prettier@3.8.0)
+        version: 0.4.0(prettier@3.9.6)
       prettier-plugin-packagejson:
         specifier: 3.0.0
-        version: 3.0.0(prettier@3.8.0)
+        version: 3.0.0(prettier@3.9.6)
       prettier-plugin-sh:
         specifier: 0.18.0
-        version: 0.18.0(prettier@3.8.0)
+        version: 0.18.0(prettier@3.9.6)
       sentences-per-line:
         specifier: 0.3.0
         version: 0.3.0
@@ -2224,6 +2224,7 @@ packages:
   eslint@9.39.1:
     resolution: {integrity: sha512-BhHmn2yNOFA9H9JmmIVKJmd288g9hrVRDkdoIgRCRuSySRUHH7r/DI6aAXW9T1WwUuY3DFgrcaqB+deURBLR5g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -2234,6 +2235,7 @@ packages:
   eslint@9.39.4:
     resolution: {integrity: sha512-XoMjdBOwe/esVgEvLmNsD3IRHkm7fbKIUGvrleloJXUZgDHig2IPWNniv+GwjyJXzuNqVjlr5+4yVUZjycJwfQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -3458,8 +3460,8 @@ packages:
     peerDependencies:
       prettier: ^3.6.0
 
-  prettier@3.8.0:
-    resolution: {integrity: sha512-yEPsovQfpxYfgWNhCfECjG5AQaO+K3dp6XERmOepyPDVqcJm+bjyCVO3pmU+nAPe0N5dDvekfGezt/EIiRe1TA==}
+  prettier@3.9.6:
+    resolution: {integrity: sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -7879,23 +7881,23 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-curly@0.4.0(prettier@3.8.0):
+  prettier-plugin-curly@0.4.0(prettier@3.9.6):
     dependencies:
-      prettier: 3.8.0
+      prettier: 3.9.6
 
-  prettier-plugin-packagejson@3.0.0(prettier@3.8.0):
+  prettier-plugin-packagejson@3.0.0(prettier@3.9.6):
     dependencies:
       sort-package-json: 3.6.0
     optionalDependencies:
-      prettier: 3.8.0
+      prettier: 3.9.6
 
-  prettier-plugin-sh@0.18.0(prettier@3.8.0):
+  prettier-plugin-sh@0.18.0(prettier@3.9.6):
     dependencies:
       '@reteps/dockerfmt': 0.3.6
-      prettier: 3.8.0
+      prettier: 3.9.6
       sh-syntax: 0.5.8
 
-  prettier@3.8.0: {}
+  prettier@3.9.6: {}
 
   pretty-ms@9.3.0:
     dependencies:
