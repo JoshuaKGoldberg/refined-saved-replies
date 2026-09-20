@@ -27,7 +27,11 @@ export async function fetchRepliesConfiguration(
 				repliesResponse.statusText,
 			);
 
-			return { message: repliesResponse.statusText, type: "error" };
+			return {
+				message:
+					`${String(repliesResponse.status)} ${repliesResponse.statusText}`.trim(),
+				type: "error",
+			};
 		}
 
 		const repliesBody = await repliesResponse.text();

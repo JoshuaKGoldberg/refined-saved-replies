@@ -18,11 +18,19 @@ describe("fetchRepliesConfiguration", () => {
 
 		const actual = await fetchRepliesConfiguration("", "");
 
-		expect(actual).toEqual({ message: statusText, type: "error" });
+		expect(actual).toEqual({ message: "500 Oh no!", type: "error" });
 		expect(mockError).toHaveBeenCalledWith(
 			"Non-ok response fetching replies:",
 			statusText,
 		);
+	});
+
+	it("includes the status code when statusText is empty (e.g. HTTP/2 responses)", async () => {
+		mockFetch.mockResolvedValue({ ok: false, status: 503, statusText: "" });
+
+		const actual = await fetchRepliesConfiguration("", "");
+
+		expect(actual).toEqual({ message: "503", type: "error" });
 	});
 
 	it("returns a notFound result and does not console error when the fetch is not ok and status is 404", async () => {
