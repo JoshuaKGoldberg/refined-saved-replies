@@ -79,7 +79,9 @@ async function main() {
 			);
 
 			// If the replies couldn't be loaded, show a small indication instead
-			// of the replies so the user knows something went wrong.
+			// of the replies so the user knows something went wrong. The footer
+			// (step 6) is still added below, so the "create a new reply" link
+			// remains available even when the replies fail to load.
 			if (repliesResult.type === "error") {
 				replyCategoriesDetailsMenu.appendChild(
 					createElement("div", {
@@ -89,67 +91,68 @@ async function main() {
 						className: "px-3 py-2 color-fg-muted",
 					}),
 				);
-				continue;
-			}
-
-			for (const reply of repliesResult.configuration.replies) {
-				const button = createElement("button", {
-					children: [
-						createElement("span", {
-							children: [
-								createElement("span", {
-									children: [Mustache.render(reply.name, itemDetails)],
-									className:
-										"ActionListItem-label ActionListItem-label--truncate",
-									"data-view-component": true,
-								}),
-								createElement("span", {
-									children: [
-										createElement("span", {
-											"aria-hidden": true,
-											children: [
-												createElement("span", {
-													children: [Mustache.render(reply.body, itemDetails)],
-													"data-view-component": true,
-												}),
-											],
-											className: "Truncate js-saved-reply-body",
-											"data-view-component": true,
-										}),
-									],
-									className: "ActionListItem-description",
-								}),
-							],
-							className: "ActionListItem-descriptionWrap",
-							"data-view-component": true,
-						}),
-					],
-					className: "ActionListContent",
-					role: "menuitem",
-					type: "button",
-				});
-
-				// It looks like GitHub's built-in clicking logic already sets up this listener.
-				button.addEventListener("click", (event) => {
-					event.preventDefault();
-				});
-
-				replyCategoriesDetailsMenu.appendChild(
-					createElement("ul", {
-						"aria-labelled-by": "repository-replies-label",
+			} else {
+				for (const reply of repliesResult.configuration.replies) {
+					const button = createElement("button", {
 						children: [
-							createElement("li", {
-								children: [button],
-								className: "ActionListItem",
-								"data-targets": "action-list.items",
-								role: "none",
+							createElement("span", {
+								children: [
+									createElement("span", {
+										children: [Mustache.render(reply.name, itemDetails)],
+										className:
+											"ActionListItem-label ActionListItem-label--truncate",
+										"data-view-component": true,
+									}),
+									createElement("span", {
+										children: [
+											createElement("span", {
+												"aria-hidden": true,
+												children: [
+													createElement("span", {
+														children: [
+															Mustache.render(reply.body, itemDetails),
+														],
+														"data-view-component": true,
+													}),
+												],
+												className: "Truncate js-saved-reply-body",
+												"data-view-component": true,
+											}),
+										],
+										className: "ActionListItem-description",
+									}),
+								],
+								className: "ActionListItem-descriptionWrap",
+								"data-view-component": true,
 							}),
 						],
-						className: "js-saved-reply-menu ActionListWrap",
-						"data-view-component": true,
-						role: "list",
-					}),
-				);
+						className: "ActionListContent",
+						role: "menuitem",
+						type: "button",
+					});
+
+					// It looks like GitHub's built-in clicking logic already sets up this listener.
+					button.addEventListener("click", (event) => {
+						event.preventDefault();
+					});
+
+					replyCategoriesDetailsMenu.appendChild(
+						createElement("ul", {
+							"aria-labelled-by": "repository-replies-label",
+							children: [
+								createElement("li", {
+									children: [button],
+									className: "ActionListItem",
+									"data-targets": "action-list.items",
+									role: "none",
+								}),
+							],
+							className: "js-saved-reply-menu ActionListWrap",
+							"data-view-component": true,
+							role: "list",
+						}),
+					);
+				}
 			}
 
 			// 6. Add a second button at the bottom of the modal for adding more
