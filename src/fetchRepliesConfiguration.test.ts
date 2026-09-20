@@ -58,4 +58,30 @@ describe("fetchRepliesConfiguration", () => {
 		expect(actual).toEqual({ configuration, type: "success" });
 		expect(mockError).not.toHaveBeenCalled();
 	});
+
+	it("returns an error result and console errors when the fetch itself rejects", async () => {
+		const error = new Error("Network request failed");
+
+		mockFetch.mockRejectedValue(error);
+
+		const actual = await fetchRepliesConfiguration("", "");
+
+		expect(actual).toEqual({
+			message: "Network request failed",
+			type: "error",
+		});
+		expect(mockError).toHaveBeenCalledWith("Failed to load replies:", error);
+	});
+
+	it("returns an error result and console errors when the replies body is malformed YAML", async () => {
+		mockFetch.mockResolvedValue({ ok: true, text: () => "foo: 'unterminated" });
+
+		const actual = await fetchRepliesConfiguration("", "");
+
+		expect(actual).toMatchObject({ type: "error" });
+		expect(mockError).toHaveBeenCalledWith(
+			"Failed to load replies:",
+			expect.any(Error),
+		);
+	});
 });

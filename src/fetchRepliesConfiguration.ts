@@ -12,32 +12,43 @@ export async function fetchRepliesConfiguration(
 	defaultBranch: string,
 	locator: string,
 ): Promise<RepliesConfigurationResult> {
-	const repliesResponse = await fetch(
-		`https://raw.githubusercontent.com/${locator}/${defaultBranch}/.github/replies.yml`,
-	);
-
-	if (!repliesResponse.ok) {
-		if (repliesResponse.status === 404) {
-			return { type: "notFound" };
-		}
-
-		console.error(
-			"Non-ok response fetching replies:",
-			repliesResponse.statusText,
+	try {
+		const repliesResponse = await fetch(
+			`https://raw.githubusercontent.com/${locator}/${defaultBranch}/.github/replies.yml`,
 		);
 
-		return { message: repliesResponse.statusText, type: "error" };
+		if (!repliesResponse.ok) {
+			if (repliesResponse.status === 404) {
+				return { type: "notFound" };
+			}
+
+			console.error(
+				"Non-ok response fetching replies:",
+				repliesResponse.statusText,
+			);
+
+			return { message: repliesResponse.statusText, type: "error" };
+		}
+
+		const repliesBody = await repliesResponse.text();
+
+		const repliesConfiguration = yaml.load(repliesBody);
+
+		if (!isBodyWithReplies(repliesConfiguration)) {
+			console.error("Invalid saved replies:", repliesConfiguration);
+
+			return { message: "Invalid saved replies configuration.", type: "error" };
+		}
+
+		return { configuration: repliesConfiguration, type: "success" };
+	} catch (error) {
+		// `fetch` rejects on network failures and `yaml.load` throws on
+		// syntactically malformed YAML; surface both as an error result.
+		console.error("Failed to load replies:", error);
+
+		return {
+			message: error instanceof Error ? error.message : String(error),
+			type: "error",
+		};
 	}
-
-	const repliesBody = await repliesResponse.text();
-
-	const repliesConfiguration = yaml.load(repliesBody);
-
-	if (!isBodyWithReplies(repliesConfiguration)) {
-		console.error("Invalid saved replies:", repliesConfiguration);
-
-		return { message: "Invalid saved replies configuration.", type: "error" };
-	}
-
-	return { configuration: repliesConfiguration, type: "success" };
 }
