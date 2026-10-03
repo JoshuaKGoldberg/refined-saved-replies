@@ -8,7 +8,7 @@
 import {
 	blockESLint,
 	blockReleaseIt,
-	blockTSup,
+	blockTSDown,
 	blockVitest,
 	blockWebExt,
 	createConfig,
@@ -35,7 +35,7 @@ export default createConfig({
 		],
 		blocks: {
 			add: [blockWebExt],
-			exclude: [blockReleaseIt, blockTSup],
+			exclude: [blockReleaseIt, blockTSDown],
 		},
 	},
 });
