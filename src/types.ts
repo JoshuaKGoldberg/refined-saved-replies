@@ -3,6 +3,7 @@ export interface BodyWithReplies {
 }
 
 export interface ItemDetails {
+	[key: string]: unknown;
 	html_url: string;
 }
 

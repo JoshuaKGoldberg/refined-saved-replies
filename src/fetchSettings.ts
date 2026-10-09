@@ -19,5 +19,8 @@ export async function fetchSettings(issueOrPR: string, locator: string) {
 
 	const { default_branch: defaultBranch } = repositorySettings;
 
-	return { defaultBranch, itemDetails: { htmlUrl: itemDetails.html_url } };
+	return {
+		defaultBranch,
+		itemDetails: { ...itemDetails, htmlUrl: itemDetails.html_url },
+	};
 }
