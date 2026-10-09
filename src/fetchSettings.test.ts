@@ -49,7 +49,7 @@ describe("fetchSettings", () => {
 
 		expect(actual).toEqual({
 			defaultBranch,
-			itemDetails: { htmlUrl: itemDetails.html_url },
+			itemDetails: { ...itemDetails, htmlUrl: itemDetails.html_url },
 		});
 		expect(mockError).not.toHaveBeenCalled();
 	});
@@ -74,7 +74,10 @@ describe("fetchSettings", () => {
 	it("returns the default branch and mapped item details when item details are valid", async () => {
 		const defaultBranch = "some-branch";
 		const itemDetails = { html_url: "https://github.com/user1/issues/1" };
-		const repositorySettings = { default_branch: defaultBranch };
+		const repositorySettings = {
+			...itemDetails,
+			default_branch: defaultBranch,
+		};
 
 		mockFetchAsJson
 			.mockResolvedValueOnce(itemDetails)
@@ -84,7 +87,7 @@ describe("fetchSettings", () => {
 
 		expect(actual).toEqual({
 			defaultBranch,
-			itemDetails: { htmlUrl: itemDetails.html_url },
+			itemDetails: { ...itemDetails, htmlUrl: itemDetails.html_url },
 		});
 		expect(mockError).not.toHaveBeenCalled();
 	});
