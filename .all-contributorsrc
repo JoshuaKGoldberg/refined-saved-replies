@@ -76,6 +76,15 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "jewlzt",
+      "name": "Julianne Tomlinson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/118313562?v=4",
+      "profile": "https://github.com/JewlzT",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
