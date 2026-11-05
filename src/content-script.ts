@@ -34,11 +34,11 @@ async function main() {
 	const { defaultBranch, itemDetails } = settings;
 
 	// 3. Fetch the repository's .github/replies.yml configuration
-	const repliesConfiguration = await fetchRepliesConfiguration(
-		defaultBranch,
-		locator,
-	);
-	if (!repliesConfiguration) {
+	const repliesResult = await fetchRepliesConfiguration(defaultBranch, locator);
+
+	// A missing replies.yml is normal (most repos don't have one), so stay quiet.
+	// An error, though, should be surfaced to the user in the dropdown below.
+	if (repliesResult.type === "notFound") {
 		return;
 	}
 
@@ -61,6 +61,12 @@ async function main() {
 				.filter((x): x is ParentNode => !!x),
 		);
 
+		if (replyCategoriesDetailsMenus.length === 0) {
+			console.error(
+				"Couldn't find the saved replies dropdown to add repository replies to.",
+			);
+		}
+
 		for (const replyCategoriesDetailsMenu of replyCategoriesDetailsMenus) {
 			replyCategoriesDetailsMenu.appendChild(
 				// TODO: Use the built-in GitHub design system, Primer!
@@ -72,64 +78,81 @@ async function main() {
 				}),
 			);
 
-			for (const reply of repliesConfiguration.replies) {
-				const button = createElement("button", {
-					children: [
-						createElement("span", {
-							children: [
-								createElement("span", {
-									children: [Mustache.render(reply.name, itemDetails)],
-									className:
-										"ActionListItem-label ActionListItem-label--truncate",
-									"data-view-component": true,
-								}),
-								createElement("span", {
-									children: [
-										createElement("span", {
-											"aria-hidden": true,
-											children: [
-												createElement("span", {
-													children: [Mustache.render(reply.body, itemDetails)],
-													"data-view-component": true,
-												}),
-											],
-											className: "Truncate js-saved-reply-body",
-											"data-view-component": true,
-										}),
-									],
-									className: "ActionListItem-description",
-								}),
-							],
-							className: "ActionListItem-descriptionWrap",
-							"data-view-component": true,
-						}),
-					],
-					className: "ActionListContent",
-					role: "menuitem",
-					type: "button",
-				});
-
-				// It looks like GitHub's built-in clicking logic already sets up this listener.
-				button.addEventListener("click", (event) => {
-					event.preventDefault();
-				});
-
+			// If the replies couldn't be loaded, show a small indication instead
+			// of the replies so the user knows something went wrong. The footer
+			// (step 6) is still added below, so the "create a new reply" link
+			// remains available even when the replies fail to load.
+			if (repliesResult.type === "error") {
 				replyCategoriesDetailsMenu.appendChild(
-					createElement("ul", {
-						"aria-labelled-by": "repository-replies-label",
+					createElement("div", {
 						children: [
-							createElement("li", {
-								children: [button],
-								className: "ActionListItem",
-								"data-targets": "action-list.items",
-								role: "none",
-							}),
+							`Couldn't load this repository's replies: ${repliesResult.message}`,
 						],
-						className: "js-saved-reply-menu ActionListWrap",
-						"data-view-component": true,
-						role: "list",
+						className: "px-3 py-2 color-fg-muted",
 					}),
 				);
+			} else {
+				for (const reply of repliesResult.configuration.replies) {
+					const button = createElement("button", {
+						children: [
+							createElement("span", {
+								children: [
+									createElement("span", {
+										children: [Mustache.render(reply.name, itemDetails)],
+										className:
+											"ActionListItem-label ActionListItem-label--truncate",
+										"data-view-component": true,
+									}),
+									createElement("span", {
+										children: [
+											createElement("span", {
+												"aria-hidden": true,
+												children: [
+													createElement("span", {
+														children: [
+															Mustache.render(reply.body, itemDetails),
+														],
+														"data-view-component": true,
+													}),
+												],
+												className: "Truncate js-saved-reply-body",
+												"data-view-component": true,
+											}),
+										],
+										className: "ActionListItem-description",
+									}),
+								],
+								className: "ActionListItem-descriptionWrap",
+								"data-view-component": true,
+							}),
+						],
+						className: "ActionListContent",
+						role: "menuitem",
+						type: "button",
+					});
+
+					// It looks like GitHub's built-in clicking logic already sets up this listener.
+					button.addEventListener("click", (event) => {
+						event.preventDefault();
+					});
+
+					replyCategoriesDetailsMenu.appendChild(
+						createElement("ul", {
+							"aria-labelled-by": "repository-replies-label",
+							children: [
+								createElement("li", {
+									children: [button],
+									className: "ActionListItem",
+									"data-targets": "action-list.items",
+									role: "none",
+								}),
+							],
+							className: "js-saved-reply-menu ActionListWrap",
+							"data-view-component": true,
+							role: "list",
+						}),
+					);
+				}
 			}
 
 			// 6. Add a second button at the bottom of the modal for adding more
