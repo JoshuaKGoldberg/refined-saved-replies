@@ -1,4 +1,9 @@
-import { BodyWithReplies, Reply, RepositorySettings } from "./types.js";
+import {
+	BodyWithReplies,
+	ItemDetails,
+	Reply,
+	RepositorySettings,
+} from "./types.js";
 
 export function isBodyWithReplies(data: unknown): data is BodyWithReplies {
 	return !!(
@@ -6,6 +11,14 @@ export function isBodyWithReplies(data: unknown): data is BodyWithReplies {
 		typeof data === "object" &&
 		(data as Partial<BodyWithReplies>).replies instanceof Array &&
 		(data as BodyWithReplies).replies.every(isReply)
+	);
+}
+
+export function isItemDetails(data: unknown): data is ItemDetails {
+	return !!(
+		data &&
+		typeof data === "object" &&
+		typeof (data as Partial<ItemDetails>).html_url === "string"
 	);
 }
 
