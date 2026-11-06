@@ -11,19 +11,40 @@ import { getSoon } from "./getSoon.js";
 document.addEventListener("soft-nav:end", main);
 
 async function main() {
-	// 1. Query for the Saved Replies button
-	let openSavedRepliesButton: Element | null = null;
-	try {
-		openSavedRepliesButton = await getSoon(() =>
-			document.querySelector(`button:has(.octicon-reply)`),
-		);
-	} catch {
-		return;
-	}
-
-	const [, userOrOrganization, repository, , issueOrPR] =
+	const [, userOrOrganization, repository, issueOrPRTitle, issueOrPR] =
 		window.location.pathname.split("/");
 	const locator = `${userOrOrganization}/${repository}`;
+	// Check if URL is for PRs or issues
+	const isPullRequest = issueOrPRTitle === "pull";
+
+	// 1. Query for the Saved Replies button
+	const openSavedRepliesButton = await getSoon(() => {
+		if (isPullRequest) {
+			return document.querySelector<HTMLButtonElement>(
+				'button[data-show-dialog-id="saved_replies_menu_new_comment_field-dialog"]',
+			);
+		}
+
+		return (
+			Array.from(
+				document.querySelectorAll<HTMLButtonElement>("button[aria-labelledby]"),
+			).find((button) => {
+				const labelledBy = button.getAttribute("aria-labelledby");
+
+				if (!labelledBy) {
+					return false;
+				}
+
+				const accessibleLabel = labelledBy
+					.split(/\s+/)
+					.map((id) => document.getElementById(id)?.textContent ?? "")
+					.join(" ")
+					.trim();
+
+				return accessibleLabel === "Saved replies";
+			}) ?? null
+		);
+	});
 
 	// 2. Fetch the REST API's JSON descriptions of the item and the repository's settings
 	const settings = await fetchSettings(issueOrPR, locator);
@@ -44,7 +65,7 @@ async function main() {
 
 	// 4. As a precaution, don't continue if there's no comment field to reply in
 	let commentField: HTMLTextAreaElement | undefined = undefined;
-	if (itemDetails.htmlUrl.includes("pull")) {
+	if (isPullRequest) {
 		commentField = document.getElementById("new_comment_field") as
 			| HTMLTextAreaElement
 			| undefined;
@@ -94,7 +115,7 @@ async function main() {
 	const onOpenSavedRepliesButtonClick = async () => {
 		// 5. Add the new replies to the saved reply dropdown
 		// (logic is dependent upon URL including PR or issue)
-		if (itemDetails.htmlUrl.includes("pull")) {
+		if (isPullRequest) {
 			const replyCategoriesDetailsMenus = await getSoon(() => {
 				const menus = Array.from(
 					document.querySelectorAll(`.Overlay-body .js-saved-reply-menu`),
@@ -108,12 +129,14 @@ async function main() {
 
 				return menus;
 			});
+
 			for (const replyCategoriesDetailsMenu of replyCategoriesDetailsMenus) {
 				if (
 					replyCategoriesDetailsMenu.querySelector("#repository-replies-label")
 				) {
 					continue;
 				}
+
 				replyCategoriesDetailsMenu.appendChild(
 					// TODO: Use the built-in GitHub design system, Primer!
 					// https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/4
@@ -185,56 +208,52 @@ async function main() {
 						}),
 					);
 				}
+			}
+			// 6. Add a second button at the bottom of the modal for adding more
+			// TODO: thanks for the heads up @keithamus :)
+			// https://github.com/primer/view_components/pull/2364
+			for (const modal of Array.from(
+				document.querySelectorAll<HTMLElement>(
+					":where(modal-dialog, dialog).js-saved-reply-container",
+				),
+			)) {
+				// Also, because the modal is by default too tiny, let's make it bigger
+				modal.classList.replace("Overlay--size-medium", "Overlay--size-xlarge");
 
-				// 6. Add a second button at the bottom of the modal for adding more
-				// TODO: thanks for the heads up @keithamus :)
-				// https://github.com/primer/view_components/pull/2364
-				for (const modal of Array.from(
-					document.querySelectorAll<HTMLElement>(
-						":where(modal-dialog, dialog).js-saved-reply-container",
-					),
-				)) {
-					// Also, because the modal is by default too tiny, let's make it bigger
-					modal.classList.replace(
-						"Overlay--size-medium",
-						"Overlay--size-xlarge",
-					);
+				// There should already be a "new reply" button; add an equivalent
+				// button for adding a new saved reply
+				const plusIcon = await getSoon(() =>
+					modal.querySelector("a .Button-visual.Button-leadingVisual"),
+				);
 
-					// There should already be a "new reply" button; add an equivalent
-					// button for adding a new saved reply
-					const plusIcon = await getSoon(() =>
-						modal.querySelector("a .Button-visual.Button-leadingVisual"),
-					);
-
-					modal.appendChild(
-						createElement("div", {
-							children: [
-								createElement("a", {
-									children: [
-										createElement("span", {
-											children: [
-												plusIcon.cloneNode(true),
-												createElement("span", {
-													children: ["Create a new repository reply"],
-													className: "Button-label",
-												}),
-											],
-											className: "Button-content Button-content--alignStart",
-										}),
-									],
-									className:
-										"Button--invisible Button--medium Button Button--fullWidth",
-									"data-view-component": true,
-									href: `https://github.com/${userOrOrganization}/${repository}/edit/${defaultBranch}/.github/replies.yml`,
-									target: "_blank",
-								}),
-							],
-							className:
-								"Overlay-footer Overlay-footer--alignEnd Overlay-footer--divided",
-							"data-view-component": true,
-						}),
-					);
-				}
+				modal.appendChild(
+					createElement("div", {
+						children: [
+							createElement("a", {
+								children: [
+									createElement("span", {
+										children: [
+											plusIcon.cloneNode(true),
+											createElement("span", {
+												children: ["Create a new repository reply"],
+												className: "Button-label",
+											}),
+										],
+										className: "Button-content Button-content--alignStart",
+									}),
+								],
+								className:
+									"Button--invisible Button--medium Button Button--fullWidth",
+								"data-view-component": true,
+								href: `https://github.com/${userOrOrganization}/${repository}/edit/${defaultBranch}/.github/replies.yml`,
+								target: "_blank",
+							}),
+						],
+						className:
+							"Overlay-footer Overlay-footer--alignEnd Overlay-footer--divided",
+						"data-view-component": true,
+					}),
+				);
 			}
 		} else {
 			const list = await getSoon(() => {
@@ -269,7 +288,7 @@ async function main() {
 
 			let dataId = listLength;
 			for (const reply of repliesConfiguration.replies) {
-				const id = `_r_${String(listLength)}_`;
+				const id = `_r_${String(dataId)}_`;
 
 				const repoReply = createElement("li", {
 					"aria-selected": false,
