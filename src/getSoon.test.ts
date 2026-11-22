@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { getSoon } from "./getSoon.js";
+import { getSoon } from "./getSoon.ts";
 
-describe("getSoon", () => {
+describe(getSoon, () => {
 	it("resolves when the getter returns a Node", async () => {
 		const node = document.createElement("div");
 

@@ -1,6 +1,6 @@
 description: Prepares the repo for a typical CI job
 
-name: Prepare
+name: Setup
 
 runs:
   steps:
@@ -8,7 +8,7 @@ runs:
     - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
       with:
         cache: pnpm
-        node-version: 24.15.0
+        node-version: lts/*
     - run: pnpm install --frozen-lockfile
       shell: bash
   using: composite

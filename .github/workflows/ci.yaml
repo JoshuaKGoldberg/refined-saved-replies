@@ -1,0 +1,78 @@
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/prepare
+      - run: pnpm build
+      - parallel:
+          - name: Dedupe Check
+            run: pnpm dedupe --check
+          - name: Format Check
+            run: pnpm format --list-different
+          - name: Lint
+            run: pnpm lint
+          - name: Lint GitHub Actions
+            uses: zizmorcore/zizmor-action@v0.6.4
+            with:
+              advanced-security: "false"
+              annotations: "true"
+          - name: Lint Knip
+            run: pnpm lint:knip
+          - name: Lint Knip Production
+            run: pnpm lint:knip:production
+          - name: Lint Spelling
+            run: pnpm lint:spelling
+          - name: Type Check
+            run: pnpm tsc
+
+  engines_check:
+    name: Engines Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/prepare
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          cache: pnpm
+          node-version: "18"
+      - run: pnpm install --prod --engine-strict --ignore-scripts
+
+  lint_web-ext:
+    name: Lint Web-ext
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/prepare
+      - run: pnpm dev
+      - run: pnpm lint:web-ext
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/prepare
+      - run: pnpm run test --coverage
+      - if: always()
+        uses: codecov/codecov-action@v5
+
+name: CI
+
+on:
+  pull_request: ~
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read

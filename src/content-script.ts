@@ -1,9 +1,9 @@
 import Mustache from "mustache";
 
-import { createElement } from "./elements.js";
-import { fetchRepliesConfiguration } from "./fetchRepliesConfiguration.js";
-import { fetchSettings } from "./fetchSettings.js";
-import { getSoon } from "./getSoon.js";
+import { createElement } from "./elements.ts";
+import { fetchRepliesConfiguration } from "./fetchRepliesConfiguration.ts";
+import { fetchSettings } from "./fetchSettings.ts";
+import { getSoon } from "./getSoon.ts";
 
 // TODO: Add handling for a rejection
 // https://github.com/JoshuaKGoldberg/refined-saved-replies/issues/2
@@ -44,8 +44,7 @@ async function main() {
 
 	// As a precaution, don't continue if there's no comment field to reply in
 	const newCommentField = document.getElementById("new_comment_field") as
-		| HTMLTextAreaElement
-		| undefined;
+		HTMLTextAreaElement | undefined;
 	if (!newCommentField) {
 		console.error("Couldn't find comment field");
 		return;
