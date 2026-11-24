@@ -8,7 +8,7 @@
 import {
 	blockESLint,
 	blockReleaseIt,
-	blockTSup,
+	blockTSDown,
 	blockVitest,
 	blockWebExt,
 	createConfig,
@@ -16,16 +16,44 @@ import {
 
 export default createConfig({
 	refinements: {
-		addons: [
+		blocks: {
+			add: [blockWebExt],
+			exclude: [blockReleaseIt, blockTSDown],
+		},
+		extensions: [
 			blockESLint({
-				rules: [
+				extensions: [
 					{
-						entries: {
-							"n/no-unsupported-features/node-builtins": [
-								"error",
-								{ allowExperimental: true },
-							],
-						},
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								entries: {
+									"n/no-unsupported-features/node-builtins": [
+										"error",
+										{ allowExperimental: true },
+									],
+								},
+							},
+						],
+					},
+					{
+						files: ["**/{dependabot,replies}.yml"],
+						rules: [
+							{
+								comment:
+									"Dependabot and this extension's own replies file use .yml names",
+								entries: { "yml/file-extension": "off" },
+							},
+						],
+					},
+					{
+						files: ["package.json"],
+						rules: [
+							{
+								comment: "This is a browser extension, not an npm package",
+								entries: { "package-json/require-exports": "off" },
+							},
+						],
 					},
 				],
 			}),
@@ -33,9 +61,5 @@ export default createConfig({
 				environment: "happy-dom",
 			}),
 		],
-		blocks: {
-			add: [blockWebExt],
-			exclude: [blockReleaseIt, blockTSup],
-		},
 	},
 });

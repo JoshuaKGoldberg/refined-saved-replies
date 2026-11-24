@@ -1,6 +1,6 @@
 import * as yaml from "js-yaml";
 
-import { isBodyWithReplies } from "./validations.js";
+import { isBodyWithReplies } from "./validations.ts";
 
 export async function fetchRepliesConfiguration(
 	defaultBranch: string,

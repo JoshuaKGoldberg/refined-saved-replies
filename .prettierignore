@@ -1,6 +1,8 @@
 /.all-contributorsrc
 /.husky
+/_tmp_*
 /coverage
+/dist
 /lib
 /pnpm-lock.yaml
 assets/

@@ -1,8 +1,8 @@
 import { describe, expect, test } from "vitest";
 
-import { isBodyWithReplies, isRepositorySettings } from "./validations.js";
+import { isBodyWithReplies, isRepositorySettings } from "./validations.ts";
 
-describe("isBodyWithReplies", () => {
+describe(isBodyWithReplies, () => {
 	test.each([
 		["", false],
 		[[], false],

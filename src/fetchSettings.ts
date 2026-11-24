@@ -1,5 +1,5 @@
-import { fetchAsJson } from "./fetchAsJson.js";
-import { isRepositorySettings } from "./validations.js";
+import { fetchAsJson } from "./fetchAsJson.ts";
+import { isRepositorySettings } from "./validations.ts";
 
 export async function fetchSettings(issueOrPR: string, locator: string) {
 	const [itemDetails, repositorySettings] = await Promise.all([
