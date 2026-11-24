@@ -1,4 +1,4 @@
-import { BodyWithReplies, Reply, RepositorySettings } from "./types.js";
+import { BodyWithReplies, Reply, RepositorySettings } from "./types.ts";
 
 export function isBodyWithReplies(data: unknown): data is BodyWithReplies {
 	return !!(

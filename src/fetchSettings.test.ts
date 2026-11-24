@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { fetchSettings } from "./fetchSettings.js";
+import { fetchSettings } from "./fetchSettings.ts";
 
 const mockFetchAsJson = vi.fn();
 
-vi.mock("./fetchAsJson.js", () => ({
+vi.mock("./fetchAsJson.ts", () => ({
 	get fetchAsJson() {
 		return mockFetchAsJson;
 	},
@@ -12,7 +12,7 @@ vi.mock("./fetchAsJson.js", () => ({
 
 const mockError = vi.fn();
 
-describe("fetchSettings", () => {
+describe(fetchSettings, () => {
 	beforeEach(() => {
 		globalThis.console.error = mockError;
 	});

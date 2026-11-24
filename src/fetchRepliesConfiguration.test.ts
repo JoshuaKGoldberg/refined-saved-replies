@@ -1,11 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { fetchRepliesConfiguration } from "./fetchRepliesConfiguration.js";
+import { fetchRepliesConfiguration } from "./fetchRepliesConfiguration.ts";
 
 const mockFetch = vi.fn();
 const mockError = vi.fn();
 
-describe("fetchRepliesConfiguration", () => {
+describe(fetchRepliesConfiguration, () => {
 	beforeEach(() => {
 		globalThis.fetch = mockFetch;
 		globalThis.console.error = mockError;

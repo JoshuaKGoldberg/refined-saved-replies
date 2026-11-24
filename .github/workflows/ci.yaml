@@ -1,0 +1,78 @@
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/prepare
+      - run: pnpm build
+      - parallel:
+          - name: Dedupe Check
+            run: pnpm dedupe --check
+          - name: Format Check
+            run: pnpm format --list-different
+          - name: Lint
+            run: pnpm lint
+          - name: Lint GitHub Actions
+            uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
+            with:
+              advanced-security: "false"
+              annotations: "true"
+          - name: Lint Knip
+            run: pnpm lint:knip
+          - name: Lint Knip Production
+            run: pnpm lint:knip:production
+          - name: Lint Spelling
+            run: pnpm lint:spelling
+          - name: Type Check
+            run: pnpm tsc
+
+  engines_check:
+    name: Engines Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/prepare
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          cache: pnpm
+          node-version: "18"
+      - run: pnpm install --prod --engine-strict --ignore-scripts
+
+  lint_web-ext:
+    name: Lint Web-ext
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/prepare
+      - run: pnpm dev
+      - run: pnpm lint:web-ext
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/prepare
+      - run: pnpm run test --coverage
+      - if: always()
+        uses: codecov/codecov-action@v5
+
+name: CI
+
+on:
+  pull_request: ~
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
