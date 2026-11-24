@@ -60,7 +60,7 @@
 		"eslint-plugin-perfectionist": "5.14.0",
 		"eslint-plugin-regexp": "3.3.1",
 		"eslint-plugin-yml": "3.10.0",
-		"happy-dom": "20.13.2",
+		"happy-dom": "20.14.6",
 		"husky": "9.1.7",
 		"jiti": "2.7.0",
 		"knip": "6.47.0",
