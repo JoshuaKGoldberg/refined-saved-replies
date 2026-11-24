@@ -76,7 +76,7 @@
 		"vitest": "5.1.0",
 		"web-ext": "10.8.0"
 	},
-	"packageManager": "pnpm@10.33.0",
+	"packageManager": "pnpm@10.34.9",
 	"engines": {
 		"node": ">=18"
 	},
