@@ -35,7 +35,7 @@
 		"tsc": "tsc"
 	},
 	"dependencies": {
-		"js-yaml": "^4.1.0",
+		"js-yaml": "^5.0.0",
 		"mustache": "^4.2.0"
 	},
 	"devDependencies": {
